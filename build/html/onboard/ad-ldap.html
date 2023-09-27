@@ -1,0 +1,897 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="GitLab Single Sign-On" href="sso-gitlab.html" /><link rel="prev" title="Multi-factor authentication" href="multi-factor-authentication.html" />
+        <link rel="canonical" href="https://www.ethereal.cc/redux/onboard/ad-ldap.html" />
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 7.2.6 and Furo 2023.09.10 -->
+        <title>Active directory/LDAP setup - Mattermost documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/compass-icons.css?v=b28d7826" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  --font-stack: Noto Sans, Helvetica Neue, Arial, sans-serif;
+  --font-stack--monospace: Fira Mono, Courier New, Courier, monospace;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">Mattermost  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">Mattermost  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../overview/index.html">About Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of About Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../about/product.html">Mattermost overview</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../about/use-cases.html">Use cases</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Use cases</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../about/secure-command-and-control.html">Secure command and control</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../about/unified-collaboration.html">Unified communication</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Unified communication</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../about/mattermost-for-microsoft-teams.html">Mattermost for Microsoft Teams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../about/mattermost-google-calendar-integration.html">Mattermost Google Calendar integration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../about/devops-collaboration.html">DevOps collaboration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/incident-response-collaboration.html">Incident response collaboration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../about/security.html">Security overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/integrations.html">Integrations overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/subscription.html">Subscription overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/self-hosted-subscriptions.html">Self-hosted subscriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/cloud-subscriptions.html">Cloud subscriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/editions-and-offerings.html">Mattermost editions and plans</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/corporate-directory-integration.html">Corporate directory integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/certifications-and-compliance.html">Certifications and compliance overview</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../about/frequently-asked-questions.html">Frequently asked questions (FAQ)</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Frequently asked questions (FAQ)</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-general.html">General Mattermost questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-community.html">Community questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-notifications.html">Notifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-video-audio-screensharing.html">Video, audio, and screen sharing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-enterprise.html">Enterprise questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-license.html">License questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-integrations.html">Integrations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-use-cases.html">Use cases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-product.html">Product questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-high-trust.html">High trust questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-design-decisions.html">Design decisions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-business.html">Business questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-illicit-use.html">Illicit use</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../guides/deployment.html">Deploy Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Deploy Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../install/prepare-mattermost-database.html">Prepare your Mattermost database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-ubuntu.html">Deploy on Ubuntu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-docker.html">Deploy using Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-tar.html">Deploy with a tarball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/installing-mattermost-omnibus.html">Deploy using Omnibus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-kubernetes.html">Deploy using Kubernetes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-rhel-8.html">Deploy on Red Hat</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/prepare-for-your-mattermost-deployment.html">Prepare for your Mattermost deployment</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of Prepare for your Mattermost deployment</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install/software-hardware-requirements.html">  Software and hardware requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/mattermost-kubernetes-operator.html">  About the Mattermost Kubernetes Operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/admin-onboarding-tasks.html">  Administrator tasks</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../getting-started/architecture-overview.html">  Architecture overview</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of   Architecture overview</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/implementation-plan.html">  Plan your Mattermost implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/enterprise-roll-out-checklist.html">  Enterprise roll out checklist</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/welcome-email-to-end-users.html">  Welcome email template</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/deployment-guides.html">Deployment guides</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of Deployment guides</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../guides/server-deployment.html">Server deployment</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of Server deployment</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/deployment-overview.html"> Deployment overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/setting-up-socket-based-mattermost-database.html"> Set up a socket-based Mattermost database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/image-proxy.html"> Image proxy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/backup-disaster-recovery.html"> Backup and disaster recovery</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/encryption-options.html"> Encryption options</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../install/transport-encryption.html"> Configure transport encryption</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of  Configure transport encryption</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../install/proxy-to-mattermost-transport-encryption.html">Configuring proxy to Mattermost transport encryption</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../install/database-transport-encryption.html">Configuring database transport encryption</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../install/cluster-transport-encryption.html">Configuring cluster transport encryption</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/bleve-search.html"> Bleve search</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../guides/desktop-mobile-app-deployment.html">Desktop and mobile app deployment</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of Desktop and mobile app deployment</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/desktop-app.html">Desktop app deployment guide</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/desktop-msi-installer-and-group-policy-install.html">Desktop MSI installer and group policy installation guides (beta)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/desktop-custom-dictionaries.html">Desktop App custom dictionaries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/desktop-app-managed-resources.html">Desktop managed resources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/use-prebuilt-mobile-apps.html">Using Mattermost’s pre-built mobile apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-testing-notifications.html">Testing push notifications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-overview.html">Deploy Mattermost mobile apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-hpns.html">Mobile push notifications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/build-custom-mobile-apps.html">Building and distributing your own custom Mattermost mobile apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/deploy-mobile-apps-using-emm-provider.html">Deploying mobile apps using an EMM provider</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-appconfig.html">AppConfig for EMM solutions with Mattermost Mobile Apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/consider-mobile-vpn-options.html">Mobile VPN options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-faq.html">Mobile apps FAQ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/client-side-data.html">Client-side data storage FAQ</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/upgrade-mattermost.html">Upgrade Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle navigation of Upgrade Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/prepare-to-upgrade-mattermost.html"> Prepare to upgrade Mattermost</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/upgrading-mattermost-server.html"> Upgrade Mattermost Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/enterprise-install-upgrade.html"> Enterprise install and upgrade</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/installing-license-key.html"> Install a license key</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/release-definitions.html"> Release definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/important-upgrade-notes.html"> Important upgrade notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/release-lifecycle.html"> Release lifecycle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/extended-support-release.html"> Extended Support Release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/downgrading-mattermost-server.html"> Downgrade Mattermost Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/version-archive.html"> Version archive</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/scale-mattermost.html">Scale Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle navigation of Scale Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../scale/scaling-for-enterprise.html"> Scale for Enterprise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scale/high-availability-cluster.html"> High availability cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scale/elasticsearch.html"> Elasticsearch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scale/performance-monitoring.html"> Performance monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scale/performance-alerting.html"> Mattermost performance alerting guide</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/deployment-troubleshooting.html">Deployment troubleshooting</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle navigation of Deployment troubleshooting</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install/troubleshooting.html">  General troubleshooting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deploy/high-scale-troubleshoot.html">  Troubleshooting your high scale deployment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deploy/mobile-troubleshoot.html">  Troubleshooting mobile applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/trouble-postgres.html">  PostgreSQL installation troubleshooting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/trouble_mysql.html">  MySQL installation troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/changelogs.html">Changelogs</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle navigation of Changelogs</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install/self-managed-changelog.html">  Mattermost self-hosted</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/legacy-self-hosted-changelog.html">  Mattermost legacy self-hosted</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/cloud-changelog.html">  Mattermost Cloud</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deploy/mobile-app-changelog.html">  Mobile apps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/desktop-app-changelog.html">  Desktop apps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/deprecated-features.html">  Deprecated features</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/additional-server-installation-guides.html">Additional server installation guides</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle navigation of Additional server installation guides</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install/deploying-team-edition-on-bitnami.html">  Deploy Mattermost on Bitnami</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/setting-up-aws-elastic-beanstalk-docker.html">  AWS Elastic Beanstalk Docker setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/installing-team-edition-helm-chart.html">  Install Mattermost Team Edition in GitLab Helm Chart</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/open-source-components.html">  Open source components</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../guides/administration.html">Manage Mattermost</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle navigation of Manage Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current has-children"><a class="reference internal" href="../guides/get-started-with-administration.html">Get started</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle navigation of Get started</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../configure/optimize-your-workspace.html">Optimize your workspace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/configuration-settings.html">Mattermost configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/self-hosted-account-settings.html">Self-hosted edition and license</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/cloud-billing-account-settings.html">Cloud subscription, billing, and account</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/reporting-configuration-settings.html">Reporting configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/user-management-configuration-settings.html">User management configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/environment-configuration-settings.html">Environment configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/site-configuration-settings.html">Site configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/authentication-configuration-settings.html">Authentication configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/plugins-configuration-settings.html">Plugins configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/integrations-configuration-settings.html">Integrations configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/compliance-configuration-settings.html">Compliance configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/experimental-configuration-settings.html">Experimental configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/deprecated-configuration-settings.html">Deprecated configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/environment-variables.html">Environment variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user-provisioning-workflows.html">Provisioning workflows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multi-factor-authentication.html">Multi-factor authentication</a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Active Directory/LDAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sso-gitlab.html">GitLab SSO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sso-openidconnect.html">OpenID SSO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sso-google.html">Google SSO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sso-office.html">Office 365 SSO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced-permissions.html">Advanced permissions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system-admin-roles.html">System admin roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/team-channel-members.html">Manage team and channel members</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/custom-branding-tools.html">Custom branding tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/electronic-discovery.html">eDiscovery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/compliance-monitoring.html">Compliance monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/compliance-export.html">Compliance export</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/legal-hold.html">Legal hold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/data-retention-policy.html">Data retention tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/custom-terms-of-service.html">Custom terms of service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/notify-admin.html">Notify Admin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ad-ldap-groups-synchronization.html">AD/LDAP groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="managing-team-channel-membership-using-ad-ldap-sync-groups.html">Use AD/LDAP synchronized groups to manage team or private channel membership</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guest-accounts.html">Guest accounts</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="sso-saml.html">SAML Single Sign-On</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of SAML Single Sign-On</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="sso-saml-okta.html">Okta SAML Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sso-saml-onelogin.html">OneLogin SAML Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sso-saml-adfs.html">Microsoft ADFS SAML Configuration for Windows Server 2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sso-saml-adfs-msws2016.html">Microsoft ADFS SAML Configuration for Windows Server 2016</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sso-saml-keycloak.html">Keycloak SAML Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sso-saml-technical.html">SAML Single-Sign-On: technical documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="shared-channels.html">Shared channels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/statistics.html">Statistics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/in-product-notices.html">In-product notices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/user-satisfaction-surveys.html">User satisfaction surveys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/health-checks.html">Health check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/announcement-banner.html">Announcement banner</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/bulk-export-tool.html">Bulk export tool</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/cloud-workspace-management.html">Cloud workspace management</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><div class="visually-hidden">Toggle navigation of Cloud workspace management</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manage/cloud-billing.html">Mattermost Cloud billing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/workspace-usage.html">Workspace usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/cloud-data-export.html">Workspace migration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/cloud-data-residency.html">Cloud data residency</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/self-hosted-administration.html">Self-hosted administration</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" role="switch" type="checkbox"/><label for="toctree-checkbox-21"><div class="visually-hidden">Toggle navigation of Self-hosted administration</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manage/self-hosted-billing.html">Mattermost self-hosted billing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/configuation-in-a-database.html">Store configuration in the database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bulk-loading-data.html">Bulk loading data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/smtp-email.html">SMTP email setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/email-templates.html">Email templates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/calls-deployment.html">Calls deployment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/configuring-cloudfront-to-host-mattermost-static-assets.html">Configure CloudFront to host static assets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/using-outbound-proxy.html">Use an outbound proxy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migrating-to-mattermost.html">Migration guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deploy/postgres-migration.html">Migration from MySQL to PostgreSQL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/enabling-chinese-japanese-korean-search.html">Chinese, Japanese, and Korean search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/customizing-mattermost.html">Customize Mattermost</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/audit-log.html">Audit logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/embedded-json-audit-log-schema.html">JSON audit log schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ssl-client-certificate.html">SSL client certificate setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="certificate-based-authentication.html">Certificate-based authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/telemetry.html">Manage telemetry</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/other-administration-resources.html">Other resources</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" role="switch" type="checkbox"/><label for="toctree-checkbox-22"><div class="visually-hidden">Toggle navigation of Other resources</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="convert-oauth20-service-providers-to-openidconnect.html">Convert OAuth 2.0 providers to OpenID Connect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/generating-support-packet.html">Generate a support packet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/mmctl-command-line-tool.html">mmctl command line tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration-announcement-email.html">Migration announcement email template</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced-permissions-backend-infrastructure.html">Advanced permissions infrastructure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/command-line-tools.html">Command line tools</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../guides/use-mattermost.html">Use Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" role="switch" type="checkbox"/><label for="toctree-checkbox-23"><div class="visually-hidden">Toggle navigation of Use Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/collaborate.html">Connect and collaborate</a><input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" role="switch" type="checkbox"/><label for="toctree-checkbox-24"><div class="visually-hidden">Toggle navigation of Connect and collaborate</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/access-your-workspace.html">Access your Mattermost workspace</a><input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" role="switch" type="checkbox"/><label for="toctree-checkbox-25"><div class="visually-hidden">Toggle navigation of Access your Mattermost workspace</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/install-desktop-app.html">Install the desktop app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/install-ios-app.html">Install the iOS mobile app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/install-android-app.html">Install the Android mobile app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/log-out.html">Log out of Mattermost</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/organize-using-teams.html">Organize using teams</a><input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" role="switch" type="checkbox"/><label for="toctree-checkbox-26"><div class="visually-hidden">Toggle navigation of Organize using teams</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/team-settings.html">Team settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/team-keyboard-shortcuts.html">Team keyboard shortcuts</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../collaborate/organize-using-custom-user-groups.html">Organize using custom user groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../collaborate/invite-people.html">Invite people</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../collaborate/learn-about-roles.html">Learn about Mattermost roles</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/collaborate-within-channels.html">Collaborate within channels</a><input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" role="switch" type="checkbox"/><label for="toctree-checkbox-27"><div class="visually-hidden">Toggle navigation of Collaborate within channels</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/channel-types.html">Channel types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/channel-naming-conventions.html">Channel naming conventions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/channel-header-purpose.html">Communicate a channel's focus and scope</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/create-channels.html">Create channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/rename-channels.html">Rename channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/convert-public-channels.html">Convert public channels to private</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/join-leave-channels.html">Join and leave channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/make-calls.html">Make calls in Mattermost</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/manage-channel-members.html">Manage channel members</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/browse-channels.html">Browse channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/navigate-between-channels.html">Navigate between channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/favorite-channels.html">Mark channels as favorites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/mark-channels-unread.html">Mark channels as unread</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/archive-unarchive-channels.html">Archive and unarchive channels</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/communicate-with-messages.html">Communicate with messages and threads</a><input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" role="switch" type="checkbox"/><label for="toctree-checkbox-28"><div class="visually-hidden">Toggle navigation of Communicate with messages and threads</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/send-messages.html">Send messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/reply-to-messages.html">Reply to messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/react-with-emojis-gifs.html">React with emojis and GIFs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/organize-conversations.html">Organize conversations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/mark-messages-unread.html">Mark messages as unread</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/forward-messages.html">Forward messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/share-links.html">Share links to channels and messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/save-pin-messages.html">Save and pin messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/message-reminders.html">Set message reminders</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/search-for-messages.html">Search for messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/format-messages.html">Format messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/message-priority.html">Set message priority</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/mention-people.html">Mention people</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/share-files-in-messages.html">Share files in messages</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/keyboard-shortcuts.html">Keyboard shortcuts</a><input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" role="switch" type="checkbox"/><label for="toctree-checkbox-29"><div class="visually-hidden">Toggle navigation of Keyboard shortcuts</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/keyboard-accessibility.html">Keyboard accessibility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/run-slash-commands.html">Run slash commands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/built-in-slash-commands.html">Built-in-slash-commands</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/extend-mattermost-with-integrations.html">Extend Mattermost with integrations</a><input class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" role="switch" type="checkbox"/><label for="toctree-checkbox-30"><div class="visually-hidden">Toggle navigation of Extend Mattermost with integrations</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/collaborate-using-mattermost-for-microsoft-teams.html">Collaborate using Mattermost for MS Teams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/use-mattermost-google-calendar-plugin.html">Use the Mattermost Google Calendar plugin</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/repeatable-processes.html">Build repeatable processes</a><input class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" role="switch" type="checkbox"/><label for="toctree-checkbox-31"><div class="visually-hidden">Toggle navigation of Build repeatable processes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/learn-about-playbooks.html">Learn about playbooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/work-with-playbooks.html">Work with playbooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/work-with-runs.html">Work with runs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/work-with-tasks.html">Work with tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/notifications-and-updates.html">Work with notifications and updates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/metrics-and-goals.html">Work with metrics and goals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/share-and-collaborate.html">Share and collaborate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/interact-with-playbooks.html">Interact with playbooks</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/preferences.html">Customize your preferences</a><input class="toctree-checkbox" id="toctree-checkbox-32" name="toctree-checkbox-32" role="switch" type="checkbox"/><label for="toctree-checkbox-32"><div class="visually-hidden">Toggle navigation of Customize your preferences</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-notifications.html">Manage your notifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/customize-your-theme.html">Customize your Mattermost theme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/customize-your-channel-sidebar.html">Customize your channel sidebar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-profile.html">Manage your profile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-security-preferences.html">Manage your security preferences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/set-your-status-availability.html">Set your status &amp; availability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-display-options.html">Manage your display options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-sidebar-options.html">Manage your sidebar options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-advanced-options.html">Manage advanced options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/customize-desktop-app-experience.html">Customize your desktop app experience</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/connect-multiple-workspaces.html">Connect to multiple workspaces</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://developers.mattermost.com/">Develop with Mattermost</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/get-help.html">Get help with Mattermost</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/community-chat.html">Join our community</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://handbook.mattermost.com/">Learn how we work</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/contribute-to-documentation.html">Contribute to this documentation</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="active-directory-ldap-setup">
+<h1>Active directory/LDAP setup<a class="headerlink" href="#active-directory-ldap-setup" title="Link to this heading">#</a></h1>
+<div class="mm-badge"><p><img alt="plans-img" src="../_images/flag_icon.svg" /> Available on <a class="reference external" href="https://mattermost.com/pricing/">Enterprise and Professional plans</a></p>
+<p><img alt="deployment-img" src="../_images/deployment_icon.svg" /> <a class="reference external" href="https://customers.mattermost.com/cloud/signup/">Cloud</a> and <a class="reference external" href="https://mattermost.com/deploy/">self-hosted</a> deployments</p>
+</div><section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>Active Directory (AD) is a service that stores authentication and authorization details of users on your organization’s network. When you integrate your AD/LDAP system with Mattermost, users can log into Mattermost without having to create new credentials. User accounts are managed in AD/LDAP, and changes are synced with Mattermost.</p>
+<p>Benefits of integrating AD/LDAP with Mattermost include:</p>
+<ul class="simple">
+<li><p><strong>Single sign-on.</strong> Users can log in to Mattermost with their AD/LDAP credentials.</p></li>
+<li><p><strong>Centralized identity management.</strong> Mattermost accounts can display user information from AD/LDAP, such as first and last name, email, and username.</p></li>
+<li><p><strong>Automatic account provisioning.</strong> A Mattermost user account is automatically created the first time a user signs in with their AD/LDAP credentials.</p></li>
+<li><p><strong>Sync groups to predefined roles in Mattermost.</strong> Assign team and channel roles to groups via LDAP Group Sync.</p></li>
+<li><p><strong>Compliance alignment with administrator management.</strong> Manage Administrator access to Mattermost in the System Console using LDAP filters.</p></li>
+</ul>
+</section>
+<section id="pre-installation-notes">
+<h2>Pre-installation notes<a class="headerlink" href="#pre-installation-notes" title="Link to this heading">#</a></h2>
+<p>If you’re using Active Directory with <strong>nested security groups</strong> you need to write a PowerShell script, or similar, to flatten and aggregate the tree into a single security group to map into Mattermost.</p>
+</section>
+<section id="getting-started">
+<h2>Getting started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h2>
+<p>There are two ways to set up AD/LDAP:</p>
+<ol class="arabic simple">
+<li><dl class="simple">
+<dt><strong>Configure AD/LDAP using the System Console user interface</strong></dt><dd><ul class="simple">
+<li><p>Log in to your workspace and create a new account using email and password. This is assigned the System Admin role as the first user created.</p></li>
+<li><p>Next, configure AD/LDAP and then convert your System Admin account to use the AD/LDAP login method.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Configure AD/LDAP by editing ``config.json``</strong></dt><dd><ul class="simple">
+<li><p>Edit <code class="docutils literal notranslate"><span class="pre">config.json</span></code> to enable AD/LDAP based on the <a class="reference external" href="/configure/configuration-settings.html#ad-ldap">AD/LDAP settings documentation</a>. When you log in to Mattermost the first user to log in with valid AD/LDAP credentials will be assigned the System Admin role.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</section>
+<section id="configure-ad-ldap-login">
+<h2>Configure AD/LDAP login<a class="headerlink" href="#configure-ad-ldap-login" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><dl class="simple">
+<dt><strong>Create a System Admin account using email authentication.</strong></dt><dd><ul class="simple">
+<li><p>Create a new workspace and create an account using email and password, which is automatically assigned the <strong>System Administrator</strong> role since it is the first account created. You may also assign the role to another account.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Configure AD/LDAP.</strong></dt><dd><ul class="simple">
+<li><p>Go to <strong>System Console &gt; Authentication &gt; AD/LDAP</strong> and fill in AD/LDAP settings based on the <a class="reference external" href="/configure/authentication-configuration-settings.html#ad-ldap">configuration settings documentation</a>.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Confirm that AD/LDAP sign-on is enabled.</strong></dt><dd><ul class="simple">
+<li><p>After AD/LDAP has been enabled, confirm that users can log in using AD/LDAP credentials.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Switch your System Admin account from email to AD/LDAP authentication.</strong></dt><dd><ul class="simple">
+<li><p>Navigate to <strong>Settings &gt; Security &gt; Sign-in Method &gt; Switch to AD/LDAP</strong> and log in with your AD/LDAP credentials to complete the switch.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>(Optional) Restrict authentication to AD/LDAP.</strong></dt><dd><ul class="simple">
+<li><p>Go to <strong>System Console &gt; Authentication &gt; Email</strong> and set <strong>Enable sign-in with email</strong> to <strong>false</strong> and <strong>Enable sign-in with username</strong> to <strong>false</strong>.</p></li>
+<li><p>Then choose <strong>Save</strong> to save the changes. This should leave Active Directory/LDAP as the only login option.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>(Optional) If you configured `First Name Attribute` and `Last Name Attribute` in the System Console.</strong></dt><dd><ul class="simple">
+<li><p>Navigate to <strong>System Console &gt; Site Configuration &gt; Users and Teams</strong> and set <strong>Teammate Name Display</strong> to <strong>Show first and last name</strong>. This is recommended for a better user experience.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you’ve made a mistake and lock yourself out of the system somehow, you can <a class="reference external" href="/getting-started/admin-onboarding-tasks.html#common-tasks">set an existing account to System Administrator using the command line tool</a>.</p>
+</div>
+</section>
+<section id="configure-ad-ldap-synchronization">
+<h2>Configure AD/LDAP synchronization<a class="headerlink" href="#configure-ad-ldap-synchronization" title="Link to this heading">#</a></h2>
+<p>In addition to configuring AD/LDAP sign-in, you can also configure AD/LDAP synchronization. When synchronizing, Mattermost queries AD/LDAP for relevant account information and updates Mattermost accounts based on changes to attributes (first name, last name, and nickname). When accounts are disabled in AD/LDAP users are made inactive in Mattermost, and their active sessions are revoked once Mattermost synchronizes the updated attributes.</p>
+<p>The AD/LDAP synchronization depends on email. Make sure all users on your AD/LDAP server have an email address, or ensure their account is deactivated in Mattermost.</p>
+<p>When Mattermost is configured to use LDAP for user authentication, the following user attribute changes can’t be made through the API: first name, last name, position, nickname, email, profile image, or username. LDAP must be the authoritative source for these user attributes.</p>
+<p>To configure AD/LDAP synchronization with AD/LDAP sign-in:</p>
+<ol class="arabic simple">
+<li><p>Go to <strong>System Console &gt; Authentication &gt; AD/LDAP</strong> and set <strong>Enable Synchronization with AD/LDAP</strong> to <strong>true</strong>.</p></li>
+<li><dl class="simple">
+<dt>Scroll down to <strong>Synchronization Interval (minutes)</strong> to specify how often Mattermost accounts synchronize attributes with AD/LDAP. The default setting is 60 minutes. The profile picture attribute is only synchronized when the user logs in.</dt><dd><ul class="simple">
+<li><p>If you want to synchronize immediately after disabling an account, use the <strong>AD/LDAP Synchronize Now</strong> button in <strong>System Console &gt; AD/LDAP</strong>.</p></li>
+<li><p>To configure AD/LDAP synchronization with SAML sign-in, see the <a class="reference external" href="https://docs.mattermost.com/onboard/sso-saml.html">SAML documentation</a>.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Make sure that at least one LDAP user is in Mattermost or the sync will not complete.</p></li>
+<li><p>Synchronization with AD/LDAP settings in the System Console can be used to determine the connectivity and availability of arbitrary hosts. System admins concerned about this can use custom admin roles to limit access to modifying these settings. See the <a class="reference external" href="/onboard/system-admin-roles.html#edit-privileges-of-system-admin-roles-advanced">system admin roles</a> documentation for details.</p></li>
+</ul>
+</div>
+</section>
+<section id="configure-ad-ldap-sign-in-using-filters">
+<h2>Configure AD/LDAP sign-in using filters<a class="headerlink" href="#configure-ad-ldap-sign-in-using-filters" title="Link to this heading">#</a></h2>
+<p>Using filters assigns roles to specified users on login. To access AD/LDAP filter settings navigate to <strong>System Console &gt; AD/LDAP</strong>.</p>
+<section id="user-filter">
+<h3>User filter<a class="headerlink" href="#user-filter" title="Link to this heading">#</a></h3>
+<p>(Optional) Enter an AD/LDAP filter to use when searching for user objects. Only the users selected by the query will be able to access Mattermost. For Active Directory, the query to filter out disabled users is <code class="docutils literal notranslate"><span class="pre">(&amp;(objectCategory=Person)(!(UserAccountControl:1.2.840.113556.1.4.803:=2)))</span></code>.</p>
+<ol class="arabic simple">
+<li><p>Navigate to <strong>System Console &gt; Authentication &gt; AD/LDAP</strong>.</p></li>
+<li><p>Complete the <strong>User Filter</strong> field.</p></li>
+<li><p>Choose <strong>Save</strong>.</p></li>
+</ol>
+<p>When the user accesses Mattermost, they log in with same username and password that they use for organizational logins.</p>
+<p>Filters can also be used for excluding users who belong to certain groups. For Active Directory, the query to filter out groups is <code class="docutils literal notranslate"><span class="pre">(&amp;(memberof=cn=ACME_ALL,ou=Users,dc=sademo,dc=com)(!(memberof=cn=DEV_OPS,ou=Users,dc=sademo,dc=com)))</span></code>.</p>
+</section>
+<section id="guest-filter">
+<h3>Guest filter<a class="headerlink" href="#guest-filter" title="Link to this heading">#</a></h3>
+<p>(Optional) When enabled, the Guest Filter in Mattermost identifies external users whose AD/LDAP role is guest and who are invited to join your Mattermost workspace. These users will have the Guest role applied immediately upon first login instead of the default member user role. This eliminates having to manually assign the role in the System Console.</p>
+<p>If this filter is removed/changed, active guests will not be promoted to a member and will retain their Guest role. Guests can be promoted in <strong>System Console &gt; User Management</strong>.</p>
+<ol class="arabic simple">
+<li><p>Navigate to <strong>System Console &gt; Authentication &gt; Guest Access (Beta)</strong> and set Guest Access to <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p></li>
+<li><p>Navigate to <strong>System Console &gt; Authentication &gt; AD/LDAP</strong>.</p></li>
+<li><p>Complete the <strong>Guest Filter</strong> field.</p></li>
+<li><p>Choose <strong>Save</strong>.</p></li>
+</ol>
+<p>When a guest logs in for the first time they are presented with a default landing page until they are added to channels.</p>
+<p>See the <a class="reference external" href="/onboard/guest-accounts.html">Guest Accounts documentation</a> for more information about this feature.</p>
+</section>
+<section id="admin-filter">
+<h3>Admin filter<a class="headerlink" href="#admin-filter" title="Link to this heading">#</a></h3>
+<p>(Optional) Enter an AD/LDAP filter to use for designating System Admins. The users selected by the query will have access to your Mattermost workspace as System Admins. By default, System Admins have complete access to the Mattermost System Console. Existing members that are identified by this attribute will be promoted from member to System Admin upon next login.</p>
+<p>The next login is based upon Session lengths set in <strong>System Console &gt; Session Lengths</strong>. It is recommended that users are demoted to members manually in <strong>System Console &gt; User Management</strong> to ensure access is restricted immediately.</p>
+<ol class="arabic simple">
+<li><p>Navigate to <strong>System Console &gt; Authentication &gt; AD/LDAP</strong>.</p></li>
+<li><p>Set <strong>Admin Filter</strong> to <strong>true</strong>.</p></li>
+<li><p>Complete the <strong>Admin Filter</strong> field.</p></li>
+<li><p>Choose <strong>Save</strong>.</p></li>
+</ol>
+<p><strong>Note:</strong> If the Admin Filter is set to <code class="docutils literal notranslate"><span class="pre">false</span></code> the member’s role as System Admin is retained. However if this filter is removed/changed, System Admins that were promoted via this filter will be demoted to members and will not retain access to the System Console.</p>
+<p>When this filter isn’t in use, members can be manually promoted/demoted via <strong>System Console &gt; User Management</strong>.</p>
+</section>
+</section>
+<section id="configure-ad-ldap-deployments-with-multiple-domains">
+<h2>Configure AD/LDAP deployments with multiple domains<a class="headerlink" href="#configure-ad-ldap-deployments-with-multiple-domains" title="Link to this heading">#</a></h2>
+<p>Organizations using multiple domains can integrate with Mattermost using a “Forest” configuration to bring together multiple domains. Please see <a class="reference external" href="https://technet.microsoft.com/en-us/library/cc759073%28v=ws.10%29.aspx?f=255&amp;MSPPError=-2147217396">Forests as Collections of Domain Controllers that Trust Each Other</a> for more information.</p>
+<p>For forest configurations that contain multiple domains which do NOT share a common root, you can search across all of the domains using the Global Catalog. To do so, update your <code class="docutils literal notranslate"><span class="pre">config.json</span></code> as follows:</p>
+<ul class="simple">
+<li><p>Set the LdapPort to 3268 (instead of 389)</p></li>
+<li><p>Set the BaseDN to ” ” (A single space character)</p></li>
+</ul>
+<p>See <a class="reference external" href="https://technet.microsoft.com/en-us/library/cc978012.aspx">Global Catalog and LDAP Searches</a> for additional details.</p>
+</section>
+<section id="troubleshooting-faq">
+<h2>Troubleshooting/FAQ<a class="headerlink" href="#troubleshooting-faq" title="Link to this heading">#</a></h2>
+<p>The following are frequently asked questions and troubleshooting suggestions on common error messages and issues. It is recommended that you check your logs for errors as they can provide an idea of what the issue is.</p>
+<section id="if-the-ad-ldap-test-button-fails-how-can-i-troubleshoot-the-connection">
+<h3>If the <strong>AD/LDAP Test</strong> button fails, how can I troubleshoot the connection?<a class="headerlink" href="#if-the-ad-ldap-test-button-fails-how-can-i-troubleshoot-the-connection" title="Link to this heading">#</a></h3>
+<p>Check that your AD/LDAP connection settings are correct by running an AD/LDAP user query in an external system. See <a class="reference external" href="http://ldaptool.sourceforge.net">LDAP Connection Test Example</a>. If the AD/LDAP connection is verified to be working outside of Mattermost, try the following:</p>
+<ul class="simple">
+<li><p>Check your AD/LDAP system to verify your <code class="docutils literal notranslate"><span class="pre">Bind</span> <span class="pre">Username</span></code> format.</p></li>
+<li><p>Check your <strong>AD/LDAP Port</strong> and <strong>Connection Security</strong> settings in the System Console. (<strong>AD/LDAP Port</strong> set to 389 typically uses <strong>Connection Security</strong> set to <code class="docutils literal notranslate"><span class="pre">None</span></code>. <strong>AD/LDAP Port</strong> set to 636 typically ties to <strong>Connection Security</strong> set to <strong>TLS</strong>).</p></li>
+<li><p>If you’re seeing <code class="docutils literal notranslate"><span class="pre">x509:</span> <span class="pre">certificate</span> <span class="pre">signed</span> <span class="pre">by</span> <span class="pre">unknown</span> <span class="pre">authority</span></code> in your logs, try installing an intermediate SSL certificate or have your LDAP server send the complete certificate chain.</p></li>
+</ul>
+<p>If these options don’t work, please contact Mattermost support via the email address that came with your license key.</p>
+</section>
+<section id="when-i-first-set-up-and-synchronize-ad-ldap-are-the-users-automatically-created-in-mattermost">
+<h3>When I first set up and synchronize AD/LDAP, are the users automatically created in Mattermost?<a class="headerlink" href="#when-i-first-set-up-and-synchronize-ad-ldap-are-the-users-automatically-created-in-mattermost" title="Link to this heading">#</a></h3>
+<p>No, each user is created on their first login.</p>
+</section>
+<section id="when-i-try-to-synchronize-ad-ldap-why-does-the-status-show-as-pending-and-not-complete">
+<h3>When I try to synchronize AD/LDAP, why does the status show as <code class="docutils literal notranslate"><span class="pre">Pending</span></code> and not complete?<a class="headerlink" href="#when-i-try-to-synchronize-ad-ldap-why-does-the-status-show-as-pending-and-not-complete" title="Link to this heading">#</a></h3>
+<p>Go to <strong>System Console &gt; AD/LDAP</strong> and make sure that the <strong>Enable Synchronization with AD/LDAP</strong> setting is set to <strong>true</strong>.</p>
+<p>If the issue persists, try performing a sync with the <strong>User Filter</strong> field blank. If the sync completes in this scenario, then the general syntax was formatted incorrectly. Refer to this <a class="reference external" href="/configure/configuration-settings.html#user-filter">document</a> for guidance on setting a correct syntax format.</p>
+<p>Make sure that you also have at least one LDAP user in Mattermost or the sync will not complete.</p>
+</section>
+<section id="what-s-the-difference-between-the-username-attribute-id-attribute-and-login-id-attribute">
+<h3>What’s the difference between the Username Attribute, ID Attribute, and Login ID Attribute?<a class="headerlink" href="#what-s-the-difference-between-the-username-attribute-id-attribute-and-login-id-attribute" title="Link to this heading">#</a></h3>
+<p>There are three AD/LDAP attributes that apear to be similar but serve a different purpose:</p>
+<ol class="arabic simple">
+<li><p><strong>Username Attribute:</strong> Used within the Mattermost user interface to identify and mention users. For example, if <strong>Username Attribute</strong> is set to <code class="docutils literal notranslate"><span class="pre">john.smith</span></code>, a user typing <code class="docutils literal notranslate"><span class="pre">&#64;john</span></code> will see <code class="docutils literal notranslate"><span class="pre">&#64;john.smith</span></code> in their autocomplete options and posting a message with <code class="docutils literal notranslate"><span class="pre">&#64;john.smith</span></code> will send a notification to that user that they’ve been mentioned.</p></li>
+<li><p><strong>ID Attribute:</strong> Used as the unique identifier in Mattermost. It should be an AD/LDAP attribute with a value that does not change, such as <code class="docutils literal notranslate"><span class="pre">ObjectGUID</span></code>. If a user’s ID attribute changes, it will create a new Mattermost account unassociated with their old one. If you need to change this field after users have already logged in, use the <a class="reference external" href="/manage/mmctl-command-line-tool.html#mmctl-ldap-idmigrate">mattermost ldap idmigrate mmctl tool</a>.</p></li>
+<li><p><strong>Login ID Attribute:</strong> The attribute in the AD/LDAP server used to log in to Mattermost. Normally this attribute is the same as the <strong>Username Attribute</strong> field above, or another field that users can easily remember.</p></li>
+</ol>
+</section>
+<section id="how-do-i-deactivate-users">
+<h3>How do I deactivate users?<a class="headerlink" href="#how-do-i-deactivate-users" title="Link to this heading">#</a></h3>
+<p>If a user has logged into Mattermost through AD/LDAP or SAML, you can choose how they are deactivated, whether manually or automatically.</p>
+<p>There are three main ways to do this:</p>
+<ol class="arabic simple">
+<li><p><strong>User deletion:</strong> If the user is completely removed from the AD/LDAP server, they will be deactivated in Mattermost on the next synchronization.</p></li>
+<li><p><strong>User filter:</strong> Set the <a class="reference external" href="/configure/configuration-settings.html#user-filter">user filter</a> to only select the subset of AD/LDAP users you want to have access to Mattermost. When someone is removed from the selected group, they will be deactivated in Mattermost on the next synchronization.</p></li>
+<li><p><strong>Manually deactivate</strong>: Go to <strong>System Console &gt; User Management &gt; Users</strong>, select a user’s role, and select <strong>Deactivate</strong>. When you manually deactivate a user, they can reactivate themselves by logging back in.</p></li>
+</ol>
+<p>For Active Directory, to filter out deactivated users you must set the user filter to:</p>
+<p><code class="docutils literal notranslate"><span class="pre">(&amp;(objectCategory=Person)(!(UserAccountControl:1.2.840.113556.1.4.803:=2)))</span></code></p>
+<p>Filters can also be used for excluding users who belong to certain groups. For Active Directory, the query to filter out groups is:</p>
+<p><code class="docutils literal notranslate"><span class="pre">(&amp;(memberof=cn=ACME_ALL,ou=Users,dc=sademo,dc=com)</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">(!(memberof=cn=DEV_OPS,ou=Users,dc=sademo,dc=com)))</span></code></p>
+<p>When a user is deactivated in Mattermost via options one or two above, all the user’s current sessions are revoked and they will be unable to log in or access Mattermost.</p>
+</section>
+<section id="can-i-connect-to-multiple-active-directory-servers">
+<h3>Can I connect to multiple Active Directory servers?<a class="headerlink" href="#can-i-connect-to-multiple-active-directory-servers" title="Link to this heading">#</a></h3>
+<p>There is currently no built-in way to connect to multiple AD servers. You will need to connect the instances in a forest before connecting to Mattermost. Consider upvoting the <a class="reference external" href="https://mattermost.com/suggestions/">feature request</a> on our forum.</p>
+</section>
+<section id="when-trying-to-log-in-i-see-the-error-ad-ldap-not-available-on-this-server">
+<h3>When trying to log in, I see the error <code class="docutils literal notranslate"><span class="pre">AD/LDAP</span> <span class="pre">not</span> <span class="pre">available</span> <span class="pre">on</span> <span class="pre">this</span> <span class="pre">server</span></code><a class="headerlink" href="#when-trying-to-log-in-i-see-the-error-ad-ldap-not-available-on-this-server" title="Link to this heading">#</a></h3>
+<p>This indicates that there is a problem somewhere with your configuration. We recommend that you check your Mattermost configuration settings to ensure that AD/LDAP is enabled, and the settings are correct.</p>
+<p>If you’re still having issues, you can <a class="reference external" href="https://mattermost.com/support/">contact support</a> for additional troubleshooting.</p>
+</section>
+<section id="i-see-the-error-user-not-registered-on-ad-ldap-server">
+<h3>I see the error <code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">not</span> <span class="pre">registered</span> <span class="pre">on</span> <span class="pre">AD/LDAP</span> <span class="pre">server</span></code><a class="headerlink" href="#i-see-the-error-user-not-registered-on-ad-ldap-server" title="Link to this heading">#</a></h3>
+<p>This means the query sent back to the AD/LDAP server returned no results. We recommend that you:</p>
+<ol class="arabic simple">
+<li><p>Check that the user credentials were entered properly - you should log in with the field set as the <a class="reference external" href="/configure/configuration-settings.html#id-attribute">*ID Attribute*</a>.</p></li>
+<li><p>Check that the user account exists in the AD/LDAP server.</p></li>
+<li><p>Check the AD/LDAP configuration settings are correct.</p></li>
+</ol>
+<p>If you’re still having issues, you can <a class="reference external" href="https://mattermost.com/support/">contact Mattermost Support</a>  for additional troubleshooting.</p>
+</section>
+<section id="i-updated-a-user-account-in-ad-ldap-and-they-can-no-longer-log-in-to-mattermost">
+<h3>I updated a user account in AD/LDAP, and they can no longer log in to Mattermost<a class="headerlink" href="#i-updated-a-user-account-in-ad-ldap-and-they-can-no-longer-log-in-to-mattermost" title="Link to this heading">#</a></h3>
+<p>If the user can no longer log in to Mattermost with their AD/LDAP credentials - for example, they get an error message <code class="docutils literal notranslate"><span class="pre">An</span> <span class="pre">account</span> <span class="pre">with</span> <span class="pre">that</span> <span class="pre">email</span> <span class="pre">already</span> <span class="pre">exists</span></code>, or a new Mattermost account is created when they try to log in - this means the <strong>ID Attribute</strong> for their account has changed.</p>
+<p>The issue can be fixed by changing the value of the field used for the <strong>ID Attribute</strong> back to the old value. If you’re currently using a field that sometimes changes for an <strong>ID Attribute</strong> (e.g. username, email that changes when someone gets married), we recommend you switch to using a non-changing field such as a GUID.</p>
+<p>To do this, you can set the <a class="reference external" href="/configure/configuration-settings.html#id-attribute">Login ID Attribute</a> to whatever you would like users to log in with (e.g. username or email).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently the value is case sensitive. If the <strong>ID Attribute</strong> is set to the username and the username changes from <code class="docutils literal notranslate"><span class="pre">John.Smith</span></code> to <code class="docutils literal notranslate"><span class="pre">john.smith</span></code>, the user will experience problems logging in.</p>
+</div>
+</section>
+<section id="i-see-the-log-error-ldap-result-code-4-size-limit-exceeded">
+<h3>I see the log error <code class="docutils literal notranslate"><span class="pre">LDAP</span> <span class="pre">Result</span> <span class="pre">Code</span> <span class="pre">4</span> <span class="pre">&quot;Size</span> <span class="pre">Limit</span> <span class="pre">Exceeded&quot;</span></code><a class="headerlink" href="#i-see-the-log-error-ldap-result-code-4-size-limit-exceeded" title="Link to this heading">#</a></h3>
+<p>This indicates your AD/LDAP server configuration has a maximum page size set and the query coming from Mattermost is returning a result set in excess of that limit.</p>
+<p>To address this issue you can set the <a class="reference external" href="/configure/configuration-settings.html#maximum-page-size">max page size</a> in your Mattermost configuration to match the limit on your AD/LDAP server. This will return a sequence of result sets that do not exceed the max page size, rather than returning all results in a single query. A max page size setting of 1500 is recommended.</p>
+<p>If the error is still occurring, it is likely that no AD/LDAP users have logged into Mattermost yet. Ensure that at least one AD/LDAP user has logged into Mattermost and re-run the sync. The error should disappear at that point.</p>
+</section>
+<section id="can-the-ad-ldap-user-filter-read-security-groups">
+<h3>Can the AD/LDAP User Filter read security groups?<a class="headerlink" href="#can-the-ad-ldap-user-filter-read-security-groups" title="Link to this heading">#</a></h3>
+<p>Yes it can, but make sure that:</p>
+<ul class="simple">
+<li><p>Permissions are correctly configured on the service account you are using.</p></li>
+<li><p>Each user object is a direct member of the security group.</p></li>
+</ul>
+</section>
+<section id="how-do-i-know-if-an-ad-ldap-sync-job-fails">
+<h3>How do I know if an AD/LDAP sync job fails?<a class="headerlink" href="#how-do-i-know-if-an-ad-ldap-sync-job-fails" title="Link to this heading">#</a></h3>
+<p>Mattermost provides the status of each AD/LDAP sync job in <strong>System Console &gt; Authentication &gt; AD/LDAP</strong>. Here you can see the number of users updated and if the job succeeded or failed.</p>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="sso-gitlab.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">GitLab Single Sign-On</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="multi-factor-authentication.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Multi-factor authentication</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2015-2023 Mattermost
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Active directory/LDAP setup</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#pre-installation-notes">Pre-installation notes</a></li>
+<li><a class="reference internal" href="#getting-started">Getting started</a></li>
+<li><a class="reference internal" href="#configure-ad-ldap-login">Configure AD/LDAP login</a></li>
+<li><a class="reference internal" href="#configure-ad-ldap-synchronization">Configure AD/LDAP synchronization</a></li>
+<li><a class="reference internal" href="#configure-ad-ldap-sign-in-using-filters">Configure AD/LDAP sign-in using filters</a><ul>
+<li><a class="reference internal" href="#user-filter">User filter</a></li>
+<li><a class="reference internal" href="#guest-filter">Guest filter</a></li>
+<li><a class="reference internal" href="#admin-filter">Admin filter</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configure-ad-ldap-deployments-with-multiple-domains">Configure AD/LDAP deployments with multiple domains</a></li>
+<li><a class="reference internal" href="#troubleshooting-faq">Troubleshooting/FAQ</a><ul>
+<li><a class="reference internal" href="#if-the-ad-ldap-test-button-fails-how-can-i-troubleshoot-the-connection">If the <strong>AD/LDAP Test</strong> button fails, how can I troubleshoot the connection?</a></li>
+<li><a class="reference internal" href="#when-i-first-set-up-and-synchronize-ad-ldap-are-the-users-automatically-created-in-mattermost">When I first set up and synchronize AD/LDAP, are the users automatically created in Mattermost?</a></li>
+<li><a class="reference internal" href="#when-i-try-to-synchronize-ad-ldap-why-does-the-status-show-as-pending-and-not-complete">When I try to synchronize AD/LDAP, why does the status show as <code class="docutils literal notranslate"><span class="pre">Pending</span></code> and not complete?</a></li>
+<li><a class="reference internal" href="#what-s-the-difference-between-the-username-attribute-id-attribute-and-login-id-attribute">What’s the difference between the Username Attribute, ID Attribute, and Login ID Attribute?</a></li>
+<li><a class="reference internal" href="#how-do-i-deactivate-users">How do I deactivate users?</a></li>
+<li><a class="reference internal" href="#can-i-connect-to-multiple-active-directory-servers">Can I connect to multiple Active Directory servers?</a></li>
+<li><a class="reference internal" href="#when-trying-to-log-in-i-see-the-error-ad-ldap-not-available-on-this-server">When trying to log in, I see the error <code class="docutils literal notranslate"><span class="pre">AD/LDAP</span> <span class="pre">not</span> <span class="pre">available</span> <span class="pre">on</span> <span class="pre">this</span> <span class="pre">server</span></code></a></li>
+<li><a class="reference internal" href="#i-see-the-error-user-not-registered-on-ad-ldap-server">I see the error <code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">not</span> <span class="pre">registered</span> <span class="pre">on</span> <span class="pre">AD/LDAP</span> <span class="pre">server</span></code></a></li>
+<li><a class="reference internal" href="#i-updated-a-user-account-in-ad-ldap-and-they-can-no-longer-log-in-to-mattermost">I updated a user account in AD/LDAP, and they can no longer log in to Mattermost</a></li>
+<li><a class="reference internal" href="#i-see-the-log-error-ldap-result-code-4-size-limit-exceeded">I see the log error <code class="docutils literal notranslate"><span class="pre">LDAP</span> <span class="pre">Result</span> <span class="pre">Code</span> <span class="pre">4</span> <span class="pre">&quot;Size</span> <span class="pre">Limit</span> <span class="pre">Exceeded&quot;</span></code></a></li>
+<li><a class="reference internal" href="#can-the-ad-ldap-user-filter-read-security-groups">Can the AD/LDAP User Filter read security groups?</a></li>
+<li><a class="reference internal" href="#how-do-i-know-if-an-ad-ldap-sync-job-fails">How do I know if an AD/LDAP sync job fails?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    </body>
+</html>

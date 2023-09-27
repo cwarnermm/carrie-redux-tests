@@ -1,0 +1,783 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Format messages" href="format-messages.html" /><link rel="prev" title="Set a reminder" href="message-reminders.html" />
+        <link rel="canonical" href="https://www.ethereal.cc/redux/collaborate/search-for-messages.html" />
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 7.2.6 and Furo 2023.09.10 -->
+        <title>Search for messages - Mattermost documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/compass-icons.css?v=b28d7826" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  --font-stack: Noto Sans, Helvetica Neue, Arial, sans-serif;
+  --font-stack--monospace: Fira Mono, Courier New, Courier, monospace;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">Mattermost  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">Mattermost  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../overview/index.html">About Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of About Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../about/product.html">Mattermost overview</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../about/use-cases.html">Use cases</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Use cases</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../about/secure-command-and-control.html">Secure command and control</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../about/unified-collaboration.html">Unified communication</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Unified communication</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../about/mattermost-for-microsoft-teams.html">Mattermost for Microsoft Teams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../about/mattermost-google-calendar-integration.html">Mattermost Google Calendar integration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../about/devops-collaboration.html">DevOps collaboration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/incident-response-collaboration.html">Incident response collaboration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../about/security.html">Security overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/integrations.html">Integrations overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/subscription.html">Subscription overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/self-hosted-subscriptions.html">Self-hosted subscriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/cloud-subscriptions.html">Cloud subscriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/editions-and-offerings.html">Mattermost editions and plans</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/corporate-directory-integration.html">Corporate directory integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/certifications-and-compliance.html">Certifications and compliance overview</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../about/frequently-asked-questions.html">Frequently asked questions (FAQ)</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Frequently asked questions (FAQ)</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-general.html">General Mattermost questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-community.html">Community questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-notifications.html">Notifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-video-audio-screensharing.html">Video, audio, and screen sharing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-enterprise.html">Enterprise questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-license.html">License questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-integrations.html">Integrations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-use-cases.html">Use cases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-product.html">Product questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-high-trust.html">High trust questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-design-decisions.html">Design decisions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-business.html">Business questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-illicit-use.html">Illicit use</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../guides/deployment.html">Deploy Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Deploy Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../install/prepare-mattermost-database.html">Prepare your Mattermost database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-ubuntu.html">Deploy on Ubuntu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-docker.html">Deploy using Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-tar.html">Deploy with a tarball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/installing-mattermost-omnibus.html">Deploy using Omnibus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-kubernetes.html">Deploy using Kubernetes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-rhel-8.html">Deploy on Red Hat</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/prepare-for-your-mattermost-deployment.html">Prepare for your Mattermost deployment</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of Prepare for your Mattermost deployment</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install/software-hardware-requirements.html">  Software and hardware requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/mattermost-kubernetes-operator.html">  About the Mattermost Kubernetes Operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/admin-onboarding-tasks.html">  Administrator tasks</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../getting-started/architecture-overview.html">  Architecture overview</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of   Architecture overview</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/implementation-plan.html">  Plan your Mattermost implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/enterprise-roll-out-checklist.html">  Enterprise roll out checklist</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/welcome-email-to-end-users.html">  Welcome email template</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/deployment-guides.html">Deployment guides</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of Deployment guides</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../guides/server-deployment.html">Server deployment</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of Server deployment</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/deployment-overview.html"> Deployment overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/setting-up-socket-based-mattermost-database.html"> Set up a socket-based Mattermost database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/image-proxy.html"> Image proxy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/backup-disaster-recovery.html"> Backup and disaster recovery</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/encryption-options.html"> Encryption options</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../install/transport-encryption.html"> Configure transport encryption</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of  Configure transport encryption</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../install/proxy-to-mattermost-transport-encryption.html">Configuring proxy to Mattermost transport encryption</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../install/database-transport-encryption.html">Configuring database transport encryption</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../install/cluster-transport-encryption.html">Configuring cluster transport encryption</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/bleve-search.html"> Bleve search</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../guides/desktop-mobile-app-deployment.html">Desktop and mobile app deployment</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of Desktop and mobile app deployment</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/desktop-app.html">Desktop app deployment guide</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/desktop-msi-installer-and-group-policy-install.html">Desktop MSI installer and group policy installation guides (beta)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/desktop-custom-dictionaries.html">Desktop App custom dictionaries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/desktop-app-managed-resources.html">Desktop managed resources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/use-prebuilt-mobile-apps.html">Using Mattermost’s pre-built mobile apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-testing-notifications.html">Testing push notifications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-overview.html">Deploy Mattermost mobile apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-hpns.html">Mobile push notifications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/build-custom-mobile-apps.html">Building and distributing your own custom Mattermost mobile apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/deploy-mobile-apps-using-emm-provider.html">Deploying mobile apps using an EMM provider</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-appconfig.html">AppConfig for EMM solutions with Mattermost Mobile Apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/consider-mobile-vpn-options.html">Mobile VPN options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-faq.html">Mobile apps FAQ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/client-side-data.html">Client-side data storage FAQ</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/upgrade-mattermost.html">Upgrade Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle navigation of Upgrade Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/prepare-to-upgrade-mattermost.html"> Prepare to upgrade Mattermost</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/upgrading-mattermost-server.html"> Upgrade Mattermost Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/enterprise-install-upgrade.html"> Enterprise install and upgrade</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/installing-license-key.html"> Install a license key</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/release-definitions.html"> Release definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/important-upgrade-notes.html"> Important upgrade notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/release-lifecycle.html"> Release lifecycle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/extended-support-release.html"> Extended Support Release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/downgrading-mattermost-server.html"> Downgrade Mattermost Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/version-archive.html"> Version archive</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/scale-mattermost.html">Scale Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle navigation of Scale Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../scale/scaling-for-enterprise.html"> Scale for Enterprise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scale/high-availability-cluster.html"> High availability cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scale/elasticsearch.html"> Elasticsearch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scale/performance-monitoring.html"> Performance monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scale/performance-alerting.html"> Mattermost performance alerting guide</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/deployment-troubleshooting.html">Deployment troubleshooting</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle navigation of Deployment troubleshooting</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install/troubleshooting.html">  General troubleshooting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deploy/high-scale-troubleshoot.html">  Troubleshooting your high scale deployment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deploy/mobile-troubleshoot.html">  Troubleshooting mobile applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/trouble-postgres.html">  PostgreSQL installation troubleshooting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/trouble_mysql.html">  MySQL installation troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/changelogs.html">Changelogs</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle navigation of Changelogs</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install/self-managed-changelog.html">  Mattermost self-hosted</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/legacy-self-hosted-changelog.html">  Mattermost legacy self-hosted</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/cloud-changelog.html">  Mattermost Cloud</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deploy/mobile-app-changelog.html">  Mobile apps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/desktop-app-changelog.html">  Desktop apps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/deprecated-features.html">  Deprecated features</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/additional-server-installation-guides.html">Additional server installation guides</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle navigation of Additional server installation guides</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install/deploying-team-edition-on-bitnami.html">  Deploy Mattermost on Bitnami</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/setting-up-aws-elastic-beanstalk-docker.html">  AWS Elastic Beanstalk Docker setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/installing-team-edition-helm-chart.html">  Install Mattermost Team Edition in GitLab Helm Chart</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/open-source-components.html">  Open source components</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../guides/administration.html">Manage Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle navigation of Manage Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/get-started-with-administration.html">Get started</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle navigation of Get started</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../configure/optimize-your-workspace.html">Optimize your workspace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/configuration-settings.html">Mattermost configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/self-hosted-account-settings.html">Self-hosted edition and license</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/cloud-billing-account-settings.html">Cloud subscription, billing, and account</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/reporting-configuration-settings.html">Reporting configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/user-management-configuration-settings.html">User management configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/environment-configuration-settings.html">Environment configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/site-configuration-settings.html">Site configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/authentication-configuration-settings.html">Authentication configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/plugins-configuration-settings.html">Plugins configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/integrations-configuration-settings.html">Integrations configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/compliance-configuration-settings.html">Compliance configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/experimental-configuration-settings.html">Experimental configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/deprecated-configuration-settings.html">Deprecated configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/environment-variables.html">Environment variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/user-provisioning-workflows.html">Provisioning workflows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/multi-factor-authentication.html">Multi-factor authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/ad-ldap.html">Active Directory/LDAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-gitlab.html">GitLab SSO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-openidconnect.html">OpenID SSO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-google.html">Google SSO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-office.html">Office 365 SSO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/advanced-permissions.html">Advanced permissions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/system-admin-roles.html">System admin roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/team-channel-members.html">Manage team and channel members</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/custom-branding-tools.html">Custom branding tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/electronic-discovery.html">eDiscovery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/compliance-monitoring.html">Compliance monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/compliance-export.html">Compliance export</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/legal-hold.html">Legal hold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/data-retention-policy.html">Data retention tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/custom-terms-of-service.html">Custom terms of service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/notify-admin.html">Notify Admin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/ad-ldap-groups-synchronization.html">AD/LDAP groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/managing-team-channel-membership-using-ad-ldap-sync-groups.html">Use AD/LDAP synchronized groups to manage team or private channel membership</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/guest-accounts.html">Guest accounts</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../onboard/sso-saml.html">SAML Single Sign-On</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of SAML Single Sign-On</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-okta.html">Okta SAML Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-onelogin.html">OneLogin SAML Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-adfs.html">Microsoft ADFS SAML Configuration for Windows Server 2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-adfs-msws2016.html">Microsoft ADFS SAML Configuration for Windows Server 2016</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-keycloak.html">Keycloak SAML Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-saml-technical.html">SAML Single-Sign-On: technical documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/shared-channels.html">Shared channels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/statistics.html">Statistics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/in-product-notices.html">In-product notices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/user-satisfaction-surveys.html">User satisfaction surveys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/health-checks.html">Health check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/announcement-banner.html">Announcement banner</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/bulk-export-tool.html">Bulk export tool</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/cloud-workspace-management.html">Cloud workspace management</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><div class="visually-hidden">Toggle navigation of Cloud workspace management</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manage/cloud-billing.html">Mattermost Cloud billing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/workspace-usage.html">Workspace usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/cloud-data-export.html">Workspace migration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/cloud-data-residency.html">Cloud data residency</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/self-hosted-administration.html">Self-hosted administration</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" role="switch" type="checkbox"/><label for="toctree-checkbox-21"><div class="visually-hidden">Toggle navigation of Self-hosted administration</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manage/self-hosted-billing.html">Mattermost self-hosted billing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/configuation-in-a-database.html">Store configuration in the database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/bulk-loading-data.html">Bulk loading data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/smtp-email.html">SMTP email setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/email-templates.html">Email templates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/calls-deployment.html">Calls deployment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/configuring-cloudfront-to-host-mattermost-static-assets.html">Configure CloudFront to host static assets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/using-outbound-proxy.html">Use an outbound proxy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/migrating-to-mattermost.html">Migration guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deploy/postgres-migration.html">Migration from MySQL to PostgreSQL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/enabling-chinese-japanese-korean-search.html">Chinese, Japanese, and Korean search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/customizing-mattermost.html">Customize Mattermost</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/audit-log.html">Audit logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/embedded-json-audit-log-schema.html">JSON audit log schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/ssl-client-certificate.html">SSL client certificate setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/certificate-based-authentication.html">Certificate-based authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/telemetry.html">Manage telemetry</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/other-administration-resources.html">Other resources</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" role="switch" type="checkbox"/><label for="toctree-checkbox-22"><div class="visually-hidden">Toggle navigation of Other resources</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/convert-oauth20-service-providers-to-openidconnect.html">Convert OAuth 2.0 providers to OpenID Connect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/generating-support-packet.html">Generate a support packet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/mmctl-command-line-tool.html">mmctl command line tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/migration-announcement-email.html">Migration announcement email template</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/advanced-permissions-backend-infrastructure.html">Advanced permissions infrastructure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/command-line-tools.html">Command line tools</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../guides/use-mattermost.html">Use Mattermost</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" role="switch" type="checkbox"/><label for="toctree-checkbox-23"><div class="visually-hidden">Toggle navigation of Use Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current has-children"><a class="reference internal" href="../guides/collaborate.html">Connect and collaborate</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" role="switch" type="checkbox"/><label for="toctree-checkbox-24"><div class="visually-hidden">Toggle navigation of Connect and collaborate</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3 has-children"><a class="reference internal" href="access-your-workspace.html">Access your Mattermost workspace</a><input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" role="switch" type="checkbox"/><label for="toctree-checkbox-25"><div class="visually-hidden">Toggle navigation of Access your Mattermost workspace</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="install-desktop-app.html">Install the desktop app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="install-ios-app.html">Install the iOS mobile app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="install-android-app.html">Install the Android mobile app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="log-out.html">Log out of Mattermost</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="organize-using-teams.html">Organize using teams</a><input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" role="switch" type="checkbox"/><label for="toctree-checkbox-26"><div class="visually-hidden">Toggle navigation of Organize using teams</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="team-settings.html">Team settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="team-keyboard-shortcuts.html">Team keyboard shortcuts</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="organize-using-custom-user-groups.html">Organize using custom user groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="invite-people.html">Invite people</a></li>
+<li class="toctree-l3"><a class="reference internal" href="learn-about-roles.html">Learn about Mattermost roles</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="collaborate-within-channels.html">Collaborate within channels</a><input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" role="switch" type="checkbox"/><label for="toctree-checkbox-27"><div class="visually-hidden">Toggle navigation of Collaborate within channels</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="channel-types.html">Channel types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="channel-naming-conventions.html">Channel naming conventions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="channel-header-purpose.html">Communicate a channel's focus and scope</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create-channels.html">Create channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rename-channels.html">Rename channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="convert-public-channels.html">Convert public channels to private</a></li>
+<li class="toctree-l4"><a class="reference internal" href="join-leave-channels.html">Join and leave channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="make-calls.html">Make calls in Mattermost</a></li>
+<li class="toctree-l4"><a class="reference internal" href="manage-channel-members.html">Manage channel members</a></li>
+<li class="toctree-l4"><a class="reference internal" href="browse-channels.html">Browse channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="navigate-between-channels.html">Navigate between channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="favorite-channels.html">Mark channels as favorites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mark-channels-unread.html">Mark channels as unread</a></li>
+<li class="toctree-l4"><a class="reference internal" href="archive-unarchive-channels.html">Archive and unarchive channels</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current has-children"><a class="reference internal" href="communicate-with-messages.html">Communicate with messages and threads</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" role="switch" type="checkbox"/><label for="toctree-checkbox-28"><div class="visually-hidden">Toggle navigation of Communicate with messages and threads</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="send-messages.html">Send messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reply-to-messages.html">Reply to messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="react-with-emojis-gifs.html">React with emojis and GIFs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="organize-conversations.html">Organize conversations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mark-messages-unread.html">Mark messages as unread</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forward-messages.html">Forward messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="share-links.html">Share links to channels and messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="save-pin-messages.html">Save and pin messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="message-reminders.html">Set message reminders</a></li>
+<li class="toctree-l4 current current-page"><a class="current reference internal" href="#">Search for messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="format-messages.html">Format messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="message-priority.html">Set message priority</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mention-people.html">Mention people</a></li>
+<li class="toctree-l4"><a class="reference internal" href="share-files-in-messages.html">Share files in messages</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="keyboard-shortcuts.html">Keyboard shortcuts</a><input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" role="switch" type="checkbox"/><label for="toctree-checkbox-29"><div class="visually-hidden">Toggle navigation of Keyboard shortcuts</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="keyboard-accessibility.html">Keyboard accessibility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="run-slash-commands.html">Run slash commands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="built-in-slash-commands.html">Built-in-slash-commands</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="extend-mattermost-with-integrations.html">Extend Mattermost with integrations</a><input class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" role="switch" type="checkbox"/><label for="toctree-checkbox-30"><div class="visually-hidden">Toggle navigation of Extend Mattermost with integrations</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="collaborate-using-mattermost-for-microsoft-teams.html">Collaborate using Mattermost for MS Teams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="use-mattermost-google-calendar-plugin.html">Use the Mattermost Google Calendar plugin</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/repeatable-processes.html">Build repeatable processes</a><input class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" role="switch" type="checkbox"/><label for="toctree-checkbox-31"><div class="visually-hidden">Toggle navigation of Build repeatable processes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/learn-about-playbooks.html">Learn about playbooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/work-with-playbooks.html">Work with playbooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/work-with-runs.html">Work with runs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/work-with-tasks.html">Work with tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/notifications-and-updates.html">Work with notifications and updates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/metrics-and-goals.html">Work with metrics and goals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/share-and-collaborate.html">Share and collaborate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/interact-with-playbooks.html">Interact with playbooks</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/preferences.html">Customize your preferences</a><input class="toctree-checkbox" id="toctree-checkbox-32" name="toctree-checkbox-32" role="switch" type="checkbox"/><label for="toctree-checkbox-32"><div class="visually-hidden">Toggle navigation of Customize your preferences</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-notifications.html">Manage your notifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/customize-your-theme.html">Customize your Mattermost theme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/customize-your-channel-sidebar.html">Customize your channel sidebar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-profile.html">Manage your profile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-security-preferences.html">Manage your security preferences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/set-your-status-availability.html">Set your status &amp; availability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-display-options.html">Manage your display options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-sidebar-options.html">Manage your sidebar options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-advanced-options.html">Manage advanced options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/customize-desktop-app-experience.html">Customize your desktop app experience</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/connect-multiple-workspaces.html">Connect to multiple workspaces</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://developers.mattermost.com/">Develop with Mattermost</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/get-help.html">Get help with Mattermost</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/community-chat.html">Join our community</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://handbook.mattermost.com/">Learn how we work</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/contribute-to-documentation.html">Contribute to this documentation</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="search-for-messages">
+<h1>Search for messages<a class="headerlink" href="#search-for-messages" title="Link to this heading">#</a></h1>
+<div class="mm-badge"><p><img alt="plans-img" src="../_images/flag_icon.svg" /> Available on <a class="reference external" href="https://mattermost.com/pricing/">all plans</a></p>
+<p><img alt="deployment-img" src="../_images/deployment_icon.svg" /> <a class="reference external" href="https://customers.mattermost.com/cloud/signup/">Cloud</a> and <a class="reference external" href="https://mattermost.com/deploy/">self-hosted</a> deployments</p>
+</div><p>Use Mattermost search to find messages, replies, and the contents of files shared across all channels you’re a member of in your team’s conversation history. You can also search by <a class="reference external" href="#hashtags">hashtags</a> or perform more advanced searches using <a class="reference external" href="#search-modifiers">search modifiers</a>.</p>
+<section id="search-for-message-and-files">
+<h2>Search for message and files<a class="headerlink" href="#search-for-message-and-files" title="Link to this heading">#</a></h2>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">Web/Desktop</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">Mobile</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><p><strong>Search for messages</strong></p>
+<ol class="arabic simple">
+<li><p>Select the Search field, select <strong>Messages</strong>, then enter your search criteria.</p></li>
+</ol>
+<blockquote>
+<div><img alt="Use the Search field to search for messages." src="../_images/search-messages.png" />
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>When message results display in the Search Results pane, select <strong>Jump</strong> to view a full message in context.</p></li>
+</ol>
+<blockquote>
+<div><img alt="From search results, you can go to the full message by selecting Jump." src="../_images/jump-to-message.png" />
+</div></blockquote>
+<p><strong>Search for files</strong></p>
+<p>File content search is available in Mattermost Server and in Mattermost Cloud. Select the <strong>Search</strong> field, select <strong>Files</strong>, then type your search criteria.</p>
+<blockquote>
+<div><img alt="Use the Search field to serach for files attached to messages." src="../_images/search-files.png" />
+</div></blockquote>
+<p>File contents that match on file name, or contain matching text content within supported document types, are returned in the Search Results pane. Each search result includes file name, extension, and size details, as well as details about when and where the file was originally shared.</p>
+<ul class="simple">
+<li><p>For Mattermost Cloud workspaces, supported document file formats include PDF, PPTX, DOCX, ODT, HTML, and plain text documents. DOC, RTF, and PAGES file formats, as well as the contents of ZIP files, are not supported.</p></li>
+<li><p>For Mattermost self-hosted deployments, supported document file formats include PDF, PPTX, DOCX, ODT, HTML, and plain text documents.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>System admins can extend file content search support for self-hosted deployments to include:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="/manage/command-line-tools.html#mattermost-extract-documents-content">files shared before upgrading to Mattermost Server v5.35</a>.</p></li>
+<li><p><a class="reference external" href="/configure/configuration-settings.html#enable-document-search-by-content">DOC, RTF, and PAGES file formats</a>.</p></li>
+<li><p><a class="reference external" href="/configure/configuration-settings.html#enable-searching-content-of-documents-within-zip-files">documents within ZIP files</a>.</p></li>
+</ul>
+</div>
+<p><strong>Filter results by file type</strong></p>
+<p>To narrow search results further, in the Search Results pane, select the <strong>File Type Filter</strong> option, then select specific file types, such as documents, spreadsheets, or images.</p>
+<img alt="You can filter search results by file type." src="../_images/file-search-filter.png" />
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Select the <strong>Channel Files</strong> icon below the channel name to access files recently shared in the current channel.</p>
+<img alt="Use the Channel Files option to access recently shared files in the current channel." src="../_images/channel-files-icon.png" />
+</div>
+</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><ol class="arabic simple">
+<li><p>Tap the <strong>Search</strong> <img alt="Navigate between Channels and Playbooks using the product menu icon." src="../_images/magnify_F0349.svg" /> icon at the bottom of the app to search for messages or files attached to messages.</p></li>
+<li><p>To the right of search options, tap to select which team to search.</p></li>
+<li><p>Enter your search criteria, including applicable <a class="reference external" href="#hashtags">hashtags</a>.</p></li>
+<li><p>Tap to apply <a class="reference external" href="#search-modifiers">search modifiers</a> to your search.</p></li>
+</ol>
+</div></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To access files recently shared in a channel:</p>
+<ul class="simple">
+<li><p>Select the <img alt="Use the Channel Files icon to search for files attached to messages in a given channel." src="../_images/file-text-outline_F09EE.svg" /> icon below the channel name to access files recently shared in that channel.</p></li>
+<li><p>Select the channel name, select the <strong>View Info</strong> <img alt="Use the Channel Info icon to access additional channel management options." src="../_images/information-outline_F02FD.svg" /> icon, then select <strong>Files</strong> in the right pane.</p></li>
+</ul>
+</div>
+</section>
+<section id="search-modifiers">
+<h2>Search modifiers<a class="headerlink" href="#search-modifiers" title="Link to this heading">#</a></h2>
+<p>You can apply search modifiers to any search to reduce the number of results returned. Select a search modifier to add it to the Search field. Supported modifiers are described below. Your search results include messages from all of your teams.</p>
+<img alt="../_images/search-modifiers.png" src="../_images/search-modifiers.png" />
+<section id="from-and-in">
+<h3><code class="docutils literal notranslate"><span class="pre">from:</span></code> and <code class="docutils literal notranslate"><span class="pre">in:</span></code><a class="headerlink" href="#from-and-in" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">from:</span></code> to find messages or files from specific users.</p>
+<ul>
+<li><p>For example, searching <code class="docutils literal notranslate"><span class="pre">from:john.smith</span></code> only returns content from your direct message history with John Smith.</p></li>
+</ul>
+</li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">in:</span></code> to find messages or files posted in specific public channels, private channels, direct messages, or group messages. You can specify channels by display name or channel ID.</p>
+<ul>
+<li><p>For example, searching <code class="docutils literal notranslate"><span class="pre">Mattermost</span> <span class="pre">in:town-square</span></code> only returns results in the Town Square public channel that contains the term <code class="docutils literal notranslate"><span class="pre">Mattermost</span></code>, while searching <code class="docutils literal notranslate"><span class="pre">Mattermost</span> <span class="pre">in:john.doe</span></code> only returns results that contains the term <code class="docutils literal notranslate"><span class="pre">Mattermost</span></code> in your direct message history with John Smith.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="before-after-and-on">
+<h3><code class="docutils literal notranslate"><span class="pre">before:</span></code>, <code class="docutils literal notranslate"><span class="pre">after:</span></code>, and <code class="docutils literal notranslate"><span class="pre">on:</span></code><a class="headerlink" href="#before-after-and-on" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">before:</span></code> to find messages or files posted before a specified date.</p>
+<ul>
+<li><p>For example, searching <code class="docutils literal notranslate"><span class="pre">website</span> <span class="pre">before:</span> <span class="pre">2018-09-01</span></code> returns messages or files containing the term <code class="docutils literal notranslate"><span class="pre">website</span></code> posted prior to September 1, 2018.</p></li>
+</ul>
+</li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">after:</span></code> to find messages or files posted after a specified date.</p>
+<ul>
+<li><p>For example, searching <code class="docutils literal notranslate"><span class="pre">website</span> <span class="pre">after:</span> <span class="pre">2018-08-01</span></code> returns messages or files containing the term <code class="docutils literal notranslate"><span class="pre">website</span></code> posted after August 1, 2018.</p></li>
+</ul>
+</li>
+<li><p>Use both <code class="docutils literal notranslate"><span class="pre">before:</span></code> and <code class="docutils literal notranslate"><span class="pre">after:</span></code> together to search in a specified date range.</p>
+<ul>
+<li><p>For example, searching <code class="docutils literal notranslate"><span class="pre">website</span> <span class="pre">before:</span> <span class="pre">2018-09-01</span> <span class="pre">after:</span> <span class="pre">2018-08-01</span></code> returns all messages or files containing the term <code class="docutils literal notranslate"><span class="pre">website</span></code> posted between August 1, 2018 and September 1, 2018.</p></li>
+</ul>
+</li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">on:</span></code> to find messages files posted on a specific date. Use the date picker to select a date, or type it in YYYY-MM-DD format.</p>
+<ul>
+<li><p>For example, searching <code class="docutils literal notranslate"><span class="pre">website</span> <span class="pre">on:</span> <span class="pre">2018-09-01</span></code> returns messages or files containing the term <code class="docutils literal notranslate"><span class="pre">website</span></code> posted on September 1, 2018.</p></li>
+</ul>
+</li>
+</ul>
+<img alt="../_images/calendar2.png" src="../_images/calendar2.png" />
+</section>
+<section id="exclusions">
+<h3>Exclusions<a class="headerlink" href="#exclusions" title="Link to this heading">#</a></h3>
+<p>Use the hyphen <code class="docutils literal notranslate"><span class="pre">-</span></code> symbol to exclude terms from your search results. For example, searching <code class="docutils literal notranslate"><span class="pre">test</span> <span class="pre">-release</span></code> only returns results that include the term <code class="docutils literal notranslate"><span class="pre">test</span></code> and exclude the term <code class="docutils literal notranslate"><span class="pre">release</span></code>.</p>
+<p>This exclusion modifier can be used in combination with other modifiers to further refine search results. For example, searching <code class="docutils literal notranslate"><span class="pre">test</span> <span class="pre">-release</span> <span class="pre">-in:release-discussion</span> <span class="pre">-from:eric</span></code> returns all results with the term <code class="docutils literal notranslate"><span class="pre">test</span></code>, excludes posts with the term <code class="docutils literal notranslate"><span class="pre">release</span></code>, excludes posts made in the <code class="docutils literal notranslate"><span class="pre">release-discussion</span></code> channel, and excludes messages sent in direct messages by <code class="docutils literal notranslate"><span class="pre">eric</span></code>.</p>
+</section>
+<section id="quotation-marks">
+<h3>Quotation marks<a class="headerlink" href="#quotation-marks" title="Link to this heading">#</a></h3>
+<p>Use quotation marks <code class="docutils literal notranslate"><span class="pre">&quot;</span> <span class="pre">&quot;</span></code> to return search results for exact terms. For example, searching <code class="docutils literal notranslate"><span class="pre">&quot;Mattermost</span> <span class="pre">website&quot;</span></code> returns messages containing the exact phrase <code class="docutils literal notranslate"><span class="pre">Mattermost</span> <span class="pre">website</span></code>, but doesn’t return results containing <code class="docutils literal notranslate"><span class="pre">Mattermost</span></code> and <code class="docutils literal notranslate"><span class="pre">website</span></code> as separate terms.</p>
+</section>
+<section id="wildcards">
+<h3>Wildcards<a class="headerlink" href="#wildcards" title="Link to this heading">#</a></h3>
+<p>Use the asterisk <code class="docutils literal notranslate"><span class="pre">*</span></code> symbol for wildcard searches that match within words. For example, searching <code class="docutils literal notranslate"><span class="pre">rea*</span></code> returns messages or files containing <code class="docutils literal notranslate"><span class="pre">reach</span></code>, <code class="docutils literal notranslate"><span class="pre">reason</span></code>, <code class="docutils literal notranslate"><span class="pre">reality</span></code>, <code class="docutils literal notranslate"><span class="pre">real</span></code>, and other words starting with <code class="docutils literal notranslate"><span class="pre">rea</span></code>.</p>
+</section>
+</section>
+<section id="hashtags">
+<h2>Hashtags<a class="headerlink" href="#hashtags" title="Link to this heading">#</a></h2>
+<p>Hashtags are searchable labels for messages. Anyone can create a hashtag in a message by using the pound sign <code class="docutils literal notranslate"><span class="pre">#</span></code> followed by alphanumeric or other unicode characters. Hashtag examples include: <code class="docutils literal notranslate"><span class="pre">#bug</span></code>, <code class="docutils literal notranslate"><span class="pre">#marketing</span></code>, <code class="docutils literal notranslate"><span class="pre">#user_testing</span></code>, <code class="docutils literal notranslate"><span class="pre">#per.iod</span></code>, <code class="docutils literal notranslate"><span class="pre">#check-in</span></code>, <code class="docutils literal notranslate"><span class="pre">#마케팅</span></code>.</p>
+<p>Valid hashtags:</p>
+<ul class="simple">
+<li><p>Don’t start with a number.</p></li>
+<li><p>Are at least three characters long, excluding the <code class="docutils literal notranslate"><span class="pre">#</span></code>.</p></li>
+<li><p>Are made up of alphanumeric or other unicode characters.</p></li>
+<li><p>May contain dots, dashes, or underscores.</p></li>
+</ul>
+<p>To search for messages containing hashtags, select a hashtag in an existing post, or type the hashtag (including the pound <code class="docutils literal notranslate"><span class="pre">#</span></code> symbol) into the search bar.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Hashtags don’t link to channels. If you have a channel named “Marketing”, selecting a <code class="docutils literal notranslate"><span class="pre">#marketing</span></code> hashtag does not take you to the Marketing channel. To link to public channels, use the tilde <code class="docutils literal notranslate"><span class="pre">~</span></code> symbol followed by the channel name. For example <code class="docutils literal notranslate"><span class="pre">~marketing</span></code>.</p>
+</div>
+</section>
+<section id="notes-about-performing-mattermost-searches">
+<h2>Notes about performing Mattermost searches<a class="headerlink" href="#notes-about-performing-mattermost-searches" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Multiple-word searches return results that contain <em>all</em> of your search criteria.</p></li>
+<li><p>Search modifiers can help narrow down searches. See the <a class="reference external" href="#search-modifiers">search modifiers</a> section for details.</p></li>
+<li><p>You can search Archived channels as long as you’re a member of that channel.</p>
+<ul>
+<li><p>If you’re unable to see messages or files in archived channels in your search results, ask your system admin if <strong>Allow users to view archived channels</strong> has been disabled under <strong>System Console &gt; Site Configuration &gt; Users and Teams</strong>.</p></li>
+<li><p>To remove archived channels from your search results, you can leave the Archived channels.</p></li>
+</ul>
+</li>
+<li><p>Like many search engines, common words such as <code class="docutils literal notranslate"><span class="pre">the</span></code>, <code class="docutils literal notranslate"><span class="pre">which</span></code>, and <code class="docutils literal notranslate"><span class="pre">are</span></code> (known as “stop words”), as well as two-letter and one-letter search terms, are not shown in search results because they typically return too many results. See the <a class="reference external" href="#technical-notes-about-searching">Technical notes about searching</a> section below for details.</p></li>
+<li><p>IP addresses (e.g. <code class="docutils literal notranslate"><span class="pre">10.100.200.101</span></code>) don’t return results.</p></li>
+</ul>
+</section>
+<section id="technical-notes-about-searching">
+<h2>Technical notes about searching<a class="headerlink" href="#technical-notes-about-searching" title="Link to this heading">#</a></h2>
+<p>By default, Mattermost uses full text search support included in PostgreSQL. Select the <strong>product menu</strong> <img alt="Navigate between Channels and Playbooks using the product menu icon." src="../_images/products_E82F.svg" /> then select <strong>About Mattermost</strong> to see which database you’re using.</p>
+<ul class="simple">
+<li><p>Stop words are filtered out of search results. See <a class="reference external" href="https://www.postgresql.org/docs/10/textsearch-dictionaries.html#TEXTSEARCH-STOPWORDS">PostgreSQL</a> database documentation for a full list of applicable stop words.</p></li>
+<li><p>URLs don’t return results.</p></li>
+<li><p>Hashtags or recent mentions of usernames containing a dash don’t return results.</p></li>
+<li><p>Terms containing a dash return incorrect results since dashes are ignored in the search engine.</p></li>
+<li><p>From Mattermost v7.1, search results respect the <code class="docutils literal notranslate"><span class="pre">default_text_search_config</span></code> value instead of being hardcoded to English. We recommend that Mattermost system admins review this value to ensure it’s set correctly.</p></li>
+</ul>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="format-messages.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Format messages</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="message-reminders.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Set a reminder</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2015-2023 Mattermost
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Search for messages</a><ul>
+<li><a class="reference internal" href="#search-for-message-and-files">Search for message and files</a></li>
+<li><a class="reference internal" href="#search-modifiers">Search modifiers</a><ul>
+<li><a class="reference internal" href="#from-and-in"><code class="docutils literal notranslate"><span class="pre">from:</span></code> and <code class="docutils literal notranslate"><span class="pre">in:</span></code></a></li>
+<li><a class="reference internal" href="#before-after-and-on"><code class="docutils literal notranslate"><span class="pre">before:</span></code>, <code class="docutils literal notranslate"><span class="pre">after:</span></code>, and <code class="docutils literal notranslate"><span class="pre">on:</span></code></a></li>
+<li><a class="reference internal" href="#exclusions">Exclusions</a></li>
+<li><a class="reference internal" href="#quotation-marks">Quotation marks</a></li>
+<li><a class="reference internal" href="#wildcards">Wildcards</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#hashtags">Hashtags</a></li>
+<li><a class="reference internal" href="#notes-about-performing-mattermost-searches">Notes about performing Mattermost searches</a></li>
+<li><a class="reference internal" href="#technical-notes-about-searching">Technical notes about searching</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/tabs.js?v=3030b3cb"></script>
+    </body>
+</html>

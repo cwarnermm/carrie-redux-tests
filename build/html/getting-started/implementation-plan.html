@@ -1,0 +1,1054 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Enterprise roll out checklist" href="enterprise-roll-out-checklist.html" /><link rel="prev" title="Architecture overview" href="architecture-overview.html" />
+        <link rel="canonical" href="https://www.ethereal.cc/redux/getting-started/implementation-plan.html" />
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 7.2.6 and Furo 2023.09.10 -->
+        <title>Implementation plan - Mattermost documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/compass-icons.css?v=b28d7826" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  --font-stack: Noto Sans, Helvetica Neue, Arial, sans-serif;
+  --font-stack--monospace: Fira Mono, Courier New, Courier, monospace;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">Mattermost  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">Mattermost  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../overview/index.html">About Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of About Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../about/product.html">Mattermost overview</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../about/use-cases.html">Use cases</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Use cases</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../about/secure-command-and-control.html">Secure command and control</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../about/unified-collaboration.html">Unified communication</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Unified communication</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../about/mattermost-for-microsoft-teams.html">Mattermost for Microsoft Teams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../about/mattermost-google-calendar-integration.html">Mattermost Google Calendar integration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../about/devops-collaboration.html">DevOps collaboration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/incident-response-collaboration.html">Incident response collaboration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../about/security.html">Security overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/integrations.html">Integrations overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/subscription.html">Subscription overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/self-hosted-subscriptions.html">Self-hosted subscriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/cloud-subscriptions.html">Cloud subscriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/editions-and-offerings.html">Mattermost editions and plans</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/corporate-directory-integration.html">Corporate directory integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/certifications-and-compliance.html">Certifications and compliance overview</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../about/frequently-asked-questions.html">Frequently asked questions (FAQ)</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Frequently asked questions (FAQ)</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-general.html">General Mattermost questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-community.html">Community questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-notifications.html">Notifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-video-audio-screensharing.html">Video, audio, and screen sharing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-enterprise.html">Enterprise questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-license.html">License questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-integrations.html">Integrations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-use-cases.html">Use cases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-product.html">Product questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-high-trust.html">High trust questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-design-decisions.html">Design decisions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-business.html">Business questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-illicit-use.html">Illicit use</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../guides/deployment.html">Deploy Mattermost</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Deploy Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../install/prepare-mattermost-database.html">Prepare your Mattermost database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-ubuntu.html">Deploy on Ubuntu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-docker.html">Deploy using Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-tar.html">Deploy with a tarball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/installing-mattermost-omnibus.html">Deploy using Omnibus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-kubernetes.html">Deploy using Kubernetes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-rhel-8.html">Deploy on Red Hat</a></li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="../guides/prepare-for-your-mattermost-deployment.html">Prepare for your Mattermost deployment</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of Prepare for your Mattermost deployment</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../install/software-hardware-requirements.html">  Software and hardware requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/mattermost-kubernetes-operator.html">  About the Mattermost Kubernetes Operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="admin-onboarding-tasks.html">  Administrator tasks</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="architecture-overview.html">  Architecture overview</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of   Architecture overview</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">  Plan your Mattermost implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="enterprise-roll-out-checklist.html">  Enterprise roll out checklist</a></li>
+<li class="toctree-l3"><a class="reference internal" href="welcome-email-to-end-users.html">  Welcome email template</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/deployment-guides.html">Deployment guides</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of Deployment guides</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../guides/server-deployment.html">Server deployment</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of Server deployment</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/deployment-overview.html"> Deployment overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/setting-up-socket-based-mattermost-database.html"> Set up a socket-based Mattermost database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/image-proxy.html"> Image proxy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/backup-disaster-recovery.html"> Backup and disaster recovery</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/encryption-options.html"> Encryption options</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../install/transport-encryption.html"> Configure transport encryption</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of  Configure transport encryption</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../install/proxy-to-mattermost-transport-encryption.html">Configuring proxy to Mattermost transport encryption</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../install/database-transport-encryption.html">Configuring database transport encryption</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../install/cluster-transport-encryption.html">Configuring cluster transport encryption</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/bleve-search.html"> Bleve search</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../guides/desktop-mobile-app-deployment.html">Desktop and mobile app deployment</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of Desktop and mobile app deployment</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/desktop-app.html">Desktop app deployment guide</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/desktop-msi-installer-and-group-policy-install.html">Desktop MSI installer and group policy installation guides (beta)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/desktop-custom-dictionaries.html">Desktop App custom dictionaries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/desktop-app-managed-resources.html">Desktop managed resources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/use-prebuilt-mobile-apps.html">Using Mattermost’s pre-built mobile apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-testing-notifications.html">Testing push notifications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-overview.html">Deploy Mattermost mobile apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-hpns.html">Mobile push notifications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/build-custom-mobile-apps.html">Building and distributing your own custom Mattermost mobile apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/deploy-mobile-apps-using-emm-provider.html">Deploying mobile apps using an EMM provider</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-appconfig.html">AppConfig for EMM solutions with Mattermost Mobile Apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/consider-mobile-vpn-options.html">Mobile VPN options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-faq.html">Mobile apps FAQ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/client-side-data.html">Client-side data storage FAQ</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/upgrade-mattermost.html">Upgrade Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle navigation of Upgrade Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/prepare-to-upgrade-mattermost.html"> Prepare to upgrade Mattermost</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/upgrading-mattermost-server.html"> Upgrade Mattermost Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/enterprise-install-upgrade.html"> Enterprise install and upgrade</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/installing-license-key.html"> Install a license key</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/release-definitions.html"> Release definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/important-upgrade-notes.html"> Important upgrade notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/release-lifecycle.html"> Release lifecycle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/extended-support-release.html"> Extended Support Release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/downgrading-mattermost-server.html"> Downgrade Mattermost Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/version-archive.html"> Version archive</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/scale-mattermost.html">Scale Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle navigation of Scale Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../scale/scaling-for-enterprise.html"> Scale for Enterprise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scale/high-availability-cluster.html"> High availability cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scale/elasticsearch.html"> Elasticsearch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scale/performance-monitoring.html"> Performance monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scale/performance-alerting.html"> Mattermost performance alerting guide</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/deployment-troubleshooting.html">Deployment troubleshooting</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle navigation of Deployment troubleshooting</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install/troubleshooting.html">  General troubleshooting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deploy/high-scale-troubleshoot.html">  Troubleshooting your high scale deployment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deploy/mobile-troubleshoot.html">  Troubleshooting mobile applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/trouble-postgres.html">  PostgreSQL installation troubleshooting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/trouble_mysql.html">  MySQL installation troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/changelogs.html">Changelogs</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle navigation of Changelogs</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install/self-managed-changelog.html">  Mattermost self-hosted</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/legacy-self-hosted-changelog.html">  Mattermost legacy self-hosted</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/cloud-changelog.html">  Mattermost Cloud</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deploy/mobile-app-changelog.html">  Mobile apps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/desktop-app-changelog.html">  Desktop apps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/deprecated-features.html">  Deprecated features</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/additional-server-installation-guides.html">Additional server installation guides</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle navigation of Additional server installation guides</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install/deploying-team-edition-on-bitnami.html">  Deploy Mattermost on Bitnami</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/setting-up-aws-elastic-beanstalk-docker.html">  AWS Elastic Beanstalk Docker setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/installing-team-edition-helm-chart.html">  Install Mattermost Team Edition in GitLab Helm Chart</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/open-source-components.html">  Open source components</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../guides/administration.html">Manage Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle navigation of Manage Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/get-started-with-administration.html">Get started</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle navigation of Get started</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../configure/optimize-your-workspace.html">Optimize your workspace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/configuration-settings.html">Mattermost configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/self-hosted-account-settings.html">Self-hosted edition and license</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/cloud-billing-account-settings.html">Cloud subscription, billing, and account</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/reporting-configuration-settings.html">Reporting configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/user-management-configuration-settings.html">User management configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/environment-configuration-settings.html">Environment configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/site-configuration-settings.html">Site configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/authentication-configuration-settings.html">Authentication configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/plugins-configuration-settings.html">Plugins configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/integrations-configuration-settings.html">Integrations configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/compliance-configuration-settings.html">Compliance configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/experimental-configuration-settings.html">Experimental configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/deprecated-configuration-settings.html">Deprecated configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/environment-variables.html">Environment variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/user-provisioning-workflows.html">Provisioning workflows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/multi-factor-authentication.html">Multi-factor authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/ad-ldap.html">Active Directory/LDAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-gitlab.html">GitLab SSO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-openidconnect.html">OpenID SSO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-google.html">Google SSO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-office.html">Office 365 SSO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/advanced-permissions.html">Advanced permissions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/system-admin-roles.html">System admin roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/team-channel-members.html">Manage team and channel members</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/custom-branding-tools.html">Custom branding tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/electronic-discovery.html">eDiscovery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/compliance-monitoring.html">Compliance monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/compliance-export.html">Compliance export</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/legal-hold.html">Legal hold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/data-retention-policy.html">Data retention tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/custom-terms-of-service.html">Custom terms of service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/notify-admin.html">Notify Admin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/ad-ldap-groups-synchronization.html">AD/LDAP groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/managing-team-channel-membership-using-ad-ldap-sync-groups.html">Use AD/LDAP synchronized groups to manage team or private channel membership</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/guest-accounts.html">Guest accounts</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../onboard/sso-saml.html">SAML Single Sign-On</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of SAML Single Sign-On</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-okta.html">Okta SAML Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-onelogin.html">OneLogin SAML Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-adfs.html">Microsoft ADFS SAML Configuration for Windows Server 2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-adfs-msws2016.html">Microsoft ADFS SAML Configuration for Windows Server 2016</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-keycloak.html">Keycloak SAML Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-saml-technical.html">SAML Single-Sign-On: technical documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/shared-channels.html">Shared channels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/statistics.html">Statistics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/in-product-notices.html">In-product notices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/user-satisfaction-surveys.html">User satisfaction surveys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/health-checks.html">Health check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/announcement-banner.html">Announcement banner</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/bulk-export-tool.html">Bulk export tool</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/cloud-workspace-management.html">Cloud workspace management</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><div class="visually-hidden">Toggle navigation of Cloud workspace management</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manage/cloud-billing.html">Mattermost Cloud billing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/workspace-usage.html">Workspace usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/cloud-data-export.html">Workspace migration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/cloud-data-residency.html">Cloud data residency</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/self-hosted-administration.html">Self-hosted administration</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" role="switch" type="checkbox"/><label for="toctree-checkbox-21"><div class="visually-hidden">Toggle navigation of Self-hosted administration</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manage/self-hosted-billing.html">Mattermost self-hosted billing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/configuation-in-a-database.html">Store configuration in the database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/bulk-loading-data.html">Bulk loading data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/smtp-email.html">SMTP email setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/email-templates.html">Email templates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/calls-deployment.html">Calls deployment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/configuring-cloudfront-to-host-mattermost-static-assets.html">Configure CloudFront to host static assets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/using-outbound-proxy.html">Use an outbound proxy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/migrating-to-mattermost.html">Migration guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deploy/postgres-migration.html">Migration from MySQL to PostgreSQL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/enabling-chinese-japanese-korean-search.html">Chinese, Japanese, and Korean search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/customizing-mattermost.html">Customize Mattermost</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/audit-log.html">Audit logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/embedded-json-audit-log-schema.html">JSON audit log schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/ssl-client-certificate.html">SSL client certificate setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/certificate-based-authentication.html">Certificate-based authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/telemetry.html">Manage telemetry</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/other-administration-resources.html">Other resources</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" role="switch" type="checkbox"/><label for="toctree-checkbox-22"><div class="visually-hidden">Toggle navigation of Other resources</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/convert-oauth20-service-providers-to-openidconnect.html">Convert OAuth 2.0 providers to OpenID Connect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/generating-support-packet.html">Generate a support packet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/mmctl-command-line-tool.html">mmctl command line tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/migration-announcement-email.html">Migration announcement email template</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/advanced-permissions-backend-infrastructure.html">Advanced permissions infrastructure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/command-line-tools.html">Command line tools</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../guides/use-mattermost.html">Use Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" role="switch" type="checkbox"/><label for="toctree-checkbox-23"><div class="visually-hidden">Toggle navigation of Use Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/collaborate.html">Connect and collaborate</a><input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" role="switch" type="checkbox"/><label for="toctree-checkbox-24"><div class="visually-hidden">Toggle navigation of Connect and collaborate</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/access-your-workspace.html">Access your Mattermost workspace</a><input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" role="switch" type="checkbox"/><label for="toctree-checkbox-25"><div class="visually-hidden">Toggle navigation of Access your Mattermost workspace</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/install-desktop-app.html">Install the desktop app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/install-ios-app.html">Install the iOS mobile app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/install-android-app.html">Install the Android mobile app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/log-out.html">Log out of Mattermost</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/organize-using-teams.html">Organize using teams</a><input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" role="switch" type="checkbox"/><label for="toctree-checkbox-26"><div class="visually-hidden">Toggle navigation of Organize using teams</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/team-settings.html">Team settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/team-keyboard-shortcuts.html">Team keyboard shortcuts</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../collaborate/organize-using-custom-user-groups.html">Organize using custom user groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../collaborate/invite-people.html">Invite people</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../collaborate/learn-about-roles.html">Learn about Mattermost roles</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/collaborate-within-channels.html">Collaborate within channels</a><input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" role="switch" type="checkbox"/><label for="toctree-checkbox-27"><div class="visually-hidden">Toggle navigation of Collaborate within channels</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/channel-types.html">Channel types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/channel-naming-conventions.html">Channel naming conventions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/channel-header-purpose.html">Communicate a channel's focus and scope</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/create-channels.html">Create channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/rename-channels.html">Rename channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/convert-public-channels.html">Convert public channels to private</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/join-leave-channels.html">Join and leave channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/make-calls.html">Make calls in Mattermost</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/manage-channel-members.html">Manage channel members</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/browse-channels.html">Browse channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/navigate-between-channels.html">Navigate between channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/favorite-channels.html">Mark channels as favorites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/mark-channels-unread.html">Mark channels as unread</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/archive-unarchive-channels.html">Archive and unarchive channels</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/communicate-with-messages.html">Communicate with messages and threads</a><input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" role="switch" type="checkbox"/><label for="toctree-checkbox-28"><div class="visually-hidden">Toggle navigation of Communicate with messages and threads</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/send-messages.html">Send messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/reply-to-messages.html">Reply to messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/react-with-emojis-gifs.html">React with emojis and GIFs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/organize-conversations.html">Organize conversations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/mark-messages-unread.html">Mark messages as unread</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/forward-messages.html">Forward messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/share-links.html">Share links to channels and messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/save-pin-messages.html">Save and pin messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/message-reminders.html">Set message reminders</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/search-for-messages.html">Search for messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/format-messages.html">Format messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/message-priority.html">Set message priority</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/mention-people.html">Mention people</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/share-files-in-messages.html">Share files in messages</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/keyboard-shortcuts.html">Keyboard shortcuts</a><input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" role="switch" type="checkbox"/><label for="toctree-checkbox-29"><div class="visually-hidden">Toggle navigation of Keyboard shortcuts</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/keyboard-accessibility.html">Keyboard accessibility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/run-slash-commands.html">Run slash commands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/built-in-slash-commands.html">Built-in-slash-commands</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/extend-mattermost-with-integrations.html">Extend Mattermost with integrations</a><input class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" role="switch" type="checkbox"/><label for="toctree-checkbox-30"><div class="visually-hidden">Toggle navigation of Extend Mattermost with integrations</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/collaborate-using-mattermost-for-microsoft-teams.html">Collaborate using Mattermost for MS Teams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/use-mattermost-google-calendar-plugin.html">Use the Mattermost Google Calendar plugin</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/repeatable-processes.html">Build repeatable processes</a><input class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" role="switch" type="checkbox"/><label for="toctree-checkbox-31"><div class="visually-hidden">Toggle navigation of Build repeatable processes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/learn-about-playbooks.html">Learn about playbooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/work-with-playbooks.html">Work with playbooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/work-with-runs.html">Work with runs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/work-with-tasks.html">Work with tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/notifications-and-updates.html">Work with notifications and updates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/metrics-and-goals.html">Work with metrics and goals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/share-and-collaborate.html">Share and collaborate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/interact-with-playbooks.html">Interact with playbooks</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/preferences.html">Customize your preferences</a><input class="toctree-checkbox" id="toctree-checkbox-32" name="toctree-checkbox-32" role="switch" type="checkbox"/><label for="toctree-checkbox-32"><div class="visually-hidden">Toggle navigation of Customize your preferences</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-notifications.html">Manage your notifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/customize-your-theme.html">Customize your Mattermost theme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/customize-your-channel-sidebar.html">Customize your channel sidebar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-profile.html">Manage your profile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-security-preferences.html">Manage your security preferences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/set-your-status-availability.html">Set your status &amp; availability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-display-options.html">Manage your display options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-sidebar-options.html">Manage your sidebar options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-advanced-options.html">Manage advanced options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/customize-desktop-app-experience.html">Customize your desktop app experience</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/connect-multiple-workspaces.html">Connect to multiple workspaces</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://developers.mattermost.com/">Develop with Mattermost</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/get-help.html">Get help with Mattermost</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/community-chat.html">Join our community</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://handbook.mattermost.com/">Learn how we work</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/contribute-to-documentation.html">Contribute to this documentation</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="implementation-plan">
+<h1>Implementation plan<a class="headerlink" href="#implementation-plan" title="Link to this heading">#</a></h1>
+<div class="mm-badge"><p><img alt="plans-img" src="../_images/flag_icon.svg" /> Available on <a class="reference external" href="https://mattermost.com/pricing/">all plans</a></p>
+<p><img alt="deployment-img" src="../_images/deployment_icon.svg" /> <a class="reference external" href="https://mattermost.com/deploy/">self-hosted</a> deployments</p>
+</div><section id="introduction">
+<h2>1 Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<section id="purpose">
+<h3>1.1 Purpose<a class="headerlink" href="#purpose" title="Link to this heading">#</a></h3>
+<p>Mattermost is an open source, private cloud alternative to proprietary SaaS collaboration solutions designed to offer organizations superior control, data sovereignty, configurability, freedom from lock-in, and enhanced security by keeping vital communications behind your firewall. You’ve chosen to implement Mattermost in our supported <a class="reference external" href="https://docs.mattermost.com/about/editions-and-offerings.html">editions and offerings:</a></p>
+<p>The purpose of this Implementation Plan is to:</p>
+<ul class="simple">
+<li><p>Describe the solution to be deployed;</p></li>
+<li><p>Outline the process for implementing the solution (key personnel, tasks, schedule, etc.);</p></li>
+<li><p>Identify support required during the implementation process.</p></li>
+</ul>
+</section>
+</section>
+<section id="system-overview">
+<h2>2 System overview<a class="headerlink" href="#system-overview" title="Link to this heading">#</a></h2>
+<p>This section provides a brief overview of the system to be implemented, including a description of the system and its organization.</p>
+<section id="system-description">
+<h3>2.1 System description<a class="headerlink" href="#system-description" title="Link to this heading">#</a></h3>
+<p>Mattermost is a collaboration solution designed to remove organizational friction. You’re implementing Mattermost in order to:</p>
+<ol class="arabic simple">
+<li><p><strong>[STATE REASON]</strong></p></li>
+<li><p><strong>[STATE REASON]</strong></p></li>
+<li><p><strong>[STATE REASON]</strong></p></li>
+</ol>
+<p>In this implementation, you are planning to deploy Mattermost to <strong>[NUMBER OF USERS]</strong> users on the following teams:</p>
+<ol class="arabic simple">
+<li><p><strong>[TEAM 1]</strong></p></li>
+<li><p><strong>[TEAM 2]</strong></p></li>
+<li><p><strong>[TEAM 3]</strong></p></li>
+</ol>
+</section>
+<section id="system-organization">
+<h3>2.2  System organization<a class="headerlink" href="#system-organization" title="Link to this heading">#</a></h3>
+<p>A Mattermost Enterprise implementation consists of the following system components:</p>
+<ul class="simple">
+<li><p><strong>Mattermost Server</strong>
+- The Mattermost Server is a single binary that includes the RESTful JSON web service, authentication client, authentication provider, notification service, and data management service. The Mattermost Server can be deployed in stand-alone or high availability mode where two or more servers are clustered together using gossip protocol and a proxy server that routes traffic from client applications to healthy servers in the cluster.</p></li>
+<li><p><strong>Mattermost Database</strong>
+- A PostgreSQL database in stand-alone or high-availability configurations (master with read replicas). When choosing the database, consider the <a class="reference external" href="/install/requirements.html#database-software">inherent search limitations of the database type</a> and whether <a class="reference external" href="/scale/elasticsearch.html">Elasticsearch</a> is most appropriate for your deployment.</p></li>
+<li><p><strong>Mattermost Push Notification Service</strong>
+- Hosted or on-premise service that pushes notifications to Mattermost Android and Mattermost iOS mobile applications.</p></li>
+<li><p><strong>Mattermost Client Applications</strong>
+- Client applications are available for Mattermost for the following platforms: Android, iOS, Windows, OSX, and Linux (Beta).</p></li>
+<li><p><strong>Mattermost Web Client</strong>
+- Mattermost users can use their favorite Web browser to connect to their Mattermost server in place of the Mattermost mobile and desktop applications.</p></li>
+<li><p><strong>Proxy Server</strong>
+- The use of a proxy server (NGINX, Apache, HAProxy, ELB, etc.) is recommended with Mattermost to obtain the benefits of: SSL termination, HTTP to HTTPS redirection, port mapping :80 to :8065, and the creation of standard request logs.</p></li>
+</ul>
+<p>The following diagram is a high-level illustration of the Mattermost platform and how its various components interact with each other within a network:</p>
+<img alt="Mattermost network diagram shows how the various system components of the Mattermost platform interact with each other within a network deployment." src="../_images/network_diagram.png" />
+<p><strong>Reference</strong>: <a class="reference external" href="https://docs.mattermost.com/deploy/deployment-overview.html">https://docs.mattermost.com/deploy/deployment-overview.html</a></p>
+<p>A recommended installation of Mattermost Enterprise E20 configured with a redundant, highly available, highly scalable mode, with application (Mattermost Server) and database High Availability features enabled, will require the following physical, or virtual, servers:</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Task</p></th>
+<th class="head"><p>Qty</p></th>
+<th class="head"><p>CPU</p></th>
+<th class="head"><p>Memory</p></th>
+<th class="head"><p>Storage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Mattermost Server</p></td>
+<td><p>2</p></td>
+<td><p>2 vCPUs/cores</p></td>
+<td><p>4 GB</p></td>
+<td><p>45-90 GB</p></td>
+</tr>
+<tr class="row-odd"><td><p>Database Server</p></td>
+<td><p>2</p></td>
+<td><p>2 vCPUs/cores</p></td>
+<td><p>8 GB</p></td>
+<td><p>100 GB</p></td>
+</tr>
+<tr class="row-even"><td><p>Proxy</p></td>
+<td><p>2</p></td>
+<td><p>1 vCPUs/cores</p></td>
+<td><p>4 GB</p></td>
+<td><p>10 GB</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See the <a class="reference external" href="/install/software-hardware-requirements.html#hardware-requirements">Mattermost hardware sizing guidance</a> documentation for details.</p>
+</div>
+</section>
+<section id="project-references">
+<h3>2.3 Project references<a class="headerlink" href="#project-references" title="Link to this heading">#</a></h3>
+<p>This section provides a bibliography of key project references and deliverables that have been produced before this point in the project development.</p>
+<ul class="simple">
+<li><p>Mattermost Overview: <a class="reference external" href="https://docs.mattermost.com/about/product.html">https://docs.mattermost.com/about/product.html</a></p></li>
+<li><p>Mattermost Software/Hardware Requirements: <a class="reference external" href="https://docs.mattermost.com/install/software-hardware-requirements.html">https://docs.mattermost.com/install/software-hardware-requirements.html</a></p></li>
+<li><p>Mattermost Security Features: <a class="reference external" href="https://docs.mattermost.com/about/security.html">https://docs.mattermost.com/about/security.html</a></p></li>
+<li><p>Mattermost: <a class="reference external" href="https://docs.mattermost.com/guides/collaborate.html">https://docs.mattermost.com/guides/collaborate.html</a></p></li>
+<li><p>Mattermost Playbooks plugin: <a class="reference external" href="https://docs.mattermost.com/guides/repeatable-processes.html">https://docs.mattermost.com/guides/repeatable-processes.html</a></p></li>
+</ul>
+</section>
+<section id="glossary">
+<h3>2.4 Glossary<a class="headerlink" href="#glossary" title="Link to this heading">#</a></h3>
+<p>Provide a glossary of all terms and abbreviations used in the manual.  If it is several pages in length, it may be placed in an appendix.</p>
+</section>
+</section>
+<section id="management-overview">
+<h2>3 Management overview<a class="headerlink" href="#management-overview" title="Link to this heading">#</a></h2>
+<p>The subsequent sections provide a brief description of the implementation and major tasks involved in this section.</p>
+<section id="description-of-implementation">
+<h3>3.1 Description of implementation<a class="headerlink" href="#description-of-implementation" title="Link to this heading">#</a></h3>
+</section>
+<section id="team">
+<h3>3.2 Team<a class="headerlink" href="#team" title="Link to this heading">#</a></h3>
+<p>In this section, identify the System Proponent, the name of the responsible organization(s), and titles and telephone numbers of the staff who serve as points of contact for the system implementation.  These points of contact could include the Project Manager. Program Manager, Security Manager.  Database Administrator, Configuration Management Manager, or other managers with responsibilities relating to the system implementation.  The site implementation representative for each field installation or implementation site should also be included, if appropriate.  List all managers and staff with whom the implementation must be coordinated.</p>
+<section id="team-members">
+<h4>3.2.1 Team members<a class="headerlink" href="#team-members" title="Link to this heading">#</a></h4>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Title</p></th>
+<th class="head"><p>Email</p></th>
+<th class="head"><p>Phone</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Jane Doe</p></td>
+<td><p>Project Manager</p></td>
+<td><p><a class="reference external" href="mailto:jane&#46;doe&#37;&#52;&#48;company&#46;com">jane<span>&#46;</span>doe<span>&#64;</span>company<span>&#46;</span>com</a></p></td>
+<td><p>111.111.1111</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="major-tasks">
+<h3>3.3 Major tasks<a class="headerlink" href="#major-tasks" title="Link to this heading">#</a></h3>
+<p>This section provides a brief description of each major task required for the implementation of the system. Add as many subsections as necessary to this section to describe all the major tasks adequately. The tasks described in this section are not site-specific, but generic or overall project tasks that are required to install hardware and software, prepare data, and verify the system.</p>
+<section id="create-system-architecture-document">
+<h4>3.3.1 Create system architecture document<a class="headerlink" href="#create-system-architecture-document" title="Link to this heading">#</a></h4>
+<p>The system architecture document is used to document the environments that Mattermost will be deployed to including:</p>
+<ul class="simple">
+<li><p>The environment (development, staging, production, etc.)</p></li>
+<li><p>Server, or virtual machine, specifications</p></li>
+<li><p>IP addresses and DNS</p></li>
+<li><p>Network diagram</p></li>
+</ul>
+<p><strong>Reference</strong>: <a class="reference external" href="https://docs.mattermost.com/deploy/deployment-overview.html">https://docs.mattermost.com/deploy/deployment-overview.html</a></p>
+</section>
+<section id="gather-required-software-and-documentation">
+<h4>3.3.2 Gather required software and documentation<a class="headerlink" href="#gather-required-software-and-documentation" title="Link to this heading">#</a></h4>
+<p>Gather all of the software and documentation required for a successful implementation of the Mattermost platform and place it within the organization’s configuration management system.</p>
+</section>
+<section id="prepare-deployment-environments">
+<h4>3.3.3 Prepare deployment environments<a class="headerlink" href="#prepare-deployment-environments" title="Link to this heading">#</a></h4>
+<p>Build out the required deployment environments (development, staging, production, etc.) and implement configuration management (using a tool like Chef, Puppet, Salt, etc.)</p>
+<p><strong>Reference</strong>: <a class="reference external" href="https://docs.mattermost.com/install/software-hardware-requirements.html">https://docs.mattermost.com/install/software-hardware-requirements.html</a></p>
+</section>
+<section id="install-software">
+<h4>3.3.4 Install software<a class="headerlink" href="#install-software" title="Link to this heading">#</a></h4>
+<p>Install and configure Mattermost and its component software (PostgreSQL, NGINX, or another proxy, etc.)</p>
+<p><strong>Reference</strong>: <a class="reference external" href="https://docs.mattermost.com/guides/deployment.html#install-guides">https://docs.mattermost.com/guides/deployment.html#install-guides</a></p>
+<p>Install in High Availability (Available in Mattermost Enterprise): <a class="reference external" href="https://docs.mattermost.com/scale/high-availability-cluster.html">https://docs.mattermost.com/scale/high-availability-cluster.html</a></p>
+</section>
+<section id="test-deployment">
+<h4>3.3.5 Test deployment<a class="headerlink" href="#test-deployment" title="Link to this heading">#</a></h4>
+<p>Verify that the software has been deployed successfully in each environment. Create, or update, automated tests to verify deployments.</p>
+<p><strong>Reference</strong>: <a class="reference external" href="https://docs.mattermost.com/manage/health-checks.html">https://docs.mattermost.com/manage/health-checks.html</a></p>
+</section>
+<section id="bulk-load-data">
+<h4>3.3.6 Bulk load data<a class="headerlink" href="#bulk-load-data" title="Link to this heading">#</a></h4>
+<p>Large quantities of data can be imported from a JSON file into Mattermost at the command line using the bulk loading feature. This feature is most suitable for migrating data from an existing system, or for pre-populating a new installation with data.</p>
+<p>You can import the following data types:</p>
+<ul class="simple">
+<li><p>Teams</p></li>
+<li><p>Channels (public and private)</p></li>
+<li><p>Users</p></li>
+<li><p>Users’ team memberships</p></li>
+<li><p>Users’ channel memberships</p></li>
+<li><p>Users’ notification preferences</p></li>
+<li><p>Posts (regular, non-reply posts)</p></li>
+<li><p>Direct message and group message channels</p></li>
+<li><p>Direct messages and group messages</p></li>
+</ul>
+<p><strong>Reference</strong>: <a class="reference external" href="https://docs.mattermost.com/onboard/bulk-loading-data.html">https://docs.mattermost.com/onboard/bulk-loading-data.html</a></p>
+</section>
+<section id="implement-backup">
+<h4>3.3.7 Implement backup<a class="headerlink" href="#implement-backup" title="Link to this heading">#</a></h4>
+<p>Implement backup procedures to protect data stored within the Mattermost database, files uploaded by users, and the Mattermost <code class="docutils literal notranslate"><span class="pre">config.json</span></code> file.</p>
+<p><strong>Reference</strong>: <a class="reference external" href="https://docs.mattermost.com/deploy/backup-disaster-recovery.html">https://docs.mattermost.com/deploy/backup-disaster-recovery.html</a></p>
+</section>
+<section id="implement-monitoring">
+<h4>3.3.8 Implement monitoring<a class="headerlink" href="#implement-monitoring" title="Link to this heading">#</a></h4>
+<p>Mattermost Enterprise supports integrated health and performance monitoring with Prometheus and Grafana. A guide to the statistics collected and reported on is available in the reference below:</p>
+<p><strong>Reference</strong>: <a class="reference external" href="https://docs.mattermost.com/scale/performance-monitoring.html">https://docs.mattermost.com/scale/performance-monitoring.html</a></p>
+</section>
+<section id="ad-ldap-setup">
+<h4>3.3.9 AD/LDAP setup<a class="headerlink" href="#ad-ldap-setup" title="Link to this heading">#</a></h4>
+<p>Available in Mattermost Professional and Enterprise subscription plans.</p>
+<p>Mattermost supports AD/LDAP integration for user authentication and user attribute syncing.</p>
+<p><strong>Reference</strong>: <a class="reference external" href="https://docs.mattermost.com/onboard/ad-ldap.html">https://docs.mattermost.com/onboard/ad-ldap.html</a></p>
+</section>
+<section id="multi-factor-authentication">
+<h4>3.3.10 Multi-factor authentication<a class="headerlink" href="#multi-factor-authentication" title="Link to this heading">#</a></h4>
+<p>Available in Mattermost Professional and Enterprise subscription plans.</p>
+<p>Configure multi-factor authentication (“MFA”) if required as part of your IT security policy. Compatible with Google Authenticator.</p>
+<p><strong>Reference</strong>: <a class="reference external" href="https://docs.mattermost.com/onboard/multi-factor-authentication.html">https://docs.mattermost.com/onboard/multi-factor-authentication.html</a></p>
+</section>
+<section id="saml-single-sign-on">
+<h4>3.3.11 SAML Single-Sign-On<a class="headerlink" href="#saml-single-sign-on" title="Link to this heading">#</a></h4>
+<p>Available in Mattermost Professional and Enterprise subscription plans.</p>
+<p>Mattermost can be configured to act as a SAML 2.0 Service Provider. Mattermost officially supports Okta, OneLogin, and Microsoft ADFS as the identity providers (IDPs).</p>
+<p><strong>Reference</strong>: <a class="reference external" href="https://docs.mattermost.com/onboard/sso-saml.html">https://docs.mattermost.com/onboard/sso-saml.html</a></p>
+</section>
+<section id="train-administrators">
+<h4>3.3.12 Train administrators<a class="headerlink" href="#train-administrators" title="Link to this heading">#</a></h4>
+<p>Train administrators on the tasks required to manage Mattermost.</p>
+<p><strong>Reference</strong>: <a class="reference external" href="https://docs.mattermost.com/guides/administration.html">https://docs.mattermost.com/guides/administration.html</a></p>
+</section>
+<section id="update-legal-and-support-settings">
+<h4>3.3.13 Update legal and support settings<a class="headerlink" href="#update-legal-and-support-settings" title="Link to this heading">#</a></h4>
+<p>Mattermost has configuration settings for the terms of service, privacy policy, and support URLs and emails. It is highly recommended that you modify these in your configuration so that your users have the correct legal information and can contact administrators to resolve account issues. You can find these under <strong>System Console &gt; Legal and Support</strong> in prior versions or <strong>System Console</strong> &gt; <strong>Site Configuration</strong> &gt; <strong>Customization</strong> in versions after 5.12.</p>
+<img alt="Legal and Support settings" src="../_images/legal_and_support_settings.png" />
+</section>
+<section id="onboard-users">
+<h4>3.3.14 Onboard users<a class="headerlink" href="#onboard-users" title="Link to this heading">#</a></h4>
+<p>Send all users a welcome email with instructions on how to get started using Mattermost including links to the mobile applications and the User Guide.</p>
+<p><strong>References</strong>:
+- Links to download Mattermost apps:  <a class="reference external" href="https://mattermost.com/apps">https://mattermost.com/apps</a>
+- Channels Guide: <a class="reference external" href="https://docs.mattermost.com/guides/collaborate.html">https://docs.mattermost.com/guides/collaborate.html</a></p>
+</section>
+</section>
+<section id="implementation-schedule">
+<h3>3.4 Implementation schedule<a class="headerlink" href="#implementation-schedule" title="Link to this heading">#</a></h3>
+<p>In this section, provide a schedule of activities to be accomplished during implementation.  Show the required tasks (described in Section 3.3, Major Tasks) in chronological order, with the beginning and end dates of each task.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p>Task</p></th>
+<th class="head"><p>Start Date</p></th>
+<th class="head"><p>End Date</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Create System Architecture Document</p></td>
+<td><p>xx/xx/xxxx</p></td>
+<td><p>xx/xx/xxxx</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Gather Required Software and Documentation</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>Prepare Deployment Environments</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>Install Software</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>Test Deployment</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>Bulk Load Data</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>Implement Backup</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>Implement Monitoring</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>Train Administrators</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>Onboard Users</p></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="security">
+<h3>3.5 Security<a class="headerlink" href="#security" title="Link to this heading">#</a></h3>
+<p>If appropriate for the system to be implemented, include an overview of the system security features and requirements during the implementation.</p>
+<section id="system-security-features">
+<h4>3.5.1 System security features<a class="headerlink" href="#system-security-features" title="Link to this heading">#</a></h4>
+<p>The Mattermost platform will be secured in the following ways:</p>
+<ul class="simple">
+<li><p>Mattermost will be hosted entirely on-premises behind your company firewall with access restricted to VPN connections;</p></li>
+<li><p>Mobile access to Mattermost will be further restricted by the use of multi-factor authorization;</p></li>
+<li><p>Transmissions to and from Mattermost will be encrypted using TLS;</p></li>
+<li><p>Encryption-at-rest will be applied using your company’s standards;</p></li>
+<li><p>Mattermost’s integrity and audit controls store a complete history of messages, including edits and deletes, along with all files uploaded. User interface actions for “deleting” messages and channels remove the data only from the user interface; the data is retained within your database. If your compliance guidelines require it, you can turn off users’ ability to edit and delete their messages after they are posted.</p></li>
+<li><p>Mattermost will be protected against brute force attacks by its rate limiting API;</p></li>
+<li><p>Authentication to Mattermost will be controlled using your company’s Active Directory/LDAP/SAML directory server.</p></li>
+</ul>
+<p><strong>Reference</strong>: <a class="reference external" href="https://docs.mattermost.com/about/security.html">https://docs.mattermost.com/about/security.html</a></p>
+</section>
+<section id="security-during-implementation">
+<h4>3.5.2 Security during implementation<a class="headerlink" href="#security-during-implementation" title="Link to this heading">#</a></h4>
+<p>This section addresses security issues specifically related to the implementation effort, if any. For example, if LAN servers or workstations will be installed at a site with sensitive data preloaded on non-removable hard disk drives, address how security would be provided for the data on these devices during shipping, transport, and installation because theft of the devices could compromise the sensitive data.</p>
+</section>
+</section>
+</section>
+<section id="implementation-support">
+<h2>4 Implementation support<a class="headerlink" href="#implementation-support" title="Link to this heading">#</a></h2>
+<p>This section describes the support software, materials, equipment, and facilities required for the implementation, as well as the personnel requirements and training necessary for the implementation.  The information provided in this section is not site-specific.  If there are additional support requirements not covered by the subsequent sections, others may be added as needed.</p>
+<section id="hardware-software-facilities-and-materials">
+<h3>4.1 Hardware, software, facilities, and materials<a class="headerlink" href="#hardware-software-facilities-and-materials" title="Link to this heading">#</a></h3>
+<p>In this section, list support software, materials, equipment, and facilities required for the implementation, if any.</p>
+<section id="hardware">
+<h4>4.1.1 Hardware<a class="headerlink" href="#hardware" title="Link to this heading">#</a></h4>
+<p>This section provides a list of support equipment and includes all hardware used for testing time implementation.  For example, if a client/server database is implemented on a LAN, a network monitor or “sniffer” might be used, along with test programs. to determine the performance of the database and LAN at high-utilization rates.  If the equipment is site-specific, list it in Section 5, Implementation Requirements by Site.</p>
+</section>
+<section id="software">
+<h4>4.1.2 Software<a class="headerlink" href="#software" title="Link to this heading">#</a></h4>
+<p>This section provides a list of software and databases required to support the implementation. Identify the software by name, code, or acronym.  Identify which software is commercial off-the-shelf and which is State-specific.  Identify any software used to facilitate the implementation process.  If the software is site-specific, list it in Section 4.</p>
+</section>
+<section id="facilities">
+<h4>4.1.3 Facilities<a class="headerlink" href="#facilities" title="Link to this heading">#</a></h4>
+<p>In this section, identify the physical facilities and accommodations required during implementation.  Examples include physical workspace for assembling and testing hardware components, desk space for software installers, and classroom space for training the implementation stall.  Specify the hours per day needed, number of days, and anticipated dates. If the facilities needed are site-specific, provide this information in Section 4, Implementation Requirements by Site.</p>
+</section>
+<section id="material">
+<h4>4.1.4 Material<a class="headerlink" href="#material" title="Link to this heading">#</a></h4>
+<p>This section provides a list of required support materials, such as magnetic tapes and disk packs.</p>
+</section>
+</section>
+<section id="personnel">
+<h3>4.2 Personnel<a class="headerlink" href="#personnel" title="Link to this heading">#</a></h3>
+<p>This section describes personnel requirements and any known or proposed staffing requirements, if appropriate.  Also describe the training, if any, to be provided for the implementation staff.</p>
+<section id="personnel-requirements-and-staffing">
+<h4>4.2.1 Personnel requirements and staffing<a class="headerlink" href="#personnel-requirements-and-staffing" title="Link to this heading">#</a></h4>
+<p>In this section, describe the number of personnel, length of time needed, types of skills, and skill levels for the staff required during the implementation period.  If particular staff members have been selected or proposed for the implementation, identify them and their roles in the implementation.</p>
+</section>
+<section id="training-of-implementation-staff">
+<h4>4.2.2 Training of implementation staff<a class="headerlink" href="#training-of-implementation-staff" title="Link to this heading">#</a></h4>
+<p>This section addresses the training, if any, necessary to prepare staff for implementing and maintaining the system; it does not address user training, which is the subject of the Training Plan. Describe the type and amount of training required for each of the following areas, if appropriate, for the system:</p>
+<ul class="simple">
+<li><p>System hardware/software installation</p></li>
+<li><p>System support</p></li>
+<li><p>System maintenance and modification</p></li>
+</ul>
+<p>Present a training curriculum listing the courses that will be provided, a course sequence. and a proposed schedule. If appropriate, identify which courses particular types of staff should attend by job position description.</p>
+<p>If training will be provided by one or more commercial vendors, identify them, the course name(s), and a brief description of the course content.</p>
+<p>If the training will be provided by State staff, provide the course name(s) and an outline of the content of each course.  Identify the resources, support materials, and proposed instructors required to teach the course(s).</p>
+</section>
+</section>
+<section id="performance-monitoring">
+<h3>4.3 Performance monitoring<a class="headerlink" href="#performance-monitoring" title="Link to this heading">#</a></h3>
+<p>Available in Mattermost Enterprise.</p>
+<p>This section describes the performance monitoring tool and techniques and how it will be used to help decide if the implementation is successful: <a class="reference external" href="https://docs.mattermost.com/scale/performance-monitoring.html">https://docs.mattermost.com/scale/performance-monitoring.html</a></p>
+</section>
+<section id="configuration-management-interface">
+<h3>4.4 Configuration management interface<a class="headerlink" href="#configuration-management-interface" title="Link to this heading">#</a></h3>
+<p>This section describes the interactions required with the Configuration Management (CM) representative on CM-related issues, such as when software listings will be distributed, and how to confirm that libraries have been moved from the development to the production environment.</p>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="enterprise-roll-out-checklist.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Enterprise roll out checklist</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="architecture-overview.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Architecture overview</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2015-2023 Mattermost
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Implementation plan</a><ul>
+<li><a class="reference internal" href="#introduction">1 Introduction</a><ul>
+<li><a class="reference internal" href="#purpose">1.1 Purpose</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#system-overview">2 System overview</a><ul>
+<li><a class="reference internal" href="#system-description">2.1 System description</a></li>
+<li><a class="reference internal" href="#system-organization">2.2  System organization</a></li>
+<li><a class="reference internal" href="#project-references">2.3 Project references</a></li>
+<li><a class="reference internal" href="#glossary">2.4 Glossary</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#management-overview">3 Management overview</a><ul>
+<li><a class="reference internal" href="#description-of-implementation">3.1 Description of implementation</a></li>
+<li><a class="reference internal" href="#team">3.2 Team</a><ul>
+<li><a class="reference internal" href="#team-members">3.2.1 Team members</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#major-tasks">3.3 Major tasks</a><ul>
+<li><a class="reference internal" href="#create-system-architecture-document">3.3.1 Create system architecture document</a></li>
+<li><a class="reference internal" href="#gather-required-software-and-documentation">3.3.2 Gather required software and documentation</a></li>
+<li><a class="reference internal" href="#prepare-deployment-environments">3.3.3 Prepare deployment environments</a></li>
+<li><a class="reference internal" href="#install-software">3.3.4 Install software</a></li>
+<li><a class="reference internal" href="#test-deployment">3.3.5 Test deployment</a></li>
+<li><a class="reference internal" href="#bulk-load-data">3.3.6 Bulk load data</a></li>
+<li><a class="reference internal" href="#implement-backup">3.3.7 Implement backup</a></li>
+<li><a class="reference internal" href="#implement-monitoring">3.3.8 Implement monitoring</a></li>
+<li><a class="reference internal" href="#ad-ldap-setup">3.3.9 AD/LDAP setup</a></li>
+<li><a class="reference internal" href="#multi-factor-authentication">3.3.10 Multi-factor authentication</a></li>
+<li><a class="reference internal" href="#saml-single-sign-on">3.3.11 SAML Single-Sign-On</a></li>
+<li><a class="reference internal" href="#train-administrators">3.3.12 Train administrators</a></li>
+<li><a class="reference internal" href="#update-legal-and-support-settings">3.3.13 Update legal and support settings</a></li>
+<li><a class="reference internal" href="#onboard-users">3.3.14 Onboard users</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#implementation-schedule">3.4 Implementation schedule</a></li>
+<li><a class="reference internal" href="#security">3.5 Security</a><ul>
+<li><a class="reference internal" href="#system-security-features">3.5.1 System security features</a></li>
+<li><a class="reference internal" href="#security-during-implementation">3.5.2 Security during implementation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#implementation-support">4 Implementation support</a><ul>
+<li><a class="reference internal" href="#hardware-software-facilities-and-materials">4.1 Hardware, software, facilities, and materials</a><ul>
+<li><a class="reference internal" href="#hardware">4.1.1 Hardware</a></li>
+<li><a class="reference internal" href="#software">4.1.2 Software</a></li>
+<li><a class="reference internal" href="#facilities">4.1.3 Facilities</a></li>
+<li><a class="reference internal" href="#material">4.1.4 Material</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#personnel">4.2 Personnel</a><ul>
+<li><a class="reference internal" href="#personnel-requirements-and-staffing">4.2.1 Personnel requirements and staffing</a></li>
+<li><a class="reference internal" href="#training-of-implementation-staff">4.2.2 Training of implementation staff</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#performance-monitoring">4.3 Performance monitoring</a></li>
+<li><a class="reference internal" href="#configuration-management-interface">4.4 Configuration management interface</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    </body>
+</html>

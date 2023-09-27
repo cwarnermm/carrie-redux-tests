@@ -1,0 +1,2387 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Authentication configuration settings" href="authentication-configuration-settings.html" /><link rel="prev" title="Environment configuration settings" href="environment-configuration-settings.html" />
+        <link rel="canonical" href="https://www.ethereal.cc/redux/configure/site-configuration-settings.html" />
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 7.2.6 and Furo 2023.09.10 -->
+        <title>Site configuration settings - Mattermost documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/compass-icons.css?v=b28d7826" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  --font-stack: Noto Sans, Helvetica Neue, Arial, sans-serif;
+  --font-stack--monospace: Fira Mono, Courier New, Courier, monospace;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">Mattermost  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">Mattermost  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../overview/index.html">About Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of About Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../about/product.html">Mattermost overview</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../about/use-cases.html">Use cases</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Use cases</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../about/secure-command-and-control.html">Secure command and control</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../about/unified-collaboration.html">Unified communication</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Unified communication</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../about/mattermost-for-microsoft-teams.html">Mattermost for Microsoft Teams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../about/mattermost-google-calendar-integration.html">Mattermost Google Calendar integration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../about/devops-collaboration.html">DevOps collaboration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/incident-response-collaboration.html">Incident response collaboration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../about/security.html">Security overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/integrations.html">Integrations overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/subscription.html">Subscription overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/self-hosted-subscriptions.html">Self-hosted subscriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/cloud-subscriptions.html">Cloud subscriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/editions-and-offerings.html">Mattermost editions and plans</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/corporate-directory-integration.html">Corporate directory integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/certifications-and-compliance.html">Certifications and compliance overview</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../about/frequently-asked-questions.html">Frequently asked questions (FAQ)</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Frequently asked questions (FAQ)</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-general.html">General Mattermost questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-community.html">Community questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-notifications.html">Notifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-video-audio-screensharing.html">Video, audio, and screen sharing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-enterprise.html">Enterprise questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-license.html">License questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-integrations.html">Integrations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-use-cases.html">Use cases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-product.html">Product questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-high-trust.html">High trust questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-design-decisions.html">Design decisions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-business.html">Business questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-illicit-use.html">Illicit use</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../guides/deployment.html">Deploy Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Deploy Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../install/prepare-mattermost-database.html">Prepare your Mattermost database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-ubuntu.html">Deploy on Ubuntu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-docker.html">Deploy using Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-tar.html">Deploy with a tarball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/installing-mattermost-omnibus.html">Deploy using Omnibus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-kubernetes.html">Deploy using Kubernetes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-rhel-8.html">Deploy on Red Hat</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/prepare-for-your-mattermost-deployment.html">Prepare for your Mattermost deployment</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of Prepare for your Mattermost deployment</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install/software-hardware-requirements.html">  Software and hardware requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/mattermost-kubernetes-operator.html">  About the Mattermost Kubernetes Operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/admin-onboarding-tasks.html">  Administrator tasks</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../getting-started/architecture-overview.html">  Architecture overview</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of   Architecture overview</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/implementation-plan.html">  Plan your Mattermost implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/enterprise-roll-out-checklist.html">  Enterprise roll out checklist</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/welcome-email-to-end-users.html">  Welcome email template</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/deployment-guides.html">Deployment guides</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of Deployment guides</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../guides/server-deployment.html">Server deployment</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of Server deployment</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/deployment-overview.html"> Deployment overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/setting-up-socket-based-mattermost-database.html"> Set up a socket-based Mattermost database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/image-proxy.html"> Image proxy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/backup-disaster-recovery.html"> Backup and disaster recovery</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/encryption-options.html"> Encryption options</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../install/transport-encryption.html"> Configure transport encryption</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of  Configure transport encryption</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../install/proxy-to-mattermost-transport-encryption.html">Configuring proxy to Mattermost transport encryption</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../install/database-transport-encryption.html">Configuring database transport encryption</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../install/cluster-transport-encryption.html">Configuring cluster transport encryption</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/bleve-search.html"> Bleve search</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../guides/desktop-mobile-app-deployment.html">Desktop and mobile app deployment</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of Desktop and mobile app deployment</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/desktop-app.html">Desktop app deployment guide</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/desktop-msi-installer-and-group-policy-install.html">Desktop MSI installer and group policy installation guides (beta)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/desktop-custom-dictionaries.html">Desktop App custom dictionaries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/desktop-app-managed-resources.html">Desktop managed resources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/use-prebuilt-mobile-apps.html">Using Mattermost’s pre-built mobile apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-testing-notifications.html">Testing push notifications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-overview.html">Deploy Mattermost mobile apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-hpns.html">Mobile push notifications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/build-custom-mobile-apps.html">Building and distributing your own custom Mattermost mobile apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/deploy-mobile-apps-using-emm-provider.html">Deploying mobile apps using an EMM provider</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-appconfig.html">AppConfig for EMM solutions with Mattermost Mobile Apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/consider-mobile-vpn-options.html">Mobile VPN options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-faq.html">Mobile apps FAQ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/client-side-data.html">Client-side data storage FAQ</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/upgrade-mattermost.html">Upgrade Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle navigation of Upgrade Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/prepare-to-upgrade-mattermost.html"> Prepare to upgrade Mattermost</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/upgrading-mattermost-server.html"> Upgrade Mattermost Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/enterprise-install-upgrade.html"> Enterprise install and upgrade</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/installing-license-key.html"> Install a license key</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/release-definitions.html"> Release definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/important-upgrade-notes.html"> Important upgrade notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/release-lifecycle.html"> Release lifecycle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/extended-support-release.html"> Extended Support Release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/downgrading-mattermost-server.html"> Downgrade Mattermost Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/version-archive.html"> Version archive</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/scale-mattermost.html">Scale Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle navigation of Scale Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../scale/scaling-for-enterprise.html"> Scale for Enterprise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scale/high-availability-cluster.html"> High availability cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scale/elasticsearch.html"> Elasticsearch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scale/performance-monitoring.html"> Performance monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scale/performance-alerting.html"> Mattermost performance alerting guide</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/deployment-troubleshooting.html">Deployment troubleshooting</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle navigation of Deployment troubleshooting</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install/troubleshooting.html">  General troubleshooting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deploy/high-scale-troubleshoot.html">  Troubleshooting your high scale deployment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deploy/mobile-troubleshoot.html">  Troubleshooting mobile applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/trouble-postgres.html">  PostgreSQL installation troubleshooting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/trouble_mysql.html">  MySQL installation troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/changelogs.html">Changelogs</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle navigation of Changelogs</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install/self-managed-changelog.html">  Mattermost self-hosted</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/legacy-self-hosted-changelog.html">  Mattermost legacy self-hosted</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/cloud-changelog.html">  Mattermost Cloud</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deploy/mobile-app-changelog.html">  Mobile apps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/desktop-app-changelog.html">  Desktop apps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/deprecated-features.html">  Deprecated features</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/additional-server-installation-guides.html">Additional server installation guides</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle navigation of Additional server installation guides</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install/deploying-team-edition-on-bitnami.html">  Deploy Mattermost on Bitnami</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/setting-up-aws-elastic-beanstalk-docker.html">  AWS Elastic Beanstalk Docker setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/installing-team-edition-helm-chart.html">  Install Mattermost Team Edition in GitLab Helm Chart</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/open-source-components.html">  Open source components</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../guides/administration.html">Manage Mattermost</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle navigation of Manage Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current has-children"><a class="reference internal" href="../guides/get-started-with-administration.html">Get started</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle navigation of Get started</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="optimize-your-workspace.html">Optimize your workspace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration-settings.html">Mattermost configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="self-hosted-account-settings.html">Self-hosted edition and license</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cloud-billing-account-settings.html">Cloud subscription, billing, and account</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reporting-configuration-settings.html">Reporting configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user-management-configuration-settings.html">User management configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="environment-configuration-settings.html">Environment configuration settings</a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Site configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="authentication-configuration-settings.html">Authentication configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plugins-configuration-settings.html">Plugins configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integrations-configuration-settings.html">Integrations configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compliance-configuration-settings.html">Compliance configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="experimental-configuration-settings.html">Experimental configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deprecated-configuration-settings.html">Deprecated configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="environment-variables.html">Environment variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/user-provisioning-workflows.html">Provisioning workflows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/multi-factor-authentication.html">Multi-factor authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/ad-ldap.html">Active Directory/LDAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-gitlab.html">GitLab SSO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-openidconnect.html">OpenID SSO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-google.html">Google SSO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-office.html">Office 365 SSO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/advanced-permissions.html">Advanced permissions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/system-admin-roles.html">System admin roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/team-channel-members.html">Manage team and channel members</a></li>
+<li class="toctree-l3"><a class="reference internal" href="custom-branding-tools.html">Custom branding tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/electronic-discovery.html">eDiscovery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/compliance-monitoring.html">Compliance monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/compliance-export.html">Compliance export</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/legal-hold.html">Legal hold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/data-retention-policy.html">Data retention tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/custom-terms-of-service.html">Custom terms of service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/notify-admin.html">Notify Admin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/ad-ldap-groups-synchronization.html">AD/LDAP groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/managing-team-channel-membership-using-ad-ldap-sync-groups.html">Use AD/LDAP synchronized groups to manage team or private channel membership</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/guest-accounts.html">Guest accounts</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../onboard/sso-saml.html">SAML Single Sign-On</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of SAML Single Sign-On</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-okta.html">Okta SAML Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-onelogin.html">OneLogin SAML Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-adfs.html">Microsoft ADFS SAML Configuration for Windows Server 2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-adfs-msws2016.html">Microsoft ADFS SAML Configuration for Windows Server 2016</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-keycloak.html">Keycloak SAML Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-saml-technical.html">SAML Single-Sign-On: technical documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/shared-channels.html">Shared channels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/statistics.html">Statistics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/in-product-notices.html">In-product notices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/user-satisfaction-surveys.html">User satisfaction surveys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/health-checks.html">Health check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/announcement-banner.html">Announcement banner</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/bulk-export-tool.html">Bulk export tool</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/cloud-workspace-management.html">Cloud workspace management</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><div class="visually-hidden">Toggle navigation of Cloud workspace management</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manage/cloud-billing.html">Mattermost Cloud billing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/workspace-usage.html">Workspace usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/cloud-data-export.html">Workspace migration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/cloud-data-residency.html">Cloud data residency</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/self-hosted-administration.html">Self-hosted administration</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" role="switch" type="checkbox"/><label for="toctree-checkbox-21"><div class="visually-hidden">Toggle navigation of Self-hosted administration</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manage/self-hosted-billing.html">Mattermost self-hosted billing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuation-in-a-database.html">Store configuration in the database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/bulk-loading-data.html">Bulk loading data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="smtp-email.html">SMTP email setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="email-templates.html">Email templates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calls-deployment.html">Calls deployment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuring-cloudfront-to-host-mattermost-static-assets.html">Configure CloudFront to host static assets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="using-outbound-proxy.html">Use an outbound proxy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/migrating-to-mattermost.html">Migration guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deploy/postgres-migration.html">Migration from MySQL to PostgreSQL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="enabling-chinese-japanese-korean-search.html">Chinese, Japanese, and Korean search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="customizing-mattermost.html">Customize Mattermost</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/audit-log.html">Audit logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/embedded-json-audit-log-schema.html">JSON audit log schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/ssl-client-certificate.html">SSL client certificate setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/certificate-based-authentication.html">Certificate-based authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/telemetry.html">Manage telemetry</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/other-administration-resources.html">Other resources</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" role="switch" type="checkbox"/><label for="toctree-checkbox-22"><div class="visually-hidden">Toggle navigation of Other resources</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/convert-oauth20-service-providers-to-openidconnect.html">Convert OAuth 2.0 providers to OpenID Connect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/generating-support-packet.html">Generate a support packet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/mmctl-command-line-tool.html">mmctl command line tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/migration-announcement-email.html">Migration announcement email template</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/advanced-permissions-backend-infrastructure.html">Advanced permissions infrastructure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/command-line-tools.html">Command line tools</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../guides/use-mattermost.html">Use Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" role="switch" type="checkbox"/><label for="toctree-checkbox-23"><div class="visually-hidden">Toggle navigation of Use Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/collaborate.html">Connect and collaborate</a><input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" role="switch" type="checkbox"/><label for="toctree-checkbox-24"><div class="visually-hidden">Toggle navigation of Connect and collaborate</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/access-your-workspace.html">Access your Mattermost workspace</a><input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" role="switch" type="checkbox"/><label for="toctree-checkbox-25"><div class="visually-hidden">Toggle navigation of Access your Mattermost workspace</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/install-desktop-app.html">Install the desktop app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/install-ios-app.html">Install the iOS mobile app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/install-android-app.html">Install the Android mobile app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/log-out.html">Log out of Mattermost</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/organize-using-teams.html">Organize using teams</a><input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" role="switch" type="checkbox"/><label for="toctree-checkbox-26"><div class="visually-hidden">Toggle navigation of Organize using teams</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/team-settings.html">Team settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/team-keyboard-shortcuts.html">Team keyboard shortcuts</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../collaborate/organize-using-custom-user-groups.html">Organize using custom user groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../collaborate/invite-people.html">Invite people</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../collaborate/learn-about-roles.html">Learn about Mattermost roles</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/collaborate-within-channels.html">Collaborate within channels</a><input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" role="switch" type="checkbox"/><label for="toctree-checkbox-27"><div class="visually-hidden">Toggle navigation of Collaborate within channels</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/channel-types.html">Channel types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/channel-naming-conventions.html">Channel naming conventions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/channel-header-purpose.html">Communicate a channel's focus and scope</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/create-channels.html">Create channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/rename-channels.html">Rename channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/convert-public-channels.html">Convert public channels to private</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/join-leave-channels.html">Join and leave channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/make-calls.html">Make calls in Mattermost</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/manage-channel-members.html">Manage channel members</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/browse-channels.html">Browse channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/navigate-between-channels.html">Navigate between channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/favorite-channels.html">Mark channels as favorites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/mark-channels-unread.html">Mark channels as unread</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/archive-unarchive-channels.html">Archive and unarchive channels</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/communicate-with-messages.html">Communicate with messages and threads</a><input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" role="switch" type="checkbox"/><label for="toctree-checkbox-28"><div class="visually-hidden">Toggle navigation of Communicate with messages and threads</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/send-messages.html">Send messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/reply-to-messages.html">Reply to messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/react-with-emojis-gifs.html">React with emojis and GIFs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/organize-conversations.html">Organize conversations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/mark-messages-unread.html">Mark messages as unread</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/forward-messages.html">Forward messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/share-links.html">Share links to channels and messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/save-pin-messages.html">Save and pin messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/message-reminders.html">Set message reminders</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/search-for-messages.html">Search for messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/format-messages.html">Format messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/message-priority.html">Set message priority</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/mention-people.html">Mention people</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/share-files-in-messages.html">Share files in messages</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/keyboard-shortcuts.html">Keyboard shortcuts</a><input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" role="switch" type="checkbox"/><label for="toctree-checkbox-29"><div class="visually-hidden">Toggle navigation of Keyboard shortcuts</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/keyboard-accessibility.html">Keyboard accessibility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/run-slash-commands.html">Run slash commands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/built-in-slash-commands.html">Built-in-slash-commands</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/extend-mattermost-with-integrations.html">Extend Mattermost with integrations</a><input class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" role="switch" type="checkbox"/><label for="toctree-checkbox-30"><div class="visually-hidden">Toggle navigation of Extend Mattermost with integrations</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/collaborate-using-mattermost-for-microsoft-teams.html">Collaborate using Mattermost for MS Teams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/use-mattermost-google-calendar-plugin.html">Use the Mattermost Google Calendar plugin</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/repeatable-processes.html">Build repeatable processes</a><input class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" role="switch" type="checkbox"/><label for="toctree-checkbox-31"><div class="visually-hidden">Toggle navigation of Build repeatable processes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/learn-about-playbooks.html">Learn about playbooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/work-with-playbooks.html">Work with playbooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/work-with-runs.html">Work with runs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/work-with-tasks.html">Work with tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/notifications-and-updates.html">Work with notifications and updates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/metrics-and-goals.html">Work with metrics and goals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/share-and-collaborate.html">Share and collaborate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/interact-with-playbooks.html">Interact with playbooks</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/preferences.html">Customize your preferences</a><input class="toctree-checkbox" id="toctree-checkbox-32" name="toctree-checkbox-32" role="switch" type="checkbox"/><label for="toctree-checkbox-32"><div class="visually-hidden">Toggle navigation of Customize your preferences</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-notifications.html">Manage your notifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/customize-your-theme.html">Customize your Mattermost theme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/customize-your-channel-sidebar.html">Customize your channel sidebar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-profile.html">Manage your profile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-security-preferences.html">Manage your security preferences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/set-your-status-availability.html">Set your status &amp; availability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-display-options.html">Manage your display options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-sidebar-options.html">Manage your sidebar options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-advanced-options.html">Manage advanced options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/customize-desktop-app-experience.html">Customize your desktop app experience</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/connect-multiple-workspaces.html">Connect to multiple workspaces</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://developers.mattermost.com/">Develop with Mattermost</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/get-help.html">Get help with Mattermost</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/community-chat.html">Join our community</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://handbook.mattermost.com/">Learn how we work</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/contribute-to-documentation.html">Contribute to this documentation</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="site-configuration-settings">
+<h1>Site configuration settings<a class="headerlink" href="#site-configuration-settings" title="Link to this heading">#</a></h1>
+<div class="mm-badge"><p><img alt="plans-img" src="../_images/flag_icon.svg" /> Available on <a class="reference external" href="https://mattermost.com/pricing/">all plans</a></p>
+<p><img alt="deployment-img" src="../_images/deployment_icon.svg" /> <a class="reference external" href="https://customers.mattermost.com/cloud/signup/">Cloud</a> and <a class="reference external" href="https://mattermost.com/deploy/">self-hosted</a> deployments</p>
+</div><p>Both self-hosted and Cloud admins can access the following configuration settings in the System Console by going to <strong>Site Configuration</strong>. Self-hosted admins can also edit the <code class="docutils literal notranslate"><span class="pre">config.json</span></code> file as described in the following tables.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="#customization">Customization</a></p></li>
+<li><p><a class="reference external" href="#localization">Localization</a></p></li>
+<li><p><a class="reference external" href="#users-and-teams">Users and Teams</a></p></li>
+<li><p><a class="reference external" href="#notifications">Notifications</a></p></li>
+<li><p><a class="reference external" href="#announcement-banner">Announcement Banner</a></p></li>
+<li><p><a class="reference external" href="#emoji">Emoji</a></p></li>
+<li><p><a class="reference external" href="#posts">Posts</a></p></li>
+<li><p><a class="reference external" href="#file-sharing-and-downloads">File Sharing and Downloads</a></p></li>
+<li><p><a class="reference external" href="#public-links">Public Links</a></p></li>
+<li><p><a class="reference external" href="#notices">Notices</a></p></li>
+</ul>
+<hr class="docutils" />
+<section id="customization">
+<h2>Customization<a class="headerlink" href="#customization" title="Link to this heading">#</a></h2>
+<div class="mm-badge"><p><img alt="plans-img" src="../_images/flag_icon.svg" /> Available on <a class="reference external" href="https://mattermost.com/pricing/">all plans</a></p>
+<p><img alt="deployment-img" src="../_images/deployment_icon.svg" /> <a class="reference external" href="https://customers.mattermost.com/cloud/signup/">Cloud</a> and <a class="reference external" href="https://mattermost.com/deploy/">self-hosted</a> deployments</p>
+</div><p>Access the following configuration settings in the System Console by going to <strong>Site Configuration &gt; Customization</strong>.</p>
+<a id="custom-name"></a><section id="site-name">
+<h3>Site name<a class="headerlink" href="#site-name" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Name of the site shown in login screens and user interface.</p>
+<p>String input. Maximum 30 characters. Default is <code class="docutils literal notranslate"><span class="pre">Mattermost</span></code></p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Customization</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.TeamSettings.SiteName</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_TEAMSETTINGS_SITENAME</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="custom-description"></a></section>
+<section id="site-description">
+<h3>Site description<a class="headerlink" href="#site-description" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Text displayed above the login form. When not specified, the phrase “Log in” is displayed.</p>
+<p>String input.</p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Customization</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.TeamSettings.CustomDescriptionText</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_TEAMSETTINGS_CUSTOMDESCRIPTIONTEXT</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="custom-enablecustombranding"></a></section>
+<section id="enable-custom-branding">
+<h3>Enable custom branding<a class="headerlink" href="#enable-custom-branding" title="Link to this heading">#</a></h3>
+<p><em>This feature is available in legacy Enterprise Edition E10 and E20.</em></p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><ul class="simple">
+<li><p><strong>true</strong>: Enables the display of a custom image and text on the login page</p></li>
+<li><p><strong>false</strong>: <strong>(Default)</strong> Custom branding is disabled</p></li>
+</ul>
+<p>See also the <a class="reference external" href="#custom-brand-image">custom brand image</a> and
+<a class="reference external" href="#custom-brand-text">custom brand text</a> configuration settings for more
+branding options.</p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Customization</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.TeamSettings.EnableCustomBrand:</span> <span class="pre">false</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_TEAMSETTINGS_ENABLECUSTOMBRAND</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="custom-custombrandimage"></a></section>
+<section id="custom-brand-image">
+<h3>Custom brand image<a class="headerlink" href="#custom-brand-image" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>A JPG image for display on the login page. The image <strong>must</strong> be uploaded through the System Console. There is no <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting. The file should be <strong>smaller than 2 MB</strong>.</p>
+<p><a class="reference external" href="#enable-custom-branding">Enable custom branding</a> must be set to <strong>true</strong> to display the image.</p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Customization</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: N/A</p></li>
+<li><p>Environment variable: N/A</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="custom-custombrandtext"></a></section>
+<section id="custom-brand-text">
+<h3>Custom brand text<a class="headerlink" href="#custom-brand-text" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Text that will be shown below the <strong>Custom brand image</strong> on the login page. You can format this text using the same <a class="reference external" href="https://docs.mattermost.com/help/messaging/formatting-text.html">Markdown formatting</a> as in Mattermost messages.</p>
+<p>String input. Maximum 500 characters. <a class="reference external" href="#enable-custom-branding">Enable custom branding</a> must be set to <strong>true</strong> to display the text.</p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Customization</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.TeamSettings.CustomBrandText</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_TEAMSETTINGS_CUSTOMBRANDTEXT</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="custom-enableaskcommunitylink"></a></section>
+<section id="enable-ask-community-link">
+<h3>Enable Ask Community link<a class="headerlink" href="#enable-ask-community-link" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><ul class="simple">
+<li><p><strong>true</strong>: <strong>(Default)</strong> A link to the <a class="reference external" href="https://mattermost.com/pl/default-ask-mattermost-community/">Mattermost Community</a> appears as <strong>Ask the community</strong> under the <strong>Help</strong> menu in the channel header.</p></li>
+<li><p><strong>false</strong>: The link does not appear.</p></li>
+</ul>
+<p>The link does not display on mobile apps.</p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Customization</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.SupportSettings.EnableAskCommunityLink:</span> <span class="pre">true</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_SUPPORTSETTINGS_ENABLEASKCOMMUNITYLINK</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="custom-helplink"></a></section>
+<section id="help-link">
+<h3>Help link<a class="headerlink" href="#help-link" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This field sets the URL for the Help link on the login and sign-up pages, as well as the <strong>Help Resources</strong> link under the <strong>Help</strong> menu in the channel header. If this field is empty, those links do not appear.</p>
+<p>String input. Default is <code class="docutils literal notranslate"><span class="pre">https://about.mattermost.com/default-help/</span></code>.</p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Customization</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.SupportSettings.HelpLink</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_SUPPORTSETTINGS_HELPLINK</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="custom-termsofuselink"></a></section>
+<section id="terms-of-use-link">
+<h3>Terms of Use link<a class="headerlink" href="#terms-of-use-link" title="Link to this heading">#</a></h3>
+<div class="mm-badge mm-badge--note"><p>Note</p>
+<p><img alt="deployment-img-yellow" class="mm-badge-deployment" src="../_images/deployment_icon_yellow.svg" /> Available only for <a class="reference external" href="https://mattermost.com/deploy/">self-hosted</a> deployments</p>
+</div><div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This field sets the URL for the Terms of Use of a self-hosted site. A link to the terms appears at the bottom of the sign-up and login pages.</p>
+<p>The default URL links to a <a class="reference external" href="https://about.mattermost.com/default-terms/">Terms of Use</a> page hosted on <code class="docutils literal notranslate"><span class="pre">mattermost.com</span></code>. This includes the Mattermost Acceptable Use Policy explaining the terms under which Mattermost software is provided to end users. If you change the default link to add your own terms, the new terms <strong>must include a link</strong> to the default terms so end users are aware of the Mattermost Acceptable Use Policy.</p>
+<p>String input. Default is <code class="docutils literal notranslate"><span class="pre">https://about.mattermost.com/default-terms/</span></code>.</p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Customization</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.SupportSettings.TermsOfServiceLink</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_SUPPORTSETTINGS_TERMSOFSERVICELINK</span></code></p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><p><strong>Note</strong>: This setting doesn’t change the <strong>Terms of Use</strong> link in the <strong>About Mattermost</strong> window.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="custom-privacypolicylink"></a></section>
+<section id="privacy-policy-link">
+<h3>Privacy Policy link<a class="headerlink" href="#privacy-policy-link" title="Link to this heading">#</a></h3>
+<div class="mm-badge mm-badge--note"><p>Note</p>
+<p><img alt="deployment-img-yellow" class="mm-badge-deployment" src="../_images/deployment_icon_yellow.svg" /> Available only for <a class="reference external" href="https://mattermost.com/deploy/">self-hosted</a> deployments</p>
+</div><div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This field sets the URL for the Privacy Policy of a self-hosted site. A link to the policy appears at the bottom of the sign-up and login pages. If this field is empty, the link does not appear.</p>
+<p>String input. Default is <code class="docutils literal notranslate"><span class="pre">https://about.mattermost.com/default-privacy-policy/</span></code>.</p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Customization</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.SupportSettings.PrivacyPolicyLink</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_SUPPORTSETTINGS_PRIVACYPOLICYLINK</span></code></p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><p><strong>Note</strong>: This setting does not change the <strong>Privacy Policy</strong> link in the <strong>About Mattermost</strong> window.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="custom-aboutlink"></a></section>
+<section id="about-link">
+<h3>About link<a class="headerlink" href="#about-link" title="Link to this heading">#</a></h3>
+<div class="mm-badge mm-badge--note"><p>Note</p>
+<p><img alt="deployment-img-yellow" class="mm-badge-deployment" src="../_images/deployment_icon_yellow.svg" /> Available only for <a class="reference external" href="https://mattermost.com/deploy/">self-hosted</a> deployments</p>
+</div><div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This field sets the URL for a page containing general information about a self-hosted site. A link to the About page appears at the bottom of the sign-up and login pages. If this field is empty the link does not appear.</p>
+<p>String input. Default is <code class="docutils literal notranslate"><span class="pre">https://about.mattermost.com/default-about/</span></code>.</p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Customization</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.SupportSettings.AboutLink</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_SUPPORTSETTINGS_ABOUTLINK</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="custom-forgotpasswordurl"></a></section>
+<section id="forgot-password-custom-link">
+<h3>Forgot Password custom link<a class="headerlink" href="#forgot-password-custom-link" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>When the <strong>Forgot Password</strong> link is enabled on the Mattermost login page,
+users are taken to a custom URL to recover or change their password.</p>
+<p>Leave this field blank to use Mattermost’s Password Reset workflow.</p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Forgot password custom link</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.SupportSettings.ForgetPasswordCustomLink</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_SUPPORTSETTINGS_FORGETPASSWORDCUSTOMLINK</span></code></p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><p><strong>Note</strong>: You can control whether the <strong>Forgot Password</strong> link is visible or hidden by going to <strong>Authentication &gt; Password &gt; Enable Forgot Password Link</strong>.
+See the <a class="reference external" href="/configure/authentication-configuration-settings.html#enable-forgot-password-link">configuration</a> documentation for details.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="custom-reportaproblemlink"></a></section>
+<section id="report-a-problem-link">
+<h3>Report a Problem link<a class="headerlink" href="#report-a-problem-link" title="Link to this heading">#</a></h3>
+<div class="mm-badge mm-badge--note"><p>Note</p>
+<p><img alt="deployment-img-yellow" class="mm-badge-deployment" src="../_images/deployment_icon_yellow.svg" /> Available only for <a class="reference external" href="https://mattermost.com/deploy/">self-hosted</a> deployments</p>
+</div><div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This field sets the URL for the <strong>Report a Problem</strong> link in the channel header <strong>Help</strong> menu. If this field is empty the link does not appear.</p>
+<p>String input. Default is <code class="docutils literal notranslate"><span class="pre">https://about.mattermost.com/default-report-a-problem</span></code>.</p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Customization</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.SupportSettings.ReportAProblemLink</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_SUPPORTSETTINGS_REPORTAPROBLEMLINK</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="custom-appdownloadlink"></a></section>
+<section id="mattermost-apps-download-page-link">
+<h3>Mattermost apps download page link<a class="headerlink" href="#mattermost-apps-download-page-link" title="Link to this heading">#</a></h3>
+<div class="mm-badge mm-badge--note"><p>Note</p>
+<p><img alt="deployment-img-yellow" class="mm-badge-deployment" src="../_images/deployment_icon_yellow.svg" /> Available only for <a class="reference external" href="https://mattermost.com/deploy/">self-hosted</a> deployments</p>
+</div><div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This field sets the URL for the Download Apps link in the <strong>Product</strong> menu. If this field is empty, the link does not appear.</p>
+<p>If you have an Enterprise App Store, set the link to the appropriate download page for your Mattermost apps.</p>
+<p>String input. Default is <code class="docutils literal notranslate"><span class="pre">https://about.mattermost.com/downloads/</span></code>.</p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Customization</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.NativeAppSettings.AppDownloadLink</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_NATIVEAPPSETTINGS_APPDOWNLOADLINK</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="custom-androiddownloadlink"></a></section>
+<section id="android-app-download-link">
+<h3>Android app download link<a class="headerlink" href="#android-app-download-link" title="Link to this heading">#</a></h3>
+<div class="mm-badge mm-badge--note"><p>Note</p>
+<p><img alt="deployment-img-yellow" class="mm-badge-deployment" src="../_images/deployment_icon_yellow.svg" /> Available only for <a class="reference external" href="https://mattermost.com/deploy/">self-hosted</a> deployments</p>
+</div><div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This field sets the URL to download the Mattermost Android app. Users who access the Mattermost site on a mobile browser will be prompted to download the app through this link. If this field is empty, the prompt does not appear.</p>
+<p>If you have an Enterprise App Store, link to your Android app.</p>
+<p>String input. Default is <code class="docutils literal notranslate"><span class="pre">https://about.mattermost.com/mattermost-android-app/</span></code>.</p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Customization</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.NativeAppSettings.AndroidAppDownloadLink</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_NATIVEAPPSETTINGS_ANDROIDAPPDOWNLOADLINK</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="custom-iosdownloadlink"></a></section>
+<section id="ios-app-download-link">
+<h3>iOS app download link<a class="headerlink" href="#ios-app-download-link" title="Link to this heading">#</a></h3>
+<div class="mm-badge mm-badge--note"><p>Note</p>
+<p><img alt="deployment-img-yellow" class="mm-badge-deployment" src="../_images/deployment_icon_yellow.svg" /> Available only for <a class="reference external" href="https://mattermost.com/deploy/">self-hosted</a> deployments</p>
+</div><div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This field sets the URL to download the Mattermost iOS app. Users who access the site on a mobile browser will be prompted to download the app through this link. If this field is empty, the prompt does not appear.</p>
+<p>If you use an Enterprise App Store, link to your iOS app.</p>
+<p>String input. Default is <code class="docutils literal notranslate"><span class="pre">https://about.mattermost.com/mattermost-ios-app/</span></code>.</p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Customization</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.NativeAppSettings.IosAppDownloadLink</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_NATIVEAPPSETTINGS_IOSAPPDOWNLOADLINK</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="localization">
+<h2>Localization<a class="headerlink" href="#localization" title="Link to this heading">#</a></h2>
+<div class="mm-badge"><p><img alt="plans-img" src="../_images/flag_icon.svg" /> Available on <a class="reference external" href="https://mattermost.com/pricing/">all plans</a></p>
+<p><img alt="deployment-img" src="../_images/deployment_icon.svg" /> <a class="reference external" href="https://customers.mattermost.com/cloud/signup/">Cloud</a> and <a class="reference external" href="https://mattermost.com/deploy/">self-hosted</a> deployments</p>
+</div><p>Access the following configuration settings in the System Console by going to <strong>Site Configuration &gt; Localization</strong>. Changes to configuration settings in this section require a server restart before taking effect.</p>
+<a id="l10n-defaultserverlanguage"></a><section id="default-server-language">
+<h3>Default server language<a class="headerlink" href="#default-server-language" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>The default language for system messages and logs.</p>
+<p>Options: <code class="docutils literal notranslate"><span class="pre">&quot;bg&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;de&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;en&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">en-AU</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;es&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;fa&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;fr&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;hu&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;it&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;ja&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;ko&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;nl&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;pl&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;pt-br&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;ro&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;ru&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;sv&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;tr&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">uk</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;zh_CN&quot;</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">&quot;zh_TW&quot;</span></code>.</p>
+<p>Default is <code class="docutils literal notranslate"><span class="pre">&quot;en&quot;</span></code>.</p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Localization</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.LocalizationSettings.DefaultServerLocale</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_LOCALIZATIONSETTINGS_DEFAULTSERVERLOCALE</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="l10n-defaultclientlanguage"></a></section>
+<section id="default-client-language">
+<h3>Default client language<a class="headerlink" href="#default-client-language" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>The default language for new users and pages where the user isn’t logged in.</p>
+<p>Options: <code class="docutils literal notranslate"><span class="pre">&quot;bg&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;de&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;en&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">en-AU</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;es&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;fa&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;fr&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;hu&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;it&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;ja&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;ko&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;nl&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;pl&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;pt-br&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;ro&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;ru&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;sv&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;tr&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">uk</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;zh_CN&quot;</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">&quot;zh_TW&quot;</span></code>.</p>
+<p>Default is <code class="docutils literal notranslate"><span class="pre">&quot;en&quot;</span></code>.</p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Localization</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.LocalizationSettings.DefaultClientLocale</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_LOCALIZATIONSETTINGS_DEFAULTCLIENTLOCALE</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="l10n-availablelanguages"></a></section>
+<section id="available-languages">
+<h3>Available languages<a class="headerlink" href="#available-languages" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Sets the list of languages users see under <strong>Settings &gt; Display &gt; Language</strong>.
+If this field is left blank, users see all supported languages.
+Newly supported languages are added automatically.
+If this field is not blank, it must contain the <strong>Default client language</strong>,
+in addition to any other languages. For example, to limit the language
+choices to US English and Español (es), the string would be <code class="docutils literal notranslate"><span class="pre">”en,es”</span></code>.</p>
+<p>Options: <code class="docutils literal notranslate"><span class="pre">&quot;bg&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;de&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;en&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">en-AU</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;es&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;fa&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;fr&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;hu&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;it&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;ja&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;ko&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;nl&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;pl&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;pt-br&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;ro&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;ru&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;sv&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;tr&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">uk</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;zh_CN&quot;</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">&quot;zh_TW&quot;</span></code>.</p>
+<p>Default is <code class="docutils literal notranslate"><span class="pre">&quot;en&quot;</span></code>.</p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Localization</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.LocalizationSettings.AvailableLocales</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_LOCALIZATIONSETTINGS_AVAILABLELOCALES</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="users-and-teams">
+<h2>Users and teams<a class="headerlink" href="#users-and-teams" title="Link to this heading">#</a></h2>
+<div class="mm-badge"><p><img alt="plans-img" src="../_images/flag_icon.svg" /> Available on <a class="reference external" href="https://mattermost.com/pricing/">all plans</a></p>
+<p><img alt="deployment-img" src="../_images/deployment_icon.svg" /> <a class="reference external" href="https://customers.mattermost.com/cloud/signup/">Cloud</a> and <a class="reference external" href="https://mattermost.com/deploy/">self-hosted</a> deployments</p>
+</div><p>Access the following configuration settings in the System Console by going to <strong>Site Configuration &gt; Users and Teams</strong>.</p>
+<a id="users-maxusersperteam"></a><section id="max-users-per-team">
+<h3>Max users per team<a class="headerlink" href="#max-users-per-team" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>The <strong>Max users per team</strong> is the maximum total number of users per team,
+including active and inactive users.</p>
+<p>In Mattermost, a team of people should be a small organization with a
+specific goal. In the physical world, a team could sit around a single
+table. The default maximum (50) should be enough for most teams, but
+with appropriate <a class="reference external" href="https://docs.mattermost.com/install/software-hardware-requirements.html">hardware</a>, this limit can be increased to
+thousands of users.</p>
+<p><a class="reference external" href="/collaborate/collaborate-within-channels.html">Channels</a> are
+another way of organizing communications within teams on different topics.</p>
+<p>Numerical input. Default is <strong>50</strong> self-hosted deployments, and <strong>10000</strong>
+for Cloud deployments.</p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Users and teams</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.TeamSettings.MaxUsersPerTeam:</span> <span class="pre">50</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_TEAMSETTINGS_MAXUSERSPERTEAM</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="users-maxchannelsperteam"></a></section>
+<section id="max-channels-per-team">
+<h3>Max channels per team<a class="headerlink" href="#max-channels-per-team" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>The maximum number of channels per team, including both active and archived channels.</p>
+<p>Numerical input. Default is <strong>2000</strong> for self-hosted deployments, and <strong>10000</strong>
+for Cloud deployments.</p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Users and teams</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.TeamSettings.MaxChannelsPerTeam:</span> <span class="pre">2000</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_TEAMSETTINGS_MAXCHANNELSPERTEAM</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="users-restrictdirectmessage"></a></section>
+<section id="enable-users-to-open-direct-message-channels-with">
+<h3>Enable users to open direct message channels with<a class="headerlink" href="#enable-users-to-open-direct-message-channels-with" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This setting determines whether a user can open a direct message channel with anyone on the Mattermost server or only to members of the same team. This setting only affects the options presented in the user interface. It does not affect permissions on the backend server.</p>
+<ul class="simple">
+<li><p><strong>Any user on the Mattermost server</strong>: <strong>(Default)</strong> Users can send a direct message to any user through the <strong>Direct Messages &gt; More</strong> menu. <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">&quot;any&quot;</span></code></p></li>
+<li><p><strong>Any member of the team</strong>: The <strong>Direct Messages &gt; More</strong> menu only allows direct messages to users on the same team. Pressing <kbd class="kbd docutils literal notranslate">Ctrl</kbd> <kbd class="kbd docutils literal notranslate">K</kbd> on Windows or Linux, or <kbd class="kbd docutils literal notranslate">⌘</kbd> <kbd class="kbd docutils literal notranslate">K</kbd> on Mac, only lists other users on the team currently being viewed. A user who is a member of multiple teams can only send direct messages to the team that is being viewed. However, the user can receive messages from other teams, regardless of the team currently being viewed. <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">&quot;team&quot;</span></code></p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Users and teams</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.TeamSettings.RestrictDirectMessage</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_TEAMSETTINGS_RESTRICTDIRECTMESSAGE</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="users-teammatenamedisplay"></a></section>
+<section id="teammate-name-display">
+<h3>Teammate name display<a class="headerlink" href="#teammate-name-display" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This setting determines how names appear in posts and under the <strong>Direct Messages</strong> list.
+Users can change this setting in their interface under <strong>Settings &gt; Display &gt;
+Teammate Name Display</strong>, unless this setting is locked by a System Admin
+via the <strong>Lock teammate name display for all users</strong> configuration setting.</p>
+<ul class="simple">
+<li><p><strong>Show username</strong>: <strong>(Default for self-hosted deployments)</strong> Displays usernames.
+<code class="docutils literal notranslate"><span class="pre">config.json</span></code> option: <code class="docutils literal notranslate"><span class="pre">&quot;username&quot;</span></code>.</p></li>
+<li><p><strong>Show nickname if one exists…</strong>: Displays the user’s nickname. If the user doesn’t have a
+nickname, their full name is displayed. If the user doesn’t have a full name, their username
+is displayed. <code class="docutils literal notranslate"><span class="pre">config.json</span></code> option: <code class="docutils literal notranslate"><span class="pre">&quot;nickname_full_name&quot;</span></code>.</p></li>
+<li><p><strong>Show first and last name</strong>: <strong>(Default for Cloud deployments)</strong> Displays user’s full name.
+If the user doesn’t have a full name, their username is displayed. Recommended when using
+<a class="reference external" href="https://docs.mattermost.com/onboard/sso-saml.html">SAML</a> or
+<a class="reference external" href="https://docs.mattermost.com/onboard/ad-ldap.html">LDAP</a> if first name and last name
+attributes are configured. <code class="docutils literal notranslate"><span class="pre">config.json</span></code> option: <code class="docutils literal notranslate"><span class="pre">&quot;full_name&quot;</span></code>.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Users and teams</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.TeamSettings.TeammateNameDisplay:</span> <span class="pre">username</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_TEAMSETTINGS_TEAMMATENAMEDISPLAY</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="users-lockteammatenamedisplay"></a></section>
+<section id="lock-teammate-name-display-for-all-users">
+<h3>Lock teammate name display for all users<a class="headerlink" href="#lock-teammate-name-display-for-all-users" title="Link to this heading">#</a></h3>
+<div class="mm-badge mm-badge--note"><p>Note</p>
+<p><img alt="plans-img-yellow" class="mm-badge-flag" src="../_images/flag_icon_yellow.svg" /> Available only on <a class="reference external" href="https://mattermost.com/pricing/">Enterprise</a> plans</p>
+</div><div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This setting controls whether users can change settings under <strong>Settings &gt; Display &gt; Teammate Name Display</strong>.</p>
+<ul class="simple">
+<li><p><strong>true</strong>: Users <strong>cannot</strong> change the Teammate Name Display.</p></li>
+<li><p><strong>false</strong>: <strong>(Default)</strong> Users can change the Teammate Name Display setting.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Users and teams</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.TeamSettings.LockTeammateNameDisplay:</span> <span class="pre">false</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_TEAMSETTINGS_LOCKTEAMMATENAMEDISPLAY</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="users-viewarchivedchannels"></a></section>
+<section id="allow-users-to-view-archived-channels">
+<h3>Allow users to view archived channels<a class="headerlink" href="#allow-users-to-view-archived-channels" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><ul class="simple">
+<li><p><strong>true</strong>: <strong>(Default)</strong> Allows users to access the content of archived channels of which they were a member.</p></li>
+<li><p><strong>false</strong>: Users are unable to access content in archived channels.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Users and teams</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.TeamSettings.ExperimentalViewArchivedChannels:</span> <span class="pre">true</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_TEAMSETTINGS_EXPERIMENTALVIEWARCHIVEDCHANNELS</span></code></p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><p><strong>Note</strong>: Cloud admins can’t modify this configuration setting.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="users-showemailaddress"></a></section>
+<section id="show-email-address">
+<h3>Show email address<a class="headerlink" href="#show-email-address" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><ul class="simple">
+<li><p><strong>true</strong>: <strong>(Default)</strong> All users can see the email addresses of every other user.</p></li>
+<li><p><strong>false</strong>: Hides email addresses in the client user interface, except from System Admins
+and the System Roles with read/write access to Compliance, Billing, or User Management
+(users/teams/channels/groups etc).</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Users and teams</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.PrivacySettings.ShowEmailAddress:</span> <span class="pre">true</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_PRIVACYSETTINGS_SHOWEMAILADDRESS</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="users-showfullname"></a></section>
+<section id="show-full-name">
+<h3>Show full name<a class="headerlink" href="#show-full-name" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><ul class="simple">
+<li><p><strong>true</strong>: <strong>(Default)</strong> Full names are visible to all users in the client user interface.</p></li>
+<li><p><strong>false</strong>: Hides full names from all users, except System Admins. Username is shown in place of the full name.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Users and teams</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.PrivacySettings.ShowFullName:</span> <span class="pre">true</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_PRIVACYSETTINGS_SHOWFULLNAME</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="users-enablecustomstatuses"></a></section>
+<section id="enable-custom-user-statuses">
+<h3>Enable custom user statuses<a class="headerlink" href="#enable-custom-user-statuses" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><ul class="simple">
+<li><p><strong>true</strong>: <strong>(Default)</strong> Users can set status messages and emojis that are visible to all users.</p></li>
+<li><p><strong>false</strong>: Users cannot set custom statuses.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Users and teams</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.TeamSettings.EnableCustomUserStatuses:</span> <span class="pre">true</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_TEAMSETTINGS_ENABLECUSTOMUSERSTATUSES</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="users-enablelastactivetime"></a></section>
+<section id="enable-last-active-time">
+<h3>Enable last active time<a class="headerlink" href="#enable-last-active-time" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><ul class="simple">
+<li><p><strong>true</strong>: <strong>(Default)</strong> Users can see when inactive users were last active on a
+user’s profile and in direct message channel headers.</p></li>
+<li><p><strong>false</strong>: Users can’t see when inactive users were last online.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Users and teams</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.TeamSettings.EnableLastActiveTime:</span> <span class="pre">true</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_TEAMSETTINGS_ENABLELASTACTIVETIME</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="users-enablecustomusergroups"></a></section>
+<section id="enable-custom-user-groups">
+<h3>Enable custom user groups<a class="headerlink" href="#enable-custom-user-groups" title="Link to this heading">#</a></h3>
+<div class="mm-badge mm-badge--note"><p>Note</p>
+<p><img alt="plans-img-yellow" class="mm-badge-flag" src="../_images/flag_icon_yellow.svg" /> Available only on <a class="reference external" href="https://mattermost.com/pricing/">Enterprise and Professional</a> plans</p>
+</div><div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><ul class="simple">
+<li><p><strong>true</strong>: <strong>(Default)</strong> Users with appropriate permissions can create custom user groups,
+and users can &#64;mention custom user groups in Mattermost conversations.</p></li>
+<li><p><strong>false</strong>: Users cannot set custom statuses.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Users and teams</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: N/A</p></li>
+<li><p>Environment variable: N/A</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="notifications">
+<h2>Notifications<a class="headerlink" href="#notifications" title="Link to this heading">#</a></h2>
+<div class="mm-badge"><p><img alt="plans-img" src="../_images/flag_icon.svg" /> Available on <a class="reference external" href="https://mattermost.com/pricing/">all plans</a></p>
+<p><img alt="deployment-img" src="../_images/deployment_icon.svg" /> <a class="reference external" href="https://customers.mattermost.com/cloud/signup/">Cloud</a> and <a class="reference external" href="https://mattermost.com/deploy/">self-hosted</a> deployments</p>
+</div><p>Access the following configuration settings in the System Console by going to <strong>Site Configuration &gt; Notifications</strong>.</p>
+<a id="notification-confirmtochannel"></a><section id="show-channel-all-or-here-confirmation-dialog">
+<h3>Show &#64;channel, &#64;all, or &#64;here confirmation dialog<a class="headerlink" href="#show-channel-all-or-here-confirmation-dialog" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><ul class="simple">
+<li><p><strong>true</strong>: <strong>(Default)</strong> Requires users to confirm when posting &#64;channel, &#64;all, &#64;here, or group mentions in channels with more than 5 members.</p></li>
+<li><p><strong>false</strong>: No confirmation is required.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Notifications</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.TeamSettings.EnableConfirmNotificationsToChannel:</span> <span class="pre">true</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_TEAMSETTINGS_ENABLECONFIRMNOTIFICATIONSTOCHANNEL</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="notification-enableemail"></a></section>
+<section id="enable-email-notifications">
+<h3>Enable email notifications<a class="headerlink" href="#enable-email-notifications" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><ul class="simple">
+<li><p><strong>true</strong>: <strong>(Default)</strong> Enables automatic email notifications for posts.</p></li>
+<li><p><strong>false</strong>: Disables notifications. A developer may choose this option to speed development by skipping email setup (see also the <strong>Enable preview mode banner</strong> setting).</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Notifications</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.EmailSettings.SendEmailNotifications:</span> <span class="pre">ture</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_EMAILSETTINGS_SENDEMAILNOTIFICATIONS</span></code></p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><p><strong>Notes</strong>:</p>
+<ul class="simple">
+<li><p>Cloud admins can’t modify this configuration setting.</p></li>
+<li><p>If this setting is <strong>false</strong>, and the SMTP server is set up, account-related emails (such as authentication messages) will be sent regardless of this setting.</p></li>
+<li><p>Email invitations and account deactivation emails aren’t affected by this setting.</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="notification-enablepreviewbanner"></a></section>
+<section id="enable-preview-mode-banner">
+<span id="email-preview-mode-banner-config"></span><h3>Enable preview mode banner<a class="headerlink" href="#enable-preview-mode-banner" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><ul class="simple">
+<li><p><strong>true</strong>: <strong>(Default)</strong> When <strong>Send email notifications</strong> is <strong>false</strong>, users see the Preview Mode banner. This banner alerts users that email notifications are disabled.</p></li>
+<li><p><strong>false</strong>: Preview Mode banner does not appear.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Notifications</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.EmailSettings.EnablePreviewModeBanner:</span> <span class="pre">true</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_EMAILSETTINGS_ENABLEPREVIEWMODEBANNER</span></code></p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><p><strong>Note</strong>: Cloud admins can’t modify this configuration setting.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="notification-enableemailbatching"></a></section>
+<section id="enable-email-batching">
+<h3>Enable email batching<a class="headerlink" href="#enable-email-batching" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><ul class="simple">
+<li><p><strong>true</strong>: Multiple email notifications for mentions and direct messages over a given time period are batched into a single email. The time period can be customized by each user under <strong>Settings &gt; Notifications</strong>. The default time period is 15 minutes.</p></li>
+<li><p><strong>false</strong>: <strong>(Default)</strong> Emails will be sent for each mention or direct message.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Notifications</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.EmailSettings.EnableEmailBatching:</span> <span class="pre">false</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_EMAILSETTINGS_ENABLEEMAILBATCHING</span></code></p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><p><strong>Notes</strong>:</p>
+<ul class="simple">
+<li><p>Cloud admins can’t modify this configuration setting.</p></li>
+<li><p>Regardless of this setting, a user can turn off these notifications under <strong>Settings &gt; Notifications</strong>.</p></li>
+<li><p>The <a class="reference external" href="https://docs.mattermost.com/configure/environment-configuration-settings.html#site-url">Site Url</a> and <a class="reference external" href="https://docs.mattermost.com/configure/environment-configuration-settings.html#smtp-server">SMTP Email Server</a> must be configured to allow email batching.</p></li>
+<li><p>Email batching in <a class="reference external" href="https://docs.mattermost.com/configure/environment-configuration-settings.html#enable-high-availability-mode">High Availability Mode</a> is planned, but not yet supported.</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="notification-emailcontents"></a></section>
+<section id="email-notification-contents">
+<h3>Email notification contents<a class="headerlink" href="#email-notification-contents" title="Link to this heading">#</a></h3>
+<div class="mm-badge mm-badge--note"><p>Note</p>
+<p><img alt="plans-img-yellow" class="mm-badge-flag" src="../_images/flag_icon_yellow.svg" /> Available only on <a class="reference external" href="https://mattermost.com/pricing/">Enterprise</a> plans</p>
+</div><p><em>Available in legacy Enterprise Edition E20</em></p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><ul class="simple">
+<li><p><strong>Send full message contents</strong>: <strong>(Default)</strong> Email notifications include the full message contents, along with the name of the sender and the channel. <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">&quot;full&quot;</span></code></p></li>
+<li><p><strong>Send generic description with only sender name</strong>: Only the name of the sender and team name are included in email notifications. Use this option if Mattermost contains confidential information and policy dictates it cannot be stored in email. <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">&quot;generic&quot;</span></code></p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Notifications</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.EmailSettings.EmailNotificationContentsType</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_EMAILSETTINGS_EMAILNOTIFICATIONCONTENTSTYPE</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="notification-displayname"></a></section>
+<section id="notification-display-name">
+<h3>Notification display name<a class="headerlink" href="#notification-display-name" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Display name for email notifications sent from the Mattermost system.</p>
+<p>String input. No default setting. This field is required when changing settings in the System Console.</p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Notifications</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.EmailSettings.FeedbackName</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_EMAILSETTINGS_FEEDBACKNAME</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="notification-fromaddress"></a></section>
+<section id="notification-from-address">
+<h3>Notification from address<a class="headerlink" href="#notification-from-address" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Email address for notification emails from the Mattermost system. This address should be monitored by a System Admin.</p>
+<p>String input. Default is <code class="docutils literal notranslate"><span class="pre">test&#64;example.com</span></code>. This field is required when changing settings in the System Console.</p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Notifications</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.EmailSettings.FeedbackEmail</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_EMAILSETTINGS_FEEDBACKEMAIL</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="notification-supportemailaddress"></a></section>
+<section id="support-email-address">
+<h3>Support email address<a class="headerlink" href="#support-email-address" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Sets a user support (or feedback) email address that is displayed on email notifications and during the Getting Started tutorial. This address should be monitored by a System Admin. If no value is set, email notifications will not contain a way for users to request assistance.</p>
+<p>String input. Default is <code class="docutils literal notranslate"><span class="pre">feedback&#64;mattermost.com</span></code>. This field is required when changing settings in the System Console.</p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Notifications</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.SupportSettings.SupportEmail</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_SUPPORTSETTINGS_SUPPORTEMAIL</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="notification-replytoaddress"></a></section>
+<section id="notification-reply-to-address">
+<h3>Notification reply-to address<a class="headerlink" href="#notification-reply-to-address" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Email address used in the reply-to header when sending notification emails from the Mattermost system. This address should be monitored by a System Admin.</p>
+<p>String input. Default is <code class="docutils literal notranslate"><span class="pre">test&#64;example.com</span></code>.</p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Notifications</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.EmailSettings.ReplyToAddress</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_EMAILSETTINGS_REPLYTOADDRESS</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="notification-feedbackorganization"></a></section>
+<section id="notification-footer-mailing-address">
+<h3>Notification footer mailing address<a class="headerlink" href="#notification-footer-mailing-address" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Optional setting to include the organization’s name and mailing address in the footer of email notifications. If not set, nothing will appear.</p>
+<p>String input.</p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Notifications</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.EmailSettings.FeedbackOrganization</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_EMAILSETTINGS_FEEDBACKORGANIZATION</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="notification-pushnotificationcontents"></a></section>
+<section id="push-notification-contents">
+<h3>Push notification contents<a class="headerlink" href="#push-notification-contents" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><ul>
+<li><p><strong>Generic description with only sender name</strong>: Push notifications include the sender’s name,
+but not the channel name or message contents. <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">&quot;generic_no_channel&quot;</span></code></p></li>
+<li><p><strong>Generic description with sender and channel names</strong>: <strong>(Default)</strong> Push notifications
+include the name of the sender and channel, but not the message contents.
+<code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">&quot;generic&quot;</span></code></p></li>
+<li><p><strong>Full message content sent in the notification payload</strong>: Includes the message
+contents in the push notification payload, which may be sent through
+<a class="reference external" href="https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/APNSOverview.html#//apple_ref/doc/uid/TP40008194-CH8-SW1">Apple’s Push Notification service</a> or <a class="reference external" href="https://firebase.google.com/docs/cloud-messaging">Google’s Firebase Cloud Messaging</a> .
+We <strong>highly recommended</strong> this option only be used with an <code class="docutils literal notranslate"><span class="pre">https</span></code> protocol to encrypt
+the connection and protect confidential information. <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">&quot;full&quot;</span></code></p></li>
+<li><p><strong>Full message content fetched from the server on receipt</strong> (<em>Available in Mattermost Enterprise</em>):
+The notification payload contains no message content. Instead it contains a unique message ID used
+to fetch message content from the Mattermost server when a push notification is received via a
+<a class="reference external" href="https://developer.apple.com/documentation/usernotifications/modifying_content_in_newly_delivered_notifications">notification service app extension</a> on iOS or <a class="reference external" href="https://developer.android.com/training/notify-user/expanded">an expandable notification
+pattern</a> on Android.</p>
+<p>If the server cannot be reached, a generic push notification is displayed without message
+content or sender name. For customers who wrap the Mattermost mobile application in a secure
+container, the container must fetch the message contents using the unique message ID when
+push notifications are received.</p>
+<p>If the container is unable to execute the fetch, the push notification contents cannot be received
+by the customer’s mobile application without passing the message contents through Apple’s or
+Google’s notification service. <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">&quot;id_loaded&quot;</span></code></p>
+</li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Notifications</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.EmailSettings.PushNotificationContents</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_EMAILSETTINGS_PUSHNOTIFICATIONCONTENTS</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="announcement-banner">
+<h2>Announcement banner<a class="headerlink" href="#announcement-banner" title="Link to this heading">#</a></h2>
+<div class="mm-badge"><p><img alt="plans-img" src="../_images/flag_icon.svg" /> Available on <a class="reference external" href="https://mattermost.com/pricing/">Enterprise and Professional plans</a></p>
+<p><img alt="deployment-img" src="../_images/deployment_icon.svg" /> <a class="reference external" href="https://customers.mattermost.com/cloud/signup/">Cloud</a> and <a class="reference external" href="https://mattermost.com/deploy/">self-hosted</a> deployments</p>
+</div><p>Access the following configuration settings in the System Console by going to <strong>Site Configuration &gt; Announcement Banner</strong>.</p>
+<a id="banner-enable"></a><section id="enable-announcement-banner">
+<h3>Enable announcement banner<a class="headerlink" href="#enable-announcement-banner" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><ul class="simple">
+<li><p><strong>true</strong>: Enable an announcement banner that is displayed across the top of the screen for all teams.</p></li>
+<li><p><strong>false</strong>: <strong>(Default)</strong> Disable the announcement banner.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Announcement banner</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.AnnouncementSettings.EnableBanner:</span> <span class="pre">false</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_ANNOUNCEMENTSETTINGS_ENABLEBANNER</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="banner-text"></a></section>
+<section id="banner-text">
+<h3>Banner text<a class="headerlink" href="#banner-text" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>The text of the announcement banner. If no text is provided, the banner will not appear.</p>
+<p>String input.</p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Announcement banner</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.AnnouncementSettings.BannerText</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_ANNOUNCEMENTSETTINGS_BANNERTEXT</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="banner-color"></a></section>
+<section id="banner-color">
+<h3>Banner color<a class="headerlink" href="#banner-color" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>The background color of the announcement banner.</p>
+<p>String input of a CSS color value.</p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Announcement banner</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.AnnouncementSettings.BannerColor:</span> <span class="pre">&quot;#f2a93b&quot;</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_ANNOUNCEMENTSETTINGS_BANNERCOLOR</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="banner-textcolor"></a></section>
+<section id="banner-text-color">
+<h3>Banner text color<a class="headerlink" href="#banner-text-color" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>The color of the text in the announcement banner.</p>
+<p>String input of a CSS color value.</p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Announcement banner</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.AnnouncementSettings.BannerTextColor:</span> <span class="pre">&quot;#333333&quot;</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_ANNOUNCEMENTSETTINGS_BANNERTEXTCOLOR</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="banner-allowdismissal"></a></section>
+<section id="allow-banner-dismissal">
+<h3>Allow banner dismissal<a class="headerlink" href="#allow-banner-dismissal" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><ul class="simple">
+<li><p><strong>true</strong>: <strong>(Default)</strong> Users can dismiss the banner. The banner will re-appear the next time the user logs in. The banner will also re-appear if the text is updated, or a System Admin disables the banner and re-enables it.</p></li>
+<li><p><strong>false</strong>: Users cannot dismiss the banner.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Announcement banner</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.AnnouncementSettings.AllowBannerDismissal:</span> <span class="pre">true</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_ANNOUNCEMENTSETTINGS_ALLOWBANNERDISMISSAL</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="emoji">
+<h2>Emoji<a class="headerlink" href="#emoji" title="Link to this heading">#</a></h2>
+<div class="mm-badge"><p><img alt="plans-img" src="../_images/flag_icon.svg" /> Available on <a class="reference external" href="https://mattermost.com/pricing/">all plans</a></p>
+<p><img alt="deployment-img" src="../_images/deployment_icon.svg" /> <a class="reference external" href="https://customers.mattermost.com/cloud/signup/">Cloud</a> and <a class="reference external" href="https://mattermost.com/deploy/">self-hosted</a> deployments</p>
+</div><p>Access the following configuration settings in the System Console by going to <strong>Site Configuration &gt; Emoji</strong>.</p>
+<a id="emoji-enablepicker"></a><section id="enable-emoji-picker">
+<h3>Enable emoji picker<a class="headerlink" href="#enable-emoji-picker" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><ul class="simple">
+<li><p><strong>true</strong>: <strong>(Default)</strong> Enables an emoji picker when composing messages and for message reactions.</p></li>
+<li><p><strong>false</strong>: Disables the emoji picker in message composition and reactions.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Emoji</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.ServiceSettings.EnableEmojiPicker:</span> <span class="pre">true</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_SERVICESETTINGS_ENABLEEMOJIPICKER</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="emoji-enablecustom"></a></section>
+<section id="enable-custom-emoji">
+<h3>Enable custom emoji<a class="headerlink" href="#enable-custom-emoji" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><ul class="simple">
+<li><p><strong>true</strong>: <strong>(Default)</strong> Allows users to add emojis through a
+<strong>Custom Emoji</strong> option in the emoji picker. Emojis can be GIF, PNG, or
+JPG files up to 512 KB in size.</p></li>
+<li><p><strong>false</strong>:  Disables custom emojis.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Emoji</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.ServiceSettings.EnableCustomEmoji:</span> <span class="pre">true</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_SERVICESETTINGS_ENABLECUSTOMEMOJI</span></code></p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><p><strong>Note</strong>: Too many custom emojis can slow your server’s performance.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="posts">
+<h2>Posts<a class="headerlink" href="#posts" title="Link to this heading">#</a></h2>
+<div class="mm-badge"><p><img alt="plans-img" src="../_images/flag_icon.svg" /> Available on <a class="reference external" href="https://mattermost.com/pricing/">all plans</a></p>
+<p><img alt="deployment-img" src="../_images/deployment_icon.svg" /> <a class="reference external" href="https://customers.mattermost.com/cloud/signup/">Cloud</a> and <a class="reference external" href="https://mattermost.com/deploy/">self-hosted</a> deployments</p>
+</div><p>Access the following configuration settings in the System Console by going to <strong>Site Configuration &gt; Posts</strong>.</p>
+<a id="posts-automaticallyfollowthreads"></a><section id="automatically-follow-threads">
+<h3>Automatically follow threads<a class="headerlink" href="#automatically-follow-threads" title="Link to this heading">#</a></h3>
+<div class="mm-badge mm-badge--note"><p>Note</p>
+<p><img alt="deployment-img-yellow" class="mm-badge-deployment" src="../_images/deployment_icon_yellow.svg" /> Available only for <a class="reference external" href="https://mattermost.com/deploy/">self-hosted</a> deployments</p>
+</div><div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><ul class="simple">
+<li><p><strong>true</strong>: <strong>(Default)</strong> Enables automatic following for all threads that a user starts, or in which the user participates or is mentioned. A <strong>Threads</strong> table in the database tracks threads and thread participants. A <strong>ThreadMembership</strong> table tracks followed threads for each user and whether the thread is read or unread.</p></li>
+<li><p><strong>false</strong>: Disables automatic following of threads.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Posts</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.ServiceSettings.ThreadAutoFollow:</span> <span class="pre">true</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_SERVICESETTINGS_THREADAUTOFOLLOW</span></code></p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><p><strong>Notes</strong>:</p>
+<ul class="simple">
+<li><p>This setting <strong>must</strong> be enabled for <a class="reference external" href="https://docs.mattermost.com/collaborate/organize-conversations.html">Collapsed Reply Threads</a> to function. See the <a class="reference external" href="https://support.mattermost.com/hc/en-us/articles/6880701948564">administrator’s guide to enabling Collapsed Reply Threads</a> for details.</p></li>
+<li><p>Enabling this setting does not automatically follow threads based on previous user actions. For example, threads a user participated in prior to enabling this setting won’t be automatically followed, unless the user adds a new comment or is mentioned in the thread.</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="posts-collapsedreplythreads"></a></section>
+<section id="collapsed-reply-threads">
+<h3>Collapsed reply threads<a class="headerlink" href="#collapsed-reply-threads" title="Link to this heading">#</a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Customers upgrading to v7.0 must review the <a class="reference external" href="https://support.mattermost.com/hc/en-us/articles/6880701948564">administrator’s guide to enabling Collapsed Reply Threads</a> prior to enabling this functionality.</p>
+</div>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><ul class="simple">
+<li><p><strong>Always On</strong>: <strong>(Default)</strong> Enables <a class="reference external" href="https://docs.mattermost.com/collaborate/organize-conversations.html">Collapsed Reply Threads</a> on the server and for all users. This is the recommended configuration for optimal user experience and to ensure consistency in how users read and respond to threaded conversations. <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">&quot;always_on&quot;</span></code></p></li>
+<li><p><strong>Default On</strong>: Enables Collapsed Reply Threads on the server and for all users. Users can choose to <a class="reference external" href="/preferences/manage-your-display-options.html#collapsed-reply-threads">disable Collapsed Reply Threads</a> for their Mattermost account in <strong>Settings &gt; Display &gt; Collapsed Reply Threads</strong>. <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">&quot;default_on&quot;</span></code></p></li>
+<li><p><strong>Default Off</strong>: Enables Collapsed Reply Threads on the server but <strong>not</strong> for users. Users can choose to enable Collapsed Reply Threads for their Mattermost account in <strong>Settings &gt; Display &gt; Collapsed Reply Threads</strong>. <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">&quot;default_off&quot;</span></code></p></li>
+<li><p><strong>Disabled</strong>: Users cannot enable Collapsed Reply Threads. <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">&quot;disabled&quot;</span></code></p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Posts</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.ServiceSettings.CollapsedThreads</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_SERVICESETTINGS_COLLAPSEDTHREADS</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="posts-messagepriority"></a></section>
+<section id="message-priority">
+<h3>Message priority<a class="headerlink" href="#message-priority" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><ul class="simple">
+<li><p><strong>true</strong>: <strong>(Default)</strong> Enables message priority for all users which
+enables them to set a visual indiciator for important or urgent root
+messages.</p></li>
+<li><p><strong>false</strong>: Disables the ability to set message priority and request
+acknowledgements.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Posts</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.ServiceSettings.PostPriority:</span> <span class="pre">true</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_SERVICESETTINGS_POSTPRIORITY</span></code></p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><p><strong>Note</strong>: <a class="reference external" href="https://mattermost.com/pricing">Mattermost Professional or Enterprise</a> customers can additionally request message acknowledgements to
+track that specific, time-sensitive messages have been seen and actioned. See the
+<a class="reference external" href="https://docs.mattermost.com/collaborate/message-priority.html">message priority</a> documentation to learn more.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="posts-persistentnotifications"></a></section>
+<section id="persistent-notifications">
+<h3>Persistent notifications<a class="headerlink" href="#persistent-notifications" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><ul class="simple">
+<li><p><strong>true</strong>: <strong>(Default)</strong> Users can trigger repeating notifications to
+mentioned recipients of urgent messages.</p></li>
+<li><p><strong>false</strong>: Disables the ability to send repeating notifications.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Posts</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.ServiceSettings.AllowPersistentNotifications:</span> <span class="pre">true</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_SERVICESETTINGS_ALLOWPERSISTENTNOTIFICATIONS</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="posts-maxnumberofrecipientsforpersistentnotifications"></a></section>
+<section id="maximum-number-of-recipients-for-persistent-notifications">
+<h3>Maximum number of recipients for persistent notifications<a class="headerlink" href="#maximum-number-of-recipients-for-persistent-notifications" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>The maximum number of recipients users may send persistent
+notifications to.</p>
+<p>Numerical input. Default is <strong>5</strong>.</p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Posts</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.ServiceSettings.PersistentNotificationMaxRecipients:</span> <span class="pre">5</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_SERVICESETTINGS_PERSISTENTNOTIFICATIONSMAXRECIPIENTS</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="posts-frequencyofpersistentnotifications"></a></section>
+<section id="frequency-of-persistent-notifications">
+<h3>Frequency of persistent notifications<a class="headerlink" href="#frequency-of-persistent-notifications" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>The number of minutes between repeated notifications for
+urgent messages sent with persistent notifications.</p>
+<p>Numerical input. Default is <strong>5</strong>. Minimum is <strong>2</strong>.</p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Posts</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.ServiceSettings.PersistentNotificationIntervalMinutes:</span> <span class="pre">5</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_SERVICESETTINGS_PERSISTENTNOTIFICATIONINTERVALMINUTES</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="posts-totalnumberofpersistentnotificationsperpost"></a></section>
+<section id="total-number-of-persistent-notifications-per-post">
+<h3>Total number of persistent notifications per post<a class="headerlink" href="#total-number-of-persistent-notifications-per-post" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>The maximum number of times users may receive persistent
+notifications.</p>
+<p>Numerical input. Default is <strong>6</strong>.</p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Posts</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.ServiceSettings.PersistentNotificationMaxCount:</span> <span class="pre">6</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_SERVICESETTINGS_PERSISTENTNOTIFICATIONMAXCOUNT</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="posts-enablelinkpreviews"></a></section>
+<section id="enable-website-link-previews">
+<h3>Enable website link previews<a class="headerlink" href="#enable-website-link-previews" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><ul class="simple">
+<li><p><strong>true</strong>: The server generates a preview of the first website, image, or YouTube video linked in a message. Users can disable website previews, but not image or YouTube previews, under <strong>Settings &gt; Display &gt; Website Link Previews</strong>.</p></li>
+<li><p><strong>false</strong>: <strong>(Default)</strong> All previews are disabled and the server does not request metadata for any links contained in messages.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Posts</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.ServiceSettings.EnableLinkPreviews:</span> <span class="pre">true</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_SERVICESETTINGS_ENABLELINKPREVIEWS</span></code></p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><p><strong>Note</strong>: The server must be connected to the internet to generate previews. This connection can be established through a <a class="reference external" href="https://docs.mattermost.com/install/outbound-proxy.html">firewall or outbound proxy</a> if necessary.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="posts-disablepreviewsperdomain"></a></section>
+<section id="disable-link-previews-for-specific-domains">
+<h3>Disable link previews for specific domains<a class="headerlink" href="#disable-link-previews-for-specific-domains" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Use this setting to disable previews of links for specific domains.</p>
+<p>String input of a comma-separated list of domains, for example: <code class="docutils literal notranslate"><span class="pre">&quot;mattermost.com,</span> <span class="pre">images.example.com&quot;</span></code></p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Posts</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.ServiceSettings.RestrictLinkPreviews</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_SERVICESETTINGS_RESTRICTLINKPREVIEWS</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="posts-enablemessagelinkpreviews"></a></section>
+<section id="enable-message-link-previews">
+<h3>Enable message link previews<a class="headerlink" href="#enable-message-link-previews" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td colspan="2"><ul>
+<li><p><strong>true</strong>: <strong>(Default)</strong> <a class="reference external" href="https://docs.mattermost.com/collaborate/share-links.html">Share links to Mattermost messages</a> will generate a preview for any users that have access to the original message. | - System Config path: <strong>Site Configuration &gt; Posts</strong></p></li>
+<li><dl>
+<dt><strong>false</strong>: Share links do not generate a preview.                                                                                                                                                      | - <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.ServiceSettings.EnablePermalinkPreviews:</span> <span class="pre">true</span></code></dt><dd><div class="line-block">
+<div class="line">- Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_SERVICESETTINGS_ENABLEPERMALINKPREVIEWS</span></code></div>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="posts-enablesvg"></a></section>
+<section id="enable-svgs">
+<h3>Enable SVGs<a class="headerlink" href="#enable-svgs" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><ul class="simple">
+<li><p><strong>true</strong>: Enables previews of SVG files attached to messages.</p></li>
+<li><p><strong>false</strong>: <strong>(Default)</strong> Disables previews of SVG files.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Posts</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.ServiceSettings.EnableSVGs:</span> <span class="pre">false</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_SERVICESETTINGS_ENABLESVGS</span></code></p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><p><strong>Warning</strong>: Enabling SVGs is not recommended in environments where not all users are trusted.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="posts-enablelatex"></a></section>
+<section id="enable-latex-code-block-rendering">
+<h3>Enable LaTeX code block rendering<a class="headerlink" href="#enable-latex-code-block-rendering" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td colspan="2"><ul>
+<li><p><strong>true</strong>: Enables rendering of <a class="reference external" href="https://docs.mattermost.com/collaborate/format-messages.html#math-formulas">LaTeX in code blocks</a>.               | - System Config path: <strong>Site Configuration &gt; Posts</strong></p></li>
+<li><dl>
+<dt><strong>false</strong>: <strong>(Default)</strong> Disables rendering in blocks. Instead, LaTeX code is highlighted.                                                       | - <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.ServiceSettings.EnableLatex:</span> <span class="pre">false</span></code></dt><dd><div class="line-block">
+<div class="line">- Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_SERVICESETTINGS_ENABLELATEX</span></code></div>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><p><strong>Warning</strong>: Enabling LaTeX rendering is not recommended in environments where not all users are trusted.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="posts-enableinlinelatex"></a></section>
+<section id="enable-inline-latex-rendering">
+<h3>Enable inline LaTeX rendering<a class="headerlink" href="#enable-inline-latex-rendering" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td colspan="2"><ul>
+<li><p><strong>true</strong>: <strong>(Default)</strong> Enables rendering of <a class="reference external" href="https://docs.mattermost.com/collaborate/format-messages.html#math-formulas">LaTeX in message text</a>.                                                                | - System Config path: <strong>Site Configuration &gt; Posts</strong></p></li>
+<li><dl>
+<dt><strong>false</strong>: Disables inline rendering of LaTeX. Instead, LaTeX in message text is highlighted. LaTeX can also be rendered in a code block, if that feature is enabled. See <strong>Enable LaTeX code block rendering</strong>. | - <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.ServiceSettings.EnableInlineLatex:</span> <span class="pre">true</span></code></dt><dd><div class="line-block">
+<div class="line">- Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_SERVICESETTINGS_ENABLEINLINELATEX</span></code></div>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><p><strong>Warning</strong>: Enabling LaTeX rendering is not recommended in environments where not all users are trusted.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="posts-customurlschemes"></a></section>
+<section id="custom-url-schemes">
+<h3>Custom URL schemes<a class="headerlink" href="#custom-url-schemes" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>A list of URL schemes that will automatically create a link in message text, for example: <code class="docutils literal notranslate"><span class="pre">[&quot;git&quot;,</span> <span class="pre">&quot;smtp&quot;]</span></code>. These schemes always create links: <code class="docutils literal notranslate"><span class="pre">http</span></code>, <code class="docutils literal notranslate"><span class="pre">https</span></code>, <code class="docutils literal notranslate"><span class="pre">ftp</span></code>, <code class="docutils literal notranslate"><span class="pre">tel</span></code>, and <code class="docutils literal notranslate"><span class="pre">mailto</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: an array of strings</p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Posts</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.DisplaySettings.CustomURLSchemes:</span> <span class="pre">[]</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_DISPLAYSETTINGS_CUSTOMURLSCHEMES</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="posts-googleapikey"></a></section>
+<section id="google-api-key">
+<h3>Google API key<a class="headerlink" href="#google-api-key" title="Link to this heading">#</a></h3>
+<div class="mm-badge mm-badge--note"><p>Note</p>
+<p><img alt="deployment-img-yellow" class="mm-badge-deployment" src="../_images/deployment_icon_yellow.svg" /> Available only for <a class="reference external" href="https://mattermost.com/deploy/">self-hosted</a> deployments</p>
+</div><div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>If a key is provided in this setting, Mattermost displays titles of embedded YouTube videos and detects if a video is no longer available. Setting a key should also prevent Google from throttling access to embedded videos that receive a high number of views.</p>
+<p>String input.</p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Posts</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.ServiceSettings.GoogleDeveloperKey</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_SERVICESETTINGS_GOOGLEDEVELOPERKEY</span></code></p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><p><strong>Notes</strong>:</p>
+<ul class="simple">
+<li><p>The key must have the YouTube Data API added as a service.</p></li>
+<li><p>This key is used in client-side Javascript.</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="posts-AllowSyncedDrafts"></a></section>
+<section id="enable-server-syncing-of-message-drafts">
+<h3>Enable server syncing of message drafts<a class="headerlink" href="#enable-server-syncing-of-message-drafts" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Enable or disable the ability to synchronize draft
+messages across all supported Mattermost clients.</p>
+<ul class="simple">
+<li><p><strong>true</strong>: <strong>(Default)</strong> Message drafts are saved
+on the server and may be accessed from different
+clients. Users may still disable server
+synchronization of draft messages by going
+to <strong>Settings &gt; Advanced Settings</strong>.</p></li>
+<li><p><strong>false</strong>: Draft messages are stored locally
+on each device.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Posts</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">&quot;.ServiceSettings.AllowSyncedDrafts:</span> <span class="pre">true,</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_SERVICESETTINGS_ALLOWSYNCEDDRAFTS</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="file-sharing-and-downloads">
+<h2>File sharing and downloads<a class="headerlink" href="#file-sharing-and-downloads" title="Link to this heading">#</a></h2>
+<div class="mm-badge"><p><img alt="plans-img" src="../_images/flag_icon.svg" /> Available on <a class="reference external" href="https://mattermost.com/pricing/">all plans</a></p>
+<p><img alt="deployment-img" src="../_images/deployment_icon.svg" /> <a class="reference external" href="https://customers.mattermost.com/cloud/signup/">Cloud</a> and <a class="reference external" href="https://mattermost.com/deploy/">self-hosted</a> deployments</p>
+</div><p>Access the following configuration settings in the System Console by going to <strong>Site Configuration &gt; File Sharing and Downloads</strong>.</p>
+<a id="fileshare-allowfilesharing"></a><section id="allow-file-sharing">
+<h3>Allow file sharing<a class="headerlink" href="#allow-file-sharing" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><ul class="simple">
+<li><p><strong>true</strong>: <strong>(Default)</strong> Allows users to attach files to messages.</p></li>
+<li><p><strong>false</strong>: Prevents users from attaching files (including images) to a message. This affects users on all clients and devices, including mobile apps.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; File Sharing and Downloads</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.FileSettings.EnableFileAttachments:</span> <span class="pre">true</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_FILESETTINGS_ENABLEFILEATTACHMENTS</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="fileshare-allowuploadsonmobile"></a></section>
+<section id="allow-file-uploads-on-mobile">
+<h3>Allow file uploads on mobile<a class="headerlink" href="#allow-file-uploads-on-mobile" title="Link to this heading">#</a></h3>
+<div class="mm-badge mm-badge--note"><p>Note</p>
+<p><img alt="plans-img-yellow" class="mm-badge-flag" src="../_images/flag_icon_yellow.svg" /> Available only on <a class="reference external" href="https://mattermost.com/pricing/">Enterprise</a> plans</p>
+</div><p><em>Available in legacy Enterprise Edition E20</em></p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><ul class="simple">
+<li><p><strong>true</strong>: <strong>(Default)</strong> Allows users to attach files to messages from mobile apps.</p></li>
+<li><p><strong>false</strong>: Prevents users from attaching files (including images) to messages from mobile apps.</p></li>
+</ul>
+</td>
+<td><blockquote>
+<div><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; File Sharing and Downloads</strong></p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.FileSettings.EnableMobileUpload:</span> <span class="pre">true</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_FILESETTINGS_ENABLEMOBILEUPLOAD</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="fileshare-allowdownloadsonmobile"></a></section>
+<section id="allow-file-downloads-on-mobile">
+<h3>Allow file downloads on mobile<a class="headerlink" href="#allow-file-downloads-on-mobile" title="Link to this heading">#</a></h3>
+<div class="mm-badge mm-badge--note"><p>Note</p>
+<p><img alt="plans-img-yellow" class="mm-badge-flag" src="../_images/flag_icon_yellow.svg" /> Available only on <a class="reference external" href="https://mattermost.com/pricing/">Enterprise</a> plans</p>
+</div><p><em>Available in legacy Enterprise Edition E20</em></p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><ul class="simple">
+<li><p><strong>true</strong>: <strong>(Default)</strong> Enables file downloads on mobile apps.</p></li>
+<li><p><strong>false</strong>: Disables file downloads on mobile apps. Users can still download files from a mobile web browser.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; File sharing and downloads</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.FileSettings.EnableMobileDownload:</span> <span class="pre">true</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_FILESETTINGS_ENABLEMOBILEDOWNLOAD</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="public-links">
+<h2>Public Links<a class="headerlink" href="#public-links" title="Link to this heading">#</a></h2>
+<div class="mm-badge"><p><img alt="plans-img" src="../_images/flag_icon.svg" /> Available on <a class="reference external" href="https://mattermost.com/pricing/">all plans</a></p>
+<p><img alt="deployment-img" src="../_images/deployment_icon.svg" /> <a class="reference external" href="https://mattermost.com/deploy/">self-hosted</a> deployments</p>
+</div><p>Access the following configuration settings in the System Console by going to <strong>Site Configuration &gt; Public Links</strong>.</p>
+<a id="publink-enable"></a><section id="enable-public-file-links">
+<h3>Enable public file links<a class="headerlink" href="#enable-public-file-links" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><ul class="simple">
+<li><p><strong>true</strong>: Allows users to create <a class="reference external" href="https://docs.mattermost.com/collaborate/share-files-in-messages.html#share-public-links">public links</a> to files attached to Mattermost messages.</p></li>
+<li><p><strong>false</strong>: <strong>(Default)</strong> Prevents users from creating public links to files and disables all previously created links.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Public Links</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.FileSettings.EnablePublicLink:</span> <span class="pre">false</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_FILESETTINGS_ENABLEPUBLICLINK</span></code></p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><p><strong>Note</strong>: When set to <code class="docutils literal notranslate"><span class="pre">false</span></code>, anyone who tries to visit a previously created public link will receive an error message. If the setting is returned to <code class="docutils literal notranslate"><span class="pre">true</span></code>, previously created links will be accessible, unless the <strong>Public link salt</strong> has been regenerated.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="publink-salt"></a></section>
+<section id="public-link-salt">
+<h3>Public link salt<a class="headerlink" href="#public-link-salt" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>32-character salt added to the URL of public file links. Changing this setting will <strong>invalidate</strong> all previously generated links. The salt is randomly generated when Mattermost is installed, and can be regenerated by selecting <strong>Regenerate</strong> in the System Console.</p>
+<p>String input.</p>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Public Links</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.FileSettings.PublicLinkSalt</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_FILESETTINGS_PUBLICLINKSALT</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="notices">
+<h2>Notices<a class="headerlink" href="#notices" title="Link to this heading">#</a></h2>
+<div class="mm-badge"><p><img alt="plans-img" src="../_images/flag_icon.svg" /> Available on <a class="reference external" href="https://mattermost.com/pricing/">all plans</a></p>
+<p><img alt="deployment-img" src="../_images/deployment_icon.svg" /> <a class="reference external" href="https://customers.mattermost.com/cloud/signup/">Cloud</a> and <a class="reference external" href="https://mattermost.com/deploy/">self-hosted</a> deployments</p>
+</div><p>Access the following configuration settings in the System Console by going to <strong>Site Configuration &gt; Notices</strong>.</p>
+<a id="notices-enableadminnotices"></a><section id="enable-admin-notices">
+<h3>Enable admin notices<a class="headerlink" href="#enable-admin-notices" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><ul class="simple">
+<li><p><strong>true</strong>: <strong>(Default)</strong> System Admins will receive <a class="reference external" href="https://docs.mattermost.com/manage/in-product-notices.html">in-product notices</a> about server upgrades and administration features.</p></li>
+<li><p><strong>false</strong>: System Admins will not receive specific notices. Admins will still receive notices for all users (see <strong>Enable end user notices</strong>)</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Notices</strong> -</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.AnnouncementSettings.AdminNoticesEnabled:</span> <span class="pre">true</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_ANNOUNCEMENTSETTINGS_ADMINNOTICESENABLED</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="notices-enableendusernotices"></a></section>
+<section id="enable-end-user-notices">
+<h3>Enable end user notices<a class="headerlink" href="#enable-end-user-notices" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><ul class="simple">
+<li><p><strong>true</strong>: <strong>(Default)</strong> All users receive <a class="reference external" href="https://docs.mattermost.com/manage/in-product-notices.html">in-product notices</a> about client upgrades and end user features.</p></li>
+<li><p><strong>false</strong>: Users will not receive in-product notices.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Site Configuration &gt; Notices</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">.AnnouncementSettings.UserNoticesEnabled:</span> <span class="pre">true</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_ANNOUNCEMENTSETTINGS_USERNOTICESENABLED</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="authentication-configuration-settings.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Authentication configuration settings</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="environment-configuration-settings.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Environment configuration settings</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2015-2023 Mattermost
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Site configuration settings</a><ul>
+<li><a class="reference internal" href="#customization">Customization</a><ul>
+<li><a class="reference internal" href="#site-name">Site name</a></li>
+<li><a class="reference internal" href="#site-description">Site description</a></li>
+<li><a class="reference internal" href="#enable-custom-branding">Enable custom branding</a></li>
+<li><a class="reference internal" href="#custom-brand-image">Custom brand image</a></li>
+<li><a class="reference internal" href="#custom-brand-text">Custom brand text</a></li>
+<li><a class="reference internal" href="#enable-ask-community-link">Enable Ask Community link</a></li>
+<li><a class="reference internal" href="#help-link">Help link</a></li>
+<li><a class="reference internal" href="#terms-of-use-link">Terms of Use link</a></li>
+<li><a class="reference internal" href="#privacy-policy-link">Privacy Policy link</a></li>
+<li><a class="reference internal" href="#about-link">About link</a></li>
+<li><a class="reference internal" href="#forgot-password-custom-link">Forgot Password custom link</a></li>
+<li><a class="reference internal" href="#report-a-problem-link">Report a Problem link</a></li>
+<li><a class="reference internal" href="#mattermost-apps-download-page-link">Mattermost apps download page link</a></li>
+<li><a class="reference internal" href="#android-app-download-link">Android app download link</a></li>
+<li><a class="reference internal" href="#ios-app-download-link">iOS app download link</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#localization">Localization</a><ul>
+<li><a class="reference internal" href="#default-server-language">Default server language</a></li>
+<li><a class="reference internal" href="#default-client-language">Default client language</a></li>
+<li><a class="reference internal" href="#available-languages">Available languages</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#users-and-teams">Users and teams</a><ul>
+<li><a class="reference internal" href="#max-users-per-team">Max users per team</a></li>
+<li><a class="reference internal" href="#max-channels-per-team">Max channels per team</a></li>
+<li><a class="reference internal" href="#enable-users-to-open-direct-message-channels-with">Enable users to open direct message channels with</a></li>
+<li><a class="reference internal" href="#teammate-name-display">Teammate name display</a></li>
+<li><a class="reference internal" href="#lock-teammate-name-display-for-all-users">Lock teammate name display for all users</a></li>
+<li><a class="reference internal" href="#allow-users-to-view-archived-channels">Allow users to view archived channels</a></li>
+<li><a class="reference internal" href="#show-email-address">Show email address</a></li>
+<li><a class="reference internal" href="#show-full-name">Show full name</a></li>
+<li><a class="reference internal" href="#enable-custom-user-statuses">Enable custom user statuses</a></li>
+<li><a class="reference internal" href="#enable-last-active-time">Enable last active time</a></li>
+<li><a class="reference internal" href="#enable-custom-user-groups">Enable custom user groups</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#notifications">Notifications</a><ul>
+<li><a class="reference internal" href="#show-channel-all-or-here-confirmation-dialog">Show &#64;channel, &#64;all, or &#64;here confirmation dialog</a></li>
+<li><a class="reference internal" href="#enable-email-notifications">Enable email notifications</a></li>
+<li><a class="reference internal" href="#enable-preview-mode-banner">Enable preview mode banner</a></li>
+<li><a class="reference internal" href="#enable-email-batching">Enable email batching</a></li>
+<li><a class="reference internal" href="#email-notification-contents">Email notification contents</a></li>
+<li><a class="reference internal" href="#notification-display-name">Notification display name</a></li>
+<li><a class="reference internal" href="#notification-from-address">Notification from address</a></li>
+<li><a class="reference internal" href="#support-email-address">Support email address</a></li>
+<li><a class="reference internal" href="#notification-reply-to-address">Notification reply-to address</a></li>
+<li><a class="reference internal" href="#notification-footer-mailing-address">Notification footer mailing address</a></li>
+<li><a class="reference internal" href="#push-notification-contents">Push notification contents</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#announcement-banner">Announcement banner</a><ul>
+<li><a class="reference internal" href="#enable-announcement-banner">Enable announcement banner</a></li>
+<li><a class="reference internal" href="#banner-text">Banner text</a></li>
+<li><a class="reference internal" href="#banner-color">Banner color</a></li>
+<li><a class="reference internal" href="#banner-text-color">Banner text color</a></li>
+<li><a class="reference internal" href="#allow-banner-dismissal">Allow banner dismissal</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#emoji">Emoji</a><ul>
+<li><a class="reference internal" href="#enable-emoji-picker">Enable emoji picker</a></li>
+<li><a class="reference internal" href="#enable-custom-emoji">Enable custom emoji</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#posts">Posts</a><ul>
+<li><a class="reference internal" href="#automatically-follow-threads">Automatically follow threads</a></li>
+<li><a class="reference internal" href="#collapsed-reply-threads">Collapsed reply threads</a></li>
+<li><a class="reference internal" href="#message-priority">Message priority</a></li>
+<li><a class="reference internal" href="#persistent-notifications">Persistent notifications</a></li>
+<li><a class="reference internal" href="#maximum-number-of-recipients-for-persistent-notifications">Maximum number of recipients for persistent notifications</a></li>
+<li><a class="reference internal" href="#frequency-of-persistent-notifications">Frequency of persistent notifications</a></li>
+<li><a class="reference internal" href="#total-number-of-persistent-notifications-per-post">Total number of persistent notifications per post</a></li>
+<li><a class="reference internal" href="#enable-website-link-previews">Enable website link previews</a></li>
+<li><a class="reference internal" href="#disable-link-previews-for-specific-domains">Disable link previews for specific domains</a></li>
+<li><a class="reference internal" href="#enable-message-link-previews">Enable message link previews</a></li>
+<li><a class="reference internal" href="#enable-svgs">Enable SVGs</a></li>
+<li><a class="reference internal" href="#enable-latex-code-block-rendering">Enable LaTeX code block rendering</a></li>
+<li><a class="reference internal" href="#enable-inline-latex-rendering">Enable inline LaTeX rendering</a></li>
+<li><a class="reference internal" href="#custom-url-schemes">Custom URL schemes</a></li>
+<li><a class="reference internal" href="#google-api-key">Google API key</a></li>
+<li><a class="reference internal" href="#enable-server-syncing-of-message-drafts">Enable server syncing of message drafts</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#file-sharing-and-downloads">File sharing and downloads</a><ul>
+<li><a class="reference internal" href="#allow-file-sharing">Allow file sharing</a></li>
+<li><a class="reference internal" href="#allow-file-uploads-on-mobile">Allow file uploads on mobile</a></li>
+<li><a class="reference internal" href="#allow-file-downloads-on-mobile">Allow file downloads on mobile</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#public-links">Public Links</a><ul>
+<li><a class="reference internal" href="#enable-public-file-links">Enable public file links</a></li>
+<li><a class="reference internal" href="#public-link-salt">Public link salt</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#notices">Notices</a><ul>
+<li><a class="reference internal" href="#enable-admin-notices">Enable admin notices</a></li>
+<li><a class="reference internal" href="#enable-end-user-notices">Enable end user notices</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    </body>
+</html>

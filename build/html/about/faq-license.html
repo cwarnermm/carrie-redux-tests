@@ -1,0 +1,1014 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Integration questions" href="faq-integrations.html" /><link rel="prev" title="Enterprise Edition questions" href="faq-enterprise.html" />
+        <link rel="canonical" href="https://www.ethereal.cc/redux/about/faq-license.html" />
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 7.2.6 and Furo 2023.09.10 -->
+        <title>Open-source licensing questions - Mattermost documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/compass-icons.css?v=b28d7826" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  --font-stack: Noto Sans, Helvetica Neue, Arial, sans-serif;
+  --font-stack--monospace: Fira Mono, Courier New, Courier, monospace;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">Mattermost  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">Mattermost  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../overview/index.html">About Mattermost</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of About Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="product.html">Mattermost overview</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="use-cases.html">Use cases</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Use cases</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="secure-command-and-control.html">Secure command and control</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="unified-collaboration.html">Unified communication</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Unified communication</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="mattermost-for-microsoft-teams.html">Mattermost for Microsoft Teams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mattermost-google-calendar-integration.html">Mattermost Google Calendar integration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devops-collaboration.html">DevOps collaboration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="incident-response-collaboration.html">Incident response collaboration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Security overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integrations.html">Integrations overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subscription.html">Subscription overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="self-hosted-subscriptions.html">Self-hosted subscriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cloud-subscriptions.html">Cloud subscriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="editions-and-offerings.html">Mattermost editions and plans</a></li>
+<li class="toctree-l2"><a class="reference internal" href="corporate-directory-integration.html">Corporate directory integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="certifications-and-compliance.html">Certifications and compliance overview</a></li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="frequently-asked-questions.html">Frequently asked questions (FAQ)</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Frequently asked questions (FAQ)</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="faq-general.html">General Mattermost questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="faq-community.html">Community questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="faq-notifications.html">Notifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="faq-video-audio-screensharing.html">Video, audio, and screen sharing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="faq-enterprise.html">Enterprise questions</a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">License questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="faq-integrations.html">Integrations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="faq-use-cases.html">Use cases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="faq-product.html">Product questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="faq-high-trust.html">High trust questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="faq-design-decisions.html">Design decisions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="faq-business.html">Business questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="faq-illicit-use.html">Illicit use</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../guides/deployment.html">Deploy Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Deploy Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../install/prepare-mattermost-database.html">Prepare your Mattermost database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-ubuntu.html">Deploy on Ubuntu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-docker.html">Deploy using Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-tar.html">Deploy with a tarball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/installing-mattermost-omnibus.html">Deploy using Omnibus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-kubernetes.html">Deploy using Kubernetes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-rhel-8.html">Deploy on Red Hat</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/prepare-for-your-mattermost-deployment.html">Prepare for your Mattermost deployment</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of Prepare for your Mattermost deployment</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install/software-hardware-requirements.html">  Software and hardware requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/mattermost-kubernetes-operator.html">  About the Mattermost Kubernetes Operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/admin-onboarding-tasks.html">  Administrator tasks</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../getting-started/architecture-overview.html">  Architecture overview</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of   Architecture overview</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/implementation-plan.html">  Plan your Mattermost implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/enterprise-roll-out-checklist.html">  Enterprise roll out checklist</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/welcome-email-to-end-users.html">  Welcome email template</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/deployment-guides.html">Deployment guides</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of Deployment guides</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../guides/server-deployment.html">Server deployment</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of Server deployment</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/deployment-overview.html"> Deployment overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/setting-up-socket-based-mattermost-database.html"> Set up a socket-based Mattermost database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/image-proxy.html"> Image proxy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/backup-disaster-recovery.html"> Backup and disaster recovery</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/encryption-options.html"> Encryption options</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../install/transport-encryption.html"> Configure transport encryption</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of  Configure transport encryption</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../install/proxy-to-mattermost-transport-encryption.html">Configuring proxy to Mattermost transport encryption</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../install/database-transport-encryption.html">Configuring database transport encryption</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../install/cluster-transport-encryption.html">Configuring cluster transport encryption</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/bleve-search.html"> Bleve search</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../guides/desktop-mobile-app-deployment.html">Desktop and mobile app deployment</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of Desktop and mobile app deployment</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/desktop-app.html">Desktop app deployment guide</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/desktop-msi-installer-and-group-policy-install.html">Desktop MSI installer and group policy installation guides (beta)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/desktop-custom-dictionaries.html">Desktop App custom dictionaries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/desktop-app-managed-resources.html">Desktop managed resources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/use-prebuilt-mobile-apps.html">Using Mattermost’s pre-built mobile apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-testing-notifications.html">Testing push notifications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-overview.html">Deploy Mattermost mobile apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-hpns.html">Mobile push notifications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/build-custom-mobile-apps.html">Building and distributing your own custom Mattermost mobile apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/deploy-mobile-apps-using-emm-provider.html">Deploying mobile apps using an EMM provider</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-appconfig.html">AppConfig for EMM solutions with Mattermost Mobile Apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/consider-mobile-vpn-options.html">Mobile VPN options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-faq.html">Mobile apps FAQ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/client-side-data.html">Client-side data storage FAQ</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/upgrade-mattermost.html">Upgrade Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle navigation of Upgrade Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/prepare-to-upgrade-mattermost.html"> Prepare to upgrade Mattermost</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/upgrading-mattermost-server.html"> Upgrade Mattermost Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/enterprise-install-upgrade.html"> Enterprise install and upgrade</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/installing-license-key.html"> Install a license key</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/release-definitions.html"> Release definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/important-upgrade-notes.html"> Important upgrade notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/release-lifecycle.html"> Release lifecycle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/extended-support-release.html"> Extended Support Release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/downgrading-mattermost-server.html"> Downgrade Mattermost Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/version-archive.html"> Version archive</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/scale-mattermost.html">Scale Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle navigation of Scale Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../scale/scaling-for-enterprise.html"> Scale for Enterprise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scale/high-availability-cluster.html"> High availability cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scale/elasticsearch.html"> Elasticsearch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scale/performance-monitoring.html"> Performance monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scale/performance-alerting.html"> Mattermost performance alerting guide</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/deployment-troubleshooting.html">Deployment troubleshooting</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle navigation of Deployment troubleshooting</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install/troubleshooting.html">  General troubleshooting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deploy/high-scale-troubleshoot.html">  Troubleshooting your high scale deployment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deploy/mobile-troubleshoot.html">  Troubleshooting mobile applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/trouble-postgres.html">  PostgreSQL installation troubleshooting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/trouble_mysql.html">  MySQL installation troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/changelogs.html">Changelogs</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle navigation of Changelogs</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install/self-managed-changelog.html">  Mattermost self-hosted</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/legacy-self-hosted-changelog.html">  Mattermost legacy self-hosted</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/cloud-changelog.html">  Mattermost Cloud</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deploy/mobile-app-changelog.html">  Mobile apps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/desktop-app-changelog.html">  Desktop apps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/deprecated-features.html">  Deprecated features</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/additional-server-installation-guides.html">Additional server installation guides</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle navigation of Additional server installation guides</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install/deploying-team-edition-on-bitnami.html">  Deploy Mattermost on Bitnami</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/setting-up-aws-elastic-beanstalk-docker.html">  AWS Elastic Beanstalk Docker setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/installing-team-edition-helm-chart.html">  Install Mattermost Team Edition in GitLab Helm Chart</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/open-source-components.html">  Open source components</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../guides/administration.html">Manage Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle navigation of Manage Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/get-started-with-administration.html">Get started</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle navigation of Get started</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../configure/optimize-your-workspace.html">Optimize your workspace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/configuration-settings.html">Mattermost configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/self-hosted-account-settings.html">Self-hosted edition and license</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/cloud-billing-account-settings.html">Cloud subscription, billing, and account</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/reporting-configuration-settings.html">Reporting configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/user-management-configuration-settings.html">User management configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/environment-configuration-settings.html">Environment configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/site-configuration-settings.html">Site configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/authentication-configuration-settings.html">Authentication configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/plugins-configuration-settings.html">Plugins configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/integrations-configuration-settings.html">Integrations configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/compliance-configuration-settings.html">Compliance configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/experimental-configuration-settings.html">Experimental configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/deprecated-configuration-settings.html">Deprecated configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/environment-variables.html">Environment variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/user-provisioning-workflows.html">Provisioning workflows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/multi-factor-authentication.html">Multi-factor authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/ad-ldap.html">Active Directory/LDAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-gitlab.html">GitLab SSO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-openidconnect.html">OpenID SSO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-google.html">Google SSO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-office.html">Office 365 SSO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/advanced-permissions.html">Advanced permissions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/system-admin-roles.html">System admin roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/team-channel-members.html">Manage team and channel members</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/custom-branding-tools.html">Custom branding tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/electronic-discovery.html">eDiscovery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/compliance-monitoring.html">Compliance monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/compliance-export.html">Compliance export</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/legal-hold.html">Legal hold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/data-retention-policy.html">Data retention tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/custom-terms-of-service.html">Custom terms of service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/notify-admin.html">Notify Admin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/ad-ldap-groups-synchronization.html">AD/LDAP groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/managing-team-channel-membership-using-ad-ldap-sync-groups.html">Use AD/LDAP synchronized groups to manage team or private channel membership</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/guest-accounts.html">Guest accounts</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../onboard/sso-saml.html">SAML Single Sign-On</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of SAML Single Sign-On</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-okta.html">Okta SAML Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-onelogin.html">OneLogin SAML Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-adfs.html">Microsoft ADFS SAML Configuration for Windows Server 2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-adfs-msws2016.html">Microsoft ADFS SAML Configuration for Windows Server 2016</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-keycloak.html">Keycloak SAML Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-saml-technical.html">SAML Single-Sign-On: technical documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/shared-channels.html">Shared channels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/statistics.html">Statistics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/in-product-notices.html">In-product notices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/user-satisfaction-surveys.html">User satisfaction surveys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/health-checks.html">Health check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/announcement-banner.html">Announcement banner</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/bulk-export-tool.html">Bulk export tool</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/cloud-workspace-management.html">Cloud workspace management</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><div class="visually-hidden">Toggle navigation of Cloud workspace management</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manage/cloud-billing.html">Mattermost Cloud billing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/workspace-usage.html">Workspace usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/cloud-data-export.html">Workspace migration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/cloud-data-residency.html">Cloud data residency</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/self-hosted-administration.html">Self-hosted administration</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" role="switch" type="checkbox"/><label for="toctree-checkbox-21"><div class="visually-hidden">Toggle navigation of Self-hosted administration</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manage/self-hosted-billing.html">Mattermost self-hosted billing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/configuation-in-a-database.html">Store configuration in the database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/bulk-loading-data.html">Bulk loading data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/smtp-email.html">SMTP email setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/email-templates.html">Email templates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/calls-deployment.html">Calls deployment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/configuring-cloudfront-to-host-mattermost-static-assets.html">Configure CloudFront to host static assets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/using-outbound-proxy.html">Use an outbound proxy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/migrating-to-mattermost.html">Migration guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deploy/postgres-migration.html">Migration from MySQL to PostgreSQL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/enabling-chinese-japanese-korean-search.html">Chinese, Japanese, and Korean search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/customizing-mattermost.html">Customize Mattermost</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/audit-log.html">Audit logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/embedded-json-audit-log-schema.html">JSON audit log schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/ssl-client-certificate.html">SSL client certificate setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/certificate-based-authentication.html">Certificate-based authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/telemetry.html">Manage telemetry</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/other-administration-resources.html">Other resources</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" role="switch" type="checkbox"/><label for="toctree-checkbox-22"><div class="visually-hidden">Toggle navigation of Other resources</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/convert-oauth20-service-providers-to-openidconnect.html">Convert OAuth 2.0 providers to OpenID Connect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/generating-support-packet.html">Generate a support packet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/mmctl-command-line-tool.html">mmctl command line tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/migration-announcement-email.html">Migration announcement email template</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/advanced-permissions-backend-infrastructure.html">Advanced permissions infrastructure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/command-line-tools.html">Command line tools</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../guides/use-mattermost.html">Use Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" role="switch" type="checkbox"/><label for="toctree-checkbox-23"><div class="visually-hidden">Toggle navigation of Use Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/collaborate.html">Connect and collaborate</a><input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" role="switch" type="checkbox"/><label for="toctree-checkbox-24"><div class="visually-hidden">Toggle navigation of Connect and collaborate</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/access-your-workspace.html">Access your Mattermost workspace</a><input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" role="switch" type="checkbox"/><label for="toctree-checkbox-25"><div class="visually-hidden">Toggle navigation of Access your Mattermost workspace</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/install-desktop-app.html">Install the desktop app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/install-ios-app.html">Install the iOS mobile app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/install-android-app.html">Install the Android mobile app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/log-out.html">Log out of Mattermost</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/organize-using-teams.html">Organize using teams</a><input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" role="switch" type="checkbox"/><label for="toctree-checkbox-26"><div class="visually-hidden">Toggle navigation of Organize using teams</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/team-settings.html">Team settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/team-keyboard-shortcuts.html">Team keyboard shortcuts</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../collaborate/organize-using-custom-user-groups.html">Organize using custom user groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../collaborate/invite-people.html">Invite people</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../collaborate/learn-about-roles.html">Learn about Mattermost roles</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/collaborate-within-channels.html">Collaborate within channels</a><input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" role="switch" type="checkbox"/><label for="toctree-checkbox-27"><div class="visually-hidden">Toggle navigation of Collaborate within channels</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/channel-types.html">Channel types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/channel-naming-conventions.html">Channel naming conventions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/channel-header-purpose.html">Communicate a channel's focus and scope</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/create-channels.html">Create channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/rename-channels.html">Rename channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/convert-public-channels.html">Convert public channels to private</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/join-leave-channels.html">Join and leave channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/make-calls.html">Make calls in Mattermost</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/manage-channel-members.html">Manage channel members</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/browse-channels.html">Browse channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/navigate-between-channels.html">Navigate between channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/favorite-channels.html">Mark channels as favorites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/mark-channels-unread.html">Mark channels as unread</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/archive-unarchive-channels.html">Archive and unarchive channels</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/communicate-with-messages.html">Communicate with messages and threads</a><input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" role="switch" type="checkbox"/><label for="toctree-checkbox-28"><div class="visually-hidden">Toggle navigation of Communicate with messages and threads</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/send-messages.html">Send messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/reply-to-messages.html">Reply to messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/react-with-emojis-gifs.html">React with emojis and GIFs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/organize-conversations.html">Organize conversations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/mark-messages-unread.html">Mark messages as unread</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/forward-messages.html">Forward messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/share-links.html">Share links to channels and messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/save-pin-messages.html">Save and pin messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/message-reminders.html">Set message reminders</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/search-for-messages.html">Search for messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/format-messages.html">Format messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/message-priority.html">Set message priority</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/mention-people.html">Mention people</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/share-files-in-messages.html">Share files in messages</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/keyboard-shortcuts.html">Keyboard shortcuts</a><input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" role="switch" type="checkbox"/><label for="toctree-checkbox-29"><div class="visually-hidden">Toggle navigation of Keyboard shortcuts</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/keyboard-accessibility.html">Keyboard accessibility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/run-slash-commands.html">Run slash commands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/built-in-slash-commands.html">Built-in-slash-commands</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/extend-mattermost-with-integrations.html">Extend Mattermost with integrations</a><input class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" role="switch" type="checkbox"/><label for="toctree-checkbox-30"><div class="visually-hidden">Toggle navigation of Extend Mattermost with integrations</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/collaborate-using-mattermost-for-microsoft-teams.html">Collaborate using Mattermost for MS Teams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/use-mattermost-google-calendar-plugin.html">Use the Mattermost Google Calendar plugin</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/repeatable-processes.html">Build repeatable processes</a><input class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" role="switch" type="checkbox"/><label for="toctree-checkbox-31"><div class="visually-hidden">Toggle navigation of Build repeatable processes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/learn-about-playbooks.html">Learn about playbooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/work-with-playbooks.html">Work with playbooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/work-with-runs.html">Work with runs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/work-with-tasks.html">Work with tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/notifications-and-updates.html">Work with notifications and updates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/metrics-and-goals.html">Work with metrics and goals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/share-and-collaborate.html">Share and collaborate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/interact-with-playbooks.html">Interact with playbooks</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/preferences.html">Customize your preferences</a><input class="toctree-checkbox" id="toctree-checkbox-32" name="toctree-checkbox-32" role="switch" type="checkbox"/><label for="toctree-checkbox-32"><div class="visually-hidden">Toggle navigation of Customize your preferences</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-notifications.html">Manage your notifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/customize-your-theme.html">Customize your Mattermost theme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/customize-your-channel-sidebar.html">Customize your channel sidebar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-profile.html">Manage your profile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-security-preferences.html">Manage your security preferences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/set-your-status-availability.html">Set your status &amp; availability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-display-options.html">Manage your display options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-sidebar-options.html">Manage your sidebar options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-advanced-options.html">Manage advanced options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/customize-desktop-app-experience.html">Customize your desktop app experience</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/connect-multiple-workspaces.html">Connect to multiple workspaces</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://developers.mattermost.com/">Develop with Mattermost</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/get-help.html">Get help with Mattermost</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/community-chat.html">Join our community</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://handbook.mattermost.com/">Learn how we work</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/contribute-to-documentation.html">Contribute to this documentation</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="open-source-licensing-questions">
+<h1><a class="toc-backref" href="#on-this-page" role="doc-backlink">Open-source licensing questions</a><a class="headerlink" href="#open-source-licensing-questions" title="Link to this heading">#</a></h1>
+<nav class="contents" id="on-this-page">
+<p class="topic-title">On this page</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#open-source-licensing-questions" id="id1">Open-source licensing questions</a></p>
+<ul>
+<li><p><a class="reference internal" href="#terms-of-use-and-privacy-policy" id="id2">Terms of use and privacy policy</a></p></li>
+<li><p><a class="reference internal" href="#source-available-licensing" id="id3">Source available licensing</a></p></li>
+<li><p><a class="reference internal" href="#open-source-derivative-work-of-mattermost" id="id4">Open source derivative work of Mattermost</a></p></li>
+<li><p><a class="reference internal" href="#how-do-i-fork-mattermost" id="id5">How do I fork Mattermost?</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="terms-of-use-and-privacy-policy">
+<h2><a class="toc-backref" href="#on-this-page" role="doc-backlink">Terms of use and privacy policy</a><a class="headerlink" href="#terms-of-use-and-privacy-policy" title="Link to this heading">#</a></h2>
+<section id="what-are-mattermost-s-policies-around-licensing-terms-of-use-and-privacy">
+<h3>What are Mattermost’s policies around licensing, terms of use, and privacy?<a class="headerlink" href="#what-are-mattermost-s-policies-around-licensing-terms-of-use-and-privacy" title="Link to this heading">#</a></h3>
+<p>The following outlines the licensing, terms of use and privacy policies across Mattermost software and services.</p>
+</section>
+<section id="mattermost-software">
+<h3>Mattermost Software<a class="headerlink" href="#mattermost-software" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Software</p></th>
+<th class="head"><p>License</p></th>
+<th class="head"><p>Terms and Conditions</p></th>
+<th class="head"><p>Privacy Policy</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Mattermost Team Edition (Open Source)</p></td>
+<td><p>Open Source <strong>MIT License</strong>.</p>
+<p>Open Source Add-ons available under <a class="reference external" href="/about/subscription.html">Apache v2 and other licenses</a>.</p>
+</td>
+<td><p><a class="reference external" href="https://mattermost.com/trademark-standards-of-use/">Mattermost Trademark Policy</a></p>
+<p><a class="reference external" href="https://mattermost.com/terms-of-use/">Mattermost Terms of Use</a></p>
+</td>
+<td rowspan="3"><p><a class="reference external" href="https://github.com/mattermost/mattermost/blob/master/server/build/PRIVACY_POLICY.md">Mattermost Server Privacy Policy</a>
+with <a class="reference external" href="https://mattermost.com/data-processing-addendum/">GDPR Data Processing Addendum</a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Mattermost Enterprise Edition with no subscription</p></td>
+<td rowspan="2"><p><a class="reference external" href="https://mattermost.com/enterprise-edition-license/">Commercial Enterprise Edition License</a>.</p>
+<p>You are welcome to use the Enterprise Edition of Mattermost free of charge in perpetuity when the subscription feature
+are not enabled by a license key.</p>
+<p>If you choose to purchase a subscription for paid features, terms and conditions are offered
+as part of the subscription purchase (see “Terms”).</p>
+</td>
+<td><p>No subscription terms apply when operating without a subscription</p></td>
+</tr>
+<tr class="row-even"><td><p>Mattermost Enterprise Edition with subscription</p></td>
+<td><p><a class="reference external" href="https://mattermost.com/enterprise-edition-terms/">Self Managed Subscription Terms</a></p>
+<p><a class="reference external" href="https://mattermost.com/terms-of-use/">Enterprise Edition Subscription Terms for Purchase by Resale</a></p>
+<p><a class="reference external" href="https://mattermost.com/cloud-subscription-terms/">Cloud Subscription Agreement</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="mattermost-service-agreements">
+<h4>Mattermost Service Agreements<a class="headerlink" href="#mattermost-service-agreements" title="Link to this heading">#</a></h4>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Service</p></th>
+<th class="head"><p>Terms and Conditions</p></th>
+<th class="head"><p>Privacy Policy</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Mattermost Enterprise Edition Support, including Premier Support</p></td>
+<td><p><a class="reference external" href="https://mattermost.com/support/">Mattermost Support Terms</a></p></td>
+<td rowspan="3"><p><a class="reference external" href="https://github.com/mattermost/mattermost/blob/master/server/build/PRIVACY_POLICY.md">Mattermost Server Privacy Policy</a>
+with <a class="reference external" href="https://mattermost.com/data-processing-addendum/">GDPR Data Processing Addendum</a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Mattermost Hosted Push Notification Service</p></td>
+<td><p><a class="reference external" href="https://mattermost.com/terms-of-use/">Hosted Push Notifications Service Terms</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Mattermost Professional Services</p></td>
+<td><p>To be posted.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="mattermost-websites">
+<h3>Mattermost Websites<a class="headerlink" href="#mattermost-websites" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Website</p></th>
+<th class="head"><p>License</p></th>
+<th class="head"><p>Terms and Conditions</p></th>
+<th class="head"><p>Privacy Policy</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Mattermost Websites:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>about.mattermost.com</p></li>
+<li><p>mattermost.com</p></li>
+<li><p>mattermost.org</p></li>
+<li><p>forum.mattermost.org</p></li>
+<li><p>docs.mattermost.com</p></li>
+</ul>
+</div></blockquote>
+</td>
+<td><p>Open source under
+<a class="reference external" href="https://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License (CC BY-NC-SA 3.0)</a>.</p></td>
+<td><p><a class="reference external" href="https://mattermost.com/terms-of-service/">Mattermost Terms of Use</a></p></td>
+<td><p><a class="reference external" href="https://mattermost.com/privacy-policy/">Mattermost Websites Privacy Policy</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="mattermost-partnership-agreements">
+<h3>Mattermost Partnership Agreements<a class="headerlink" href="#mattermost-partnership-agreements" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Partnership Agreement</p></th>
+<th class="head"><p>Agreement</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Mattermost Authorized Reseller Agreement</p></td>
+<td><p><a class="reference external" href="https://mattermost.com/partners/">Mattermost Authorized Reseller Agreement</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="mattermost-confidentiality-agreements">
+<h3>Mattermost Confidentiality Agreements<a class="headerlink" href="#mattermost-confidentiality-agreements" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Confidentiality Agreement</p></th>
+<th class="head"><p>Agreement</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Mattermost Mutual Non-Disclosure Agreement</p></td>
+<td><p><a class="reference external" href="https://docs.google.com/document/d/1Ev3VFjiJBKSf1D5Kmf2BScbHBgSQbMzTzOhY3Of28vY/edit">Mattermost Mutual Non-Disclosure Agreement</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="working-for-mattermost">
+<h3>Working for Mattermost<a class="headerlink" href="#working-for-mattermost" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Service</p></th>
+<th class="head"><p>Terms and Conditions</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Mattermost Professional Consulting Services</p></td>
+<td><p><a class="reference external" href="https://docs.google.com/document/d/1tgEkO5Q-xqAgVEcx5Y-z28OC36HptpltKORpivQGLoY/edit">Mattermost Professional Consulting Services Agreement</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Mattermost Consulting</p></td>
+<td><p><a class="reference external" href="https://handbook.mattermost.com/operations/sales/partner-programs">Mattermost Consulting Terms</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="source-available-licensing">
+<h2><a class="toc-backref" href="#on-this-page" role="doc-backlink">Source available licensing</a><a class="headerlink" href="#source-available-licensing" title="Link to this heading">#</a></h2>
+<section id="what-is-the-mattermost-source-available-license">
+<h3>What is the Mattermost Source Available License?<a class="headerlink" href="#what-is-the-mattermost-source-available-license" title="Link to this heading">#</a></h3>
+<p>A source available license gives access to source code, but places restrictions on its use. The Mattermost Source Available License allows free-of-charge and unrestricted use of the source code in development and testing environments, but requires a valid Mattermost Enterprise Edition License in a production environment.</p>
+</section>
+<section id="how-can-i-identify-code-licensed-as-source-available">
+<h3>How can I identify code licensed as source available?<a class="headerlink" href="#how-can-i-identify-code-licensed-as-source-available" title="Link to this heading">#</a></h3>
+<p>When the Mattermost Source Available <code class="docutils literal notranslate"><span class="pre">LICENSE</span></code> file appears at the root of a repository, the restrictions apply to all source code within the repository. A note in the <code class="docutils literal notranslate"><span class="pre">README.md</span></code> often identifies the use of this license and links to this FAQ.</p>
+<p>When the Mattermost Source Available <code class="docutils literal notranslate"><span class="pre">LICENSE</span></code> file appears in a specific directory, the restrictions apply to all source code within that directory. This directory is often called “enterprise”. For additional clarity, an additional <code class="docutils literal notranslate"><span class="pre">LICENSE.enterprise</span></code> file may appear in the root directory, symlinked to the <code class="docutils literal notranslate"><span class="pre">enterprise/LICENSE</span></code> file.</p>
+<p>In all cases, any third party components remain licensed under their original license.</p>
+<p>An example directory layout, using an Enterprise license, is shown below:</p>
+<img alt="An example directory layout shows how Enterprise subscription plan restrictions apply to Mattermost source code based on where the Mattermost Source Available license file appears in the Mattermost deployment directory." src="../_images/source-available-license.png" />
+</section>
+<section id="why-are-you-changing-the-licensing-model">
+<h3>Why are you changing the licensing model?<a class="headerlink" href="#why-are-you-changing-the-licensing-model" title="Link to this heading">#</a></h3>
+<p>Our plugin framework delivers substantial value to our enterprise customers but requires significant development and support resources. This change to the licensing model allows us to continue developing open source features while selectively charging for features.</p>
+</section>
+<section id="how-are-repositories-changing">
+<h3>How are repositories changing?<a class="headerlink" href="#how-are-repositories-changing" title="Link to this heading">#</a></h3>
+<p>As we add enterprise-only functionality, we will update the license on affected Mattermost-authored plugin repositories. The intent is to work alongside the existing, open source functionality in our plugins while reserving certain enterprise functionality to customers who pay us for enterprise licenses.</p>
+</section>
+<section id="to-which-repositories-does-this-apply">
+<h3>To which repositories does this apply?<a class="headerlink" href="#to-which-repositories-does-this-apply" title="Link to this heading">#</a></h3>
+<p>We plan to apply this license to the enterprise directories of our <a class="reference external" href="https://github.com/mattermost/mattermost-plugin-jira">Jira</a>, <a class="reference external" href="https://github.com/mattermost/mattermost-plugin-mscalendar">Microsoft Calendar</a>, and <a class="reference external" href="https://github.com/mattermost/mattermost-plugin-msteams-meetings">Microsoft Teams Meetings</a> plugins. We also intend to release <a class="reference external" href="/guides/repeatable-processes.html">Playbooks</a> and <a class="reference external" href="https://github.com/mattermost/mattermost-plugin-channel-export">Channel Export</a> plugins under the Mattermost Source Available License. New, Mattermost-authored plugins will generally be released under the Mattermost Source Available License. When we update the licenses, we will release a new version and note the change in the <code class="docutils literal notranslate"><span class="pre">README.md</span></code> file of the GitHub repository and any release notes.</p>
+<p>We expect to keep plugins without an enterprise component under our open source license. No licensing changes are planned to non-plugin repositories, such as <a class="reference external" href="https://github.com/mattermost/mattermost">mattermost</a> or <a class="reference external" href="https://github.com/mattermost/mattermost/tree/master/webapp">mattermost webapp</a>.</p>
+</section>
+<section id="will-the-repositories-be-public">
+<h3>Will the repositories be public?<a class="headerlink" href="#will-the-repositories-be-public" title="Link to this heading">#</a></h3>
+<p>Yes, existing repositories will stay public. We are now also able to make public several enterprise-only plugins under the Mattermost Source Available License previously developed in private.</p>
+</section>
+<section id="can-i-still-contribute">
+<h3>Can I still contribute?<a class="headerlink" href="#can-i-still-contribute" title="Link to this heading">#</a></h3>
+<p>Yes, we continue to welcome all contributions. Mattermost may select some contributions as enterprise features and license them under the Mattermost Source Available License. We will aim to communicate such decisions as early as possible in the contribution process.</p>
+<p>As with all Mattermost repositories, you will still need to sign the <a class="reference external" href="https://mattermost.com/contribute/">Mattermost CLA</a>. We will not accept contributions without signing the Mattermost CLA.</p>
+</section>
+<section id="do-i-need-to-re-sign-the-mattermost-cla">
+<h3>Do I need to re-sign the <a class="reference external" href="https://mattermost.com/contribute/">Mattermost CLA</a>?<a class="headerlink" href="#do-i-need-to-re-sign-the-mattermost-cla" title="Link to this heading">#</a></h3>
+<p>No, if you have already signed the <a class="reference external" href="https://mattermost.com/contribute/">Mattermost CLA</a>, you do not need to sign it again.</p>
+</section>
+<section id="can-i-compile-your-plugins-by-myself">
+<h3>Can I compile your plugins by myself?<a class="headerlink" href="#can-i-compile-your-plugins-by-myself" title="Link to this heading">#</a></h3>
+<p>Yes. If you have a Mattermost Enterprise Edition license, you are free to compile and use a plugin under the Mattermost Source Available License. Furthermore, if you are developing against or testing with such a plugin, you are free to compile and test a plugin even without a Mattermost Enterprise Edition license. Without an Enterprise Edition license, source available plugins may have reduced functionality or refuse to start altogether. Request a <a class="reference external" href="https://mattermost.com/trial/">trial license</a> if your testing requires access to enterprise functionality.</p>
+<p>Several of our customers value complete access to our source code and compile our plugins from source before deploying to their production servers. By adopting the Mattermost Source Available License, we can develop enterprise-only features in public without impacting this workflow.</p>
+</section>
+<section id="will-you-distribute-open-source-plugin-binaries-without-any-licensing-restrictions">
+<h3>Will you distribute open source plugin binaries without any licensing restrictions?<a class="headerlink" href="#will-you-distribute-open-source-plugin-binaries-without-any-licensing-restrictions" title="Link to this heading">#</a></h3>
+<p>At this time, we have no plans to distribute more than one version of each of our plugins. Without a Mattermost Enterprise Edition License, plugins may have reduced functionality or refuse to start altogether.</p>
+</section>
+<section id="can-i-continue-to-use-the-existing-open-source-repositories-without-restriction">
+<h3>Can I continue to use the existing open source repositories without restriction?<a class="headerlink" href="#can-i-continue-to-use-the-existing-open-source-repositories-without-restriction" title="Link to this heading">#</a></h3>
+<p>Yes, the Mattermost Source Available License will only apply from the date it is added and to the versions in which it is included.</p>
+</section>
+<section id="do-i-need-to-use-the-mattermost-source-available-license-for-plugins-i-create">
+<h3>Do I need to use the Mattermost Source Available License for plugins I create?<a class="headerlink" href="#do-i-need-to-use-the-mattermost-source-available-license-for-plugins-i-create" title="Link to this heading">#</a></h3>
+<p>You are free to license your own code as you see fit. We will not apply the Mattermost Source Available License either to the <a class="reference external" href="https://github.com/mattermost/mattermost-plugin-starter-template">starter-template</a> or <a class="reference external" href="https://github.com/mattermost/mattermost-plugin-demo">demo</a> plugins, leaving them under a permissive open source license to give you the freedom to develop your own plugins.</p>
+</section>
+<section id="can-i-publish-my-own-plugin-and-rely-on-enterprise-specific-functionality">
+<h3>Can I publish my own plugin and rely on enterprise specific functionality?<a class="headerlink" href="#can-i-publish-my-own-plugin-and-rely-on-enterprise-specific-functionality" title="Link to this heading">#</a></h3>
+<p>As before, you are free to license your own code as you see fit. Note that some server functionality is only enabled with a Mattermost Enterprise license regardless of how you license your plugin.</p>
+</section>
+<section id="cant-someone-compile-out-any-license-restrictions">
+<h3>Can’t someone compile out any license restrictions?<a class="headerlink" href="#cant-someone-compile-out-any-license-restrictions" title="Link to this heading">#</a></h3>
+<p>We trust our community to honor the Mattermost Source Available License and work alongside us to develop features across our free and paid offerings. Our Support team does not provide support to unlicensed, enterprise-only functionality.</p>
+</section>
+<section id="if-i-make-my-own-plugin-using-your-source-available-code-can-i-remove-the-license-restriction">
+<h3>If I make my own plugin using your source available code, can I remove the license restriction?<a class="headerlink" href="#if-i-make-my-own-plugin-using-your-source-available-code-can-i-remove-the-license-restriction" title="Link to this heading">#</a></h3>
+<p>No, the Mattermost Source Available License continues to apply to modifications.</p>
+</section>
+<section id="will-you-pursue-legal-action-if-this-license-is-violated">
+<h3>Will you pursue legal action if this license is violated?<a class="headerlink" href="#will-you-pursue-legal-action-if-this-license-is-violated" title="Link to this heading">#</a></h3>
+<p>Yes, if necessary. But we would always rather collaborate, so if you need to negotiate a different license, please ask us.</p>
+</section>
+<section id="is-this-a-legal-document">
+<h3>Is this a legal document?<a class="headerlink" href="#is-this-a-legal-document" title="Link to this heading">#</a></h3>
+<p>No. This FAQ is informational only. The Mattermost Source Available License stands on its own, and this FAQ does not affect its meaning.</p>
+</section>
+<section id="what-is-the-full-text-of-the-mattermost-source-available-license">
+<h3>What is the full text of the Mattermost Source Available License?<a class="headerlink" href="#what-is-the-full-text-of-the-mattermost-source-available-license" title="Link to this heading">#</a></h3>
+<p>“The Mattermost Source Available License (the “Source Available License”)
+(c) Mattermost, Inc. 2015-present.</p>
+<p>With regard to the Mattermost Software:</p>
+<p>This software and associated documentation files (the “Software”) may only be
+used in production, if you (and any entity that you represent) have agreed to,
+and are in compliance with all of the following: (a) the Mattermost Terms of Use,
+available at <a class="reference external" href="https://mattermost.com/terms-of-use/">https://mattermost.com/terms-of-use/</a> (the “TOU”), (b) and the Mattermost
+Software License Agreement,  available at <a class="reference external" href="https://mattermost.com/enterprise-edition-terms/">https://mattermost.com/enterprise-edition-terms/</a>
+(the “SLA”) or other licensing agreement governing your use of the Software, as agreed
+by you and Mattermost, and otherwise have a valid Mattermost Enterprise for the correct
+number of Registered Authorized Users the Software. Subject to the foregoing, you are free
+to modify this Software and publish patches to the Software. You agree that
+Mattermost and/or its licensors (as applicable) retain all right, title and
+interest in and to all such modifications and/or patches, and all such
+modifications and/or patches may only be used, copied, modified, displayed,
+distributed, or otherwise exploited with a valid license or Subscription for the correct number of
+Registered Authorized Users of the Software.  Notwithstanding
+the foregoing, you may copy and modify the Software for development and testing
+purposes, without requiring a valid license or Subscription.  You agree that Mattermost and/or
+its licensors (as applicable) retain all right, title and interest in and to
+all such modifications.  You are not granted any other rights beyond what is
+expressly stated herein.  Subject to the foregoing, it is forbidden to copy,
+merge, publish, distribute, sublicense, and/or sell the Software.</p>
+<p>The full text of this Source Available License shall be included in all copies or substantial
+portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</p>
+<p>For all third party components incorporated into the Mattermost Software, those
+components are licensed under the original license provided by the owner of the
+applicable component.”</p>
+</section>
+</section>
+<section id="open-source-derivative-work-of-mattermost">
+<h2><a class="toc-backref" href="#on-this-page" role="doc-backlink">Open source derivative work of Mattermost</a><a class="headerlink" href="#open-source-derivative-work-of-mattermost" title="Link to this heading">#</a></h2>
+</section>
+<section id="how-do-i-fork-mattermost">
+<h2><a class="toc-backref" href="#on-this-page" role="doc-backlink">How do I fork Mattermost?</a><a class="headerlink" href="#how-do-i-fork-mattermost" title="Link to this heading">#</a></h2>
+<p>If you wish to create a forked version of the Mattermost source code, you must comply with the applicable licenses under which the source code is made available. Historically, this was made clear via this link: <a class="reference external" href="https://docs.mattermost.com/about/faq-business.html#copyright-and-licensing-of-mattermost-server-open-source-code">https://docs.mattermost.com/about/faq-business.html#copyright-and-licensing-of-mattermost-server-open-source-code</a>.</p>
+<p>For example, the Mattermost server source code is and always has been made available under the AGPLv2 license. Therefore, all third-party open source forks of the Mattermost server source code must comply with the AGPLv2 license in both source code and compiled versions. If you encounter a third-party fork of the publicly available source code of Mattermost server that claims to be licensed under an alternate license, it is incorrect.</p>
+<p>For clarity, this license information regarding forking the source specifically refers to the use (and compilation) of the Mattermost source code by third parties. Third parties are obligated to comply with the open source licenses referenced above in connection with their derivative works. Compiled versions and derivative works of Mattermost prepared by third parties may not be made available under any license other than those under which the applicable source code is made available.</p>
+<p>In contrast, Mattermost, as the copyright holder to the collection of the Mattermost source code, has exercised its exclusive right to make compiled versions of the Mattermost source code available under various other licenses (such as the MIT license and the Mattermost Commercial Enterprise License, as more specifically made clear in the table here: <a class="reference external" href="https://docs.mattermost.com/about/faq-enterprise.html#what-are-mattermost-s-policies-around-licensing-terms-of-use-and-privacy">https://docs.mattermost.com/about/faq-enterprise.html#what-are-mattermost-s-policies-around-licensing-terms-of-use-and-privacy</a>).</p>
+<section id="how-can-i-create-an-open-source-derivative-work-of-mattermost">
+<h3>How can I create an open source derivative work of Mattermost?<a class="headerlink" href="#how-can-i-create-an-open-source-derivative-work-of-mattermost" title="Link to this heading">#</a></h3>
+<p>If you’re looking to customize the look and feel of Mattermost, see <a class="reference external" href="https://github.com/mattermost/docs/issues/1006">documentation on customization</a>. For advanced customization, the system’s user experience is available in different repositories for web, mobile apps, and desktop apps and custom experiences can be developed and integrated with either Mattermost Team Edition or Mattermost Enterprise Edition via the system APIs and drivers.</p>
+<p>If, instead of using Mattermost Team Edition or Mattermost Enterprise Edition, you choose to compile your own version of the system using the open source code from <code class="docutils literal notranslate"><span class="pre">/mattermost-server</span></code>, there are a number of factors to consider:</p>
+<section id="security">
+<h4>Security<a class="headerlink" href="#security" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>If you run a fork of the Mattermost server, we highly recommend you only deploy the system securely behind a firewall and to pay close attention to <a class="reference external" href="https://mattermost.com/security-updates/">Mattermost security updates</a>. Mattermost Team Edition and Mattermost Enterprise Edition release security update patches when reports of new attacks are received and verified. Mattermost waits until 14 days after a security patch is released before publicly detailing its nature so that users and customers can upgrade before the security vulnerability is widely known. A malicious user can potentially make use of Mattermost security disclosures to exploit a fork of Mattermost if the security upgrade is not promptly incorporated into the forked version.</p></li>
+</ul>
+</section>
+<section id="rebranding">
+<h4>Rebranding<a class="headerlink" href="#rebranding" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>When you create a derivative version of Mattermost and share it with others as a product, you need to replace the Mattermost name and logo from the system, among other requirements, per the <a class="reference external" href="https://mattermost.com/trademark-standards-of-use/">Mattermost trademark policy</a>.</p></li>
+<li><p>You can rebrand your system using convenience tools for <a class="reference external" href="/configure/configuration-settings.html#customization">custom branding</a>.</p></li>
+<li><p>For advanced whitelabelling, and to whitelabel in Team Edition under MIT license without Enterprise Edition branding tools, you can manually update files on the Mattermost server <a class="reference external" href="https://github.com/mattermost/docs/issues/1006">per product documentation.</a> This can also be done without forking.</p></li>
+</ul>
+</section>
+<section id="copyright-and-licensing-of-mattermost-server-open-source-code">
+<h4>Copyright and Licensing of <code class="docutils literal notranslate"><span class="pre">/mattermost-server</span></code> open source code<a class="headerlink" href="#copyright-and-licensing-of-mattermost-server-open-source-code" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Compiling and distributing your own version of the open source Mattermost <code class="docutils literal notranslate"><span class="pre">/mattermost-server</span></code> repo requires a) compliance with licenses in the repo, including <a class="reference external" href="https://github.com/mattermost/mattermost/blob/master/NOTICE.txt">NOTICE.txt</a>, and b) the compiled version of the <code class="docutils literal notranslate"><span class="pre">/mattermost-server</span></code> source code should have the same open source license as the source code, <a class="reference external" href="about/faq-license.html/">per our licensing policy</a>.</p></li>
+</ul>
+</section>
+<section id="other-considerations">
+<h4>Other considerations<a class="headerlink" href="#other-considerations" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Mattermost has a default <a class="reference external" href="/configure/configuration-settings.html#terms-of-use-link">Terms of Use</a> agreement for the Terms of Use link at the bottom of login screen that should be incorporated into any additional Terms of Use you may add.</p></li>
+<li><p>The Mattermost copyright notices on the user interface should remain.</p></li>
+<li><p>There may be additional legal and regulatory issues to consider and we recommend you employ legal counsel to fully understand what’s involved in creating and selling a derivative work.</p></li>
+</ul>
+</section>
+</section>
+<section id="will-mattermost-complete-questionnaires-requiring-confidential-data-without-an-nda">
+<h3>Will Mattermost complete questionnaires requiring confidential data without an NDA?<a class="headerlink" href="#will-mattermost-complete-questionnaires-requiring-confidential-data-without-an-nda" title="Link to this heading">#</a></h3>
+<p>No, Mattermost will not complete questionnaires requiring confidential data without a non-disclosure agreement. You can find <a class="reference external" href="https://docs.google.com/document/d/10Qc2kxxZGYNzp9b19oEhItRM01OPyrWRISJ2rbm1gvc/edit">Mattermost’s standard mutual non-disclosure agreement online</a>.</p>
+</section>
+<section id="why-does-mattermost-have-a-discount-for-certain-kinds-of-non-profits-but-not-for-others">
+<h3>Why does Mattermost have a discount for certain kinds of non-profits but not for others?<a class="headerlink" href="#why-does-mattermost-have-a-discount-for-certain-kinds-of-non-profits-but-not-for-others" title="Link to this heading">#</a></h3>
+<p>While we welcome anyone to use the open source version of Mattermost Team Edition free of charge, Mattermost, Inc., like any software company, has specific discounting programs for its commercial Mattermost Enterprise Edition based on business objectives. Objectives of the discounting programs include the suitability of potential case studies, references, word-of-mouth promotion and public promotion of solutions, among many other factors.</p>
+<p>See our <a class="reference external" href="/about/license-and-subscription.html#do-you-have-a-program-for-official-non-profits-open-source-projects-and-charities">License and Subscription</a> documentation for details.</p>
+</section>
+<section id="can-i-create-a-derivative-work-of-the-mattermost-mattermost-server-repository-that-is-not-open-source">
+<h3>Can I create a derivative work of the Mattermost /mattermost-server repository that is not open source?<a class="headerlink" href="#can-i-create-a-derivative-work-of-the-mattermost-mattermost-server-repository-that-is-not-open-source" title="Link to this heading">#</a></h3>
+<p>The Mattermost open source project was created by <a class="reference external" href="https://mattermost.com/about-us/">a group of developers who had their data paywalled by a proprietary online messaging service</a> and felt it was unfair.</p>
+<p>Because of this, the Mattermost /mattermost-server repository uses an open source license that requires derivative works to use the same open source license. This prevents the creation of derivative works that are not open source, and the situation where end users would not have access to the source code of the systems they use, and hence be at risk of “lock in”.</p>
+<p>For companies purchasing Enterprise Edition subscriptions for use by internal staff, who need to modify /mattermost-server, and who also have legal departments that won’t allow their staff to work under an open source software license, a special “Advanced Licensing Option” can be purchased to modify /mattermost-server for internal use under a commercial software license. This option is not available for companies that would offer a modified, non-open source version of Mattermost to external parties.</p>
+</section>
+<section id="will-mattermost-inc-offer-the-ability-to-resell-mattermost-software-without-a-reseller-agreement">
+<h3>Will Mattermost, Inc. offer the ability to resell Mattermost software without a reseller agreement?<a class="headerlink" href="#will-mattermost-inc-offer-the-ability-to-resell-mattermost-software-without-a-reseller-agreement" title="Link to this heading">#</a></h3>
+<p>No.</p>
+<p>If there is a case where the reseller agreement is under review and a customer urgently needs an order, Mattermost may, with internal approvals, accept a reseller purchase order with the following language:</p>
+<p>“Any statements, clauses, or conditions included on or referenced by buyer’s purchase order forms, which forms modify, add to, or are inconsistent with Mattermost’s standard terms and conditions are expressly rejected. Such orders will only be accepted by Mattermost upon the condition and with the express understanding that despite any such statements, clauses, or conditions contained in any order forms of the buyer are void and have no effect.</p>
+<p>EXCEPT AS OTHERWISE EXPRESSLY AGREED BY THE PARTIES IN WRITING, MATTERMOST MAKES NO WARRANTIES OR REPRESENTATIONS WITH RESPECT TO ANY MATTERMOST PRODUCTS, DOCUMENTATION OR SUPPORT, AND HEREBY DISCLAIMS ALL OTHER EXPRESS AND ALL IMPLIED WARRANTIES, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.”</p>
+</section>
+<section id="does-mattermost-answer-questions-about-open-source-licenses-authored-by-other-organizations">
+<h3>Does Mattermost answer questions about open source licenses authored by other organizations?<a class="headerlink" href="#does-mattermost-answer-questions-about-open-source-licenses-authored-by-other-organizations" title="Link to this heading">#</a></h3>
+<p>No, if you have questions about an open source license, please consult the original author, or FAQs they offer.</p>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="faq-integrations.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Integration questions</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="faq-enterprise.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Enterprise Edition questions</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2015-2023 Mattermost
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Open-source licensing questions</a><ul>
+<li><a class="reference internal" href="#terms-of-use-and-privacy-policy">Terms of use and privacy policy</a><ul>
+<li><a class="reference internal" href="#what-are-mattermost-s-policies-around-licensing-terms-of-use-and-privacy">What are Mattermost’s policies around licensing, terms of use, and privacy?</a></li>
+<li><a class="reference internal" href="#mattermost-software">Mattermost Software</a><ul>
+<li><a class="reference internal" href="#mattermost-service-agreements">Mattermost Service Agreements</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#mattermost-websites">Mattermost Websites</a></li>
+<li><a class="reference internal" href="#mattermost-partnership-agreements">Mattermost Partnership Agreements</a></li>
+<li><a class="reference internal" href="#mattermost-confidentiality-agreements">Mattermost Confidentiality Agreements</a></li>
+<li><a class="reference internal" href="#working-for-mattermost">Working for Mattermost</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#source-available-licensing">Source available licensing</a><ul>
+<li><a class="reference internal" href="#what-is-the-mattermost-source-available-license">What is the Mattermost Source Available License?</a></li>
+<li><a class="reference internal" href="#how-can-i-identify-code-licensed-as-source-available">How can I identify code licensed as source available?</a></li>
+<li><a class="reference internal" href="#why-are-you-changing-the-licensing-model">Why are you changing the licensing model?</a></li>
+<li><a class="reference internal" href="#how-are-repositories-changing">How are repositories changing?</a></li>
+<li><a class="reference internal" href="#to-which-repositories-does-this-apply">To which repositories does this apply?</a></li>
+<li><a class="reference internal" href="#will-the-repositories-be-public">Will the repositories be public?</a></li>
+<li><a class="reference internal" href="#can-i-still-contribute">Can I still contribute?</a></li>
+<li><a class="reference internal" href="#do-i-need-to-re-sign-the-mattermost-cla">Do I need to re-sign the Mattermost CLA?</a></li>
+<li><a class="reference internal" href="#can-i-compile-your-plugins-by-myself">Can I compile your plugins by myself?</a></li>
+<li><a class="reference internal" href="#will-you-distribute-open-source-plugin-binaries-without-any-licensing-restrictions">Will you distribute open source plugin binaries without any licensing restrictions?</a></li>
+<li><a class="reference internal" href="#can-i-continue-to-use-the-existing-open-source-repositories-without-restriction">Can I continue to use the existing open source repositories without restriction?</a></li>
+<li><a class="reference internal" href="#do-i-need-to-use-the-mattermost-source-available-license-for-plugins-i-create">Do I need to use the Mattermost Source Available License for plugins I create?</a></li>
+<li><a class="reference internal" href="#can-i-publish-my-own-plugin-and-rely-on-enterprise-specific-functionality">Can I publish my own plugin and rely on enterprise specific functionality?</a></li>
+<li><a class="reference internal" href="#cant-someone-compile-out-any-license-restrictions">Can’t someone compile out any license restrictions?</a></li>
+<li><a class="reference internal" href="#if-i-make-my-own-plugin-using-your-source-available-code-can-i-remove-the-license-restriction">If I make my own plugin using your source available code, can I remove the license restriction?</a></li>
+<li><a class="reference internal" href="#will-you-pursue-legal-action-if-this-license-is-violated">Will you pursue legal action if this license is violated?</a></li>
+<li><a class="reference internal" href="#is-this-a-legal-document">Is this a legal document?</a></li>
+<li><a class="reference internal" href="#what-is-the-full-text-of-the-mattermost-source-available-license">What is the full text of the Mattermost Source Available License?</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#open-source-derivative-work-of-mattermost">Open source derivative work of Mattermost</a></li>
+<li><a class="reference internal" href="#how-do-i-fork-mattermost">How do I fork Mattermost?</a><ul>
+<li><a class="reference internal" href="#how-can-i-create-an-open-source-derivative-work-of-mattermost">How can I create an open source derivative work of Mattermost?</a><ul>
+<li><a class="reference internal" href="#security">Security</a></li>
+<li><a class="reference internal" href="#rebranding">Rebranding</a></li>
+<li><a class="reference internal" href="#copyright-and-licensing-of-mattermost-server-open-source-code">Copyright and Licensing of <code class="docutils literal notranslate"><span class="pre">/mattermost-server</span></code> open source code</a></li>
+<li><a class="reference internal" href="#other-considerations">Other considerations</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#will-mattermost-complete-questionnaires-requiring-confidential-data-without-an-nda">Will Mattermost complete questionnaires requiring confidential data without an NDA?</a></li>
+<li><a class="reference internal" href="#why-does-mattermost-have-a-discount-for-certain-kinds-of-non-profits-but-not-for-others">Why does Mattermost have a discount for certain kinds of non-profits but not for others?</a></li>
+<li><a class="reference internal" href="#can-i-create-a-derivative-work-of-the-mattermost-mattermost-server-repository-that-is-not-open-source">Can I create a derivative work of the Mattermost /mattermost-server repository that is not open source?</a></li>
+<li><a class="reference internal" href="#will-mattermost-inc-offer-the-ability-to-resell-mattermost-software-without-a-reseller-agreement">Will Mattermost, Inc. offer the ability to resell Mattermost software without a reseller agreement?</a></li>
+<li><a class="reference internal" href="#does-mattermost-answer-questions-about-open-source-licenses-authored-by-other-organizations">Does Mattermost answer questions about open source licenses authored by other organizations?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    </body>
+</html>

@@ -1,0 +1,936 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Install the Mattermost iOS mobile app" href="install-ios-app.html" /><link rel="prev" title="Access your workspace" href="access-your-workspace.html" />
+        <link rel="canonical" href="https://www.ethereal.cc/redux/collaborate/install-desktop-app.html" />
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 7.2.6 and Furo 2023.09.10 -->
+        <title>Install the Mattermost desktop app - Mattermost documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/compass-icons.css?v=b28d7826" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  --font-stack: Noto Sans, Helvetica Neue, Arial, sans-serif;
+  --font-stack--monospace: Fira Mono, Courier New, Courier, monospace;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">Mattermost  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">Mattermost  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../overview/index.html">About Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of About Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../about/product.html">Mattermost overview</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../about/use-cases.html">Use cases</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Use cases</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../about/secure-command-and-control.html">Secure command and control</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../about/unified-collaboration.html">Unified communication</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Unified communication</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../about/mattermost-for-microsoft-teams.html">Mattermost for Microsoft Teams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../about/mattermost-google-calendar-integration.html">Mattermost Google Calendar integration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../about/devops-collaboration.html">DevOps collaboration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/incident-response-collaboration.html">Incident response collaboration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../about/security.html">Security overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/integrations.html">Integrations overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/subscription.html">Subscription overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/self-hosted-subscriptions.html">Self-hosted subscriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/cloud-subscriptions.html">Cloud subscriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/editions-and-offerings.html">Mattermost editions and plans</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/corporate-directory-integration.html">Corporate directory integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/certifications-and-compliance.html">Certifications and compliance overview</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../about/frequently-asked-questions.html">Frequently asked questions (FAQ)</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Frequently asked questions (FAQ)</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-general.html">General Mattermost questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-community.html">Community questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-notifications.html">Notifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-video-audio-screensharing.html">Video, audio, and screen sharing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-enterprise.html">Enterprise questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-license.html">License questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-integrations.html">Integrations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-use-cases.html">Use cases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-product.html">Product questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-high-trust.html">High trust questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-design-decisions.html">Design decisions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-business.html">Business questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-illicit-use.html">Illicit use</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../guides/deployment.html">Deploy Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Deploy Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../install/prepare-mattermost-database.html">Prepare your Mattermost database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-ubuntu.html">Deploy on Ubuntu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-docker.html">Deploy using Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-tar.html">Deploy with a tarball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/installing-mattermost-omnibus.html">Deploy using Omnibus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-kubernetes.html">Deploy using Kubernetes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-rhel-8.html">Deploy on Red Hat</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/prepare-for-your-mattermost-deployment.html">Prepare for your Mattermost deployment</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of Prepare for your Mattermost deployment</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install/software-hardware-requirements.html">  Software and hardware requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/mattermost-kubernetes-operator.html">  About the Mattermost Kubernetes Operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/admin-onboarding-tasks.html">  Administrator tasks</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../getting-started/architecture-overview.html">  Architecture overview</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of   Architecture overview</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/implementation-plan.html">  Plan your Mattermost implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/enterprise-roll-out-checklist.html">  Enterprise roll out checklist</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/welcome-email-to-end-users.html">  Welcome email template</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/deployment-guides.html">Deployment guides</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of Deployment guides</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../guides/server-deployment.html">Server deployment</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of Server deployment</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/deployment-overview.html"> Deployment overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/setting-up-socket-based-mattermost-database.html"> Set up a socket-based Mattermost database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/image-proxy.html"> Image proxy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/backup-disaster-recovery.html"> Backup and disaster recovery</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/encryption-options.html"> Encryption options</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../install/transport-encryption.html"> Configure transport encryption</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of  Configure transport encryption</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../install/proxy-to-mattermost-transport-encryption.html">Configuring proxy to Mattermost transport encryption</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../install/database-transport-encryption.html">Configuring database transport encryption</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../install/cluster-transport-encryption.html">Configuring cluster transport encryption</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/bleve-search.html"> Bleve search</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../guides/desktop-mobile-app-deployment.html">Desktop and mobile app deployment</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of Desktop and mobile app deployment</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/desktop-app.html">Desktop app deployment guide</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/desktop-msi-installer-and-group-policy-install.html">Desktop MSI installer and group policy installation guides (beta)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/desktop-custom-dictionaries.html">Desktop App custom dictionaries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/desktop-app-managed-resources.html">Desktop managed resources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/use-prebuilt-mobile-apps.html">Using Mattermost’s pre-built mobile apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-testing-notifications.html">Testing push notifications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-overview.html">Deploy Mattermost mobile apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-hpns.html">Mobile push notifications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/build-custom-mobile-apps.html">Building and distributing your own custom Mattermost mobile apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/deploy-mobile-apps-using-emm-provider.html">Deploying mobile apps using an EMM provider</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-appconfig.html">AppConfig for EMM solutions with Mattermost Mobile Apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/consider-mobile-vpn-options.html">Mobile VPN options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-faq.html">Mobile apps FAQ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/client-side-data.html">Client-side data storage FAQ</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/upgrade-mattermost.html">Upgrade Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle navigation of Upgrade Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/prepare-to-upgrade-mattermost.html"> Prepare to upgrade Mattermost</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/upgrading-mattermost-server.html"> Upgrade Mattermost Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/enterprise-install-upgrade.html"> Enterprise install and upgrade</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/installing-license-key.html"> Install a license key</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/release-definitions.html"> Release definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/important-upgrade-notes.html"> Important upgrade notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/release-lifecycle.html"> Release lifecycle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/extended-support-release.html"> Extended Support Release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/downgrading-mattermost-server.html"> Downgrade Mattermost Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/version-archive.html"> Version archive</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/scale-mattermost.html">Scale Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle navigation of Scale Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../scale/scaling-for-enterprise.html"> Scale for Enterprise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scale/high-availability-cluster.html"> High availability cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scale/elasticsearch.html"> Elasticsearch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scale/performance-monitoring.html"> Performance monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scale/performance-alerting.html"> Mattermost performance alerting guide</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/deployment-troubleshooting.html">Deployment troubleshooting</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle navigation of Deployment troubleshooting</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install/troubleshooting.html">  General troubleshooting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deploy/high-scale-troubleshoot.html">  Troubleshooting your high scale deployment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deploy/mobile-troubleshoot.html">  Troubleshooting mobile applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/trouble-postgres.html">  PostgreSQL installation troubleshooting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/trouble_mysql.html">  MySQL installation troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/changelogs.html">Changelogs</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle navigation of Changelogs</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install/self-managed-changelog.html">  Mattermost self-hosted</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/legacy-self-hosted-changelog.html">  Mattermost legacy self-hosted</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/cloud-changelog.html">  Mattermost Cloud</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deploy/mobile-app-changelog.html">  Mobile apps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/desktop-app-changelog.html">  Desktop apps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/deprecated-features.html">  Deprecated features</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/additional-server-installation-guides.html">Additional server installation guides</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle navigation of Additional server installation guides</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install/deploying-team-edition-on-bitnami.html">  Deploy Mattermost on Bitnami</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/setting-up-aws-elastic-beanstalk-docker.html">  AWS Elastic Beanstalk Docker setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/installing-team-edition-helm-chart.html">  Install Mattermost Team Edition in GitLab Helm Chart</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/open-source-components.html">  Open source components</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../guides/administration.html">Manage Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle navigation of Manage Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/get-started-with-administration.html">Get started</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle navigation of Get started</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../configure/optimize-your-workspace.html">Optimize your workspace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/configuration-settings.html">Mattermost configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/self-hosted-account-settings.html">Self-hosted edition and license</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/cloud-billing-account-settings.html">Cloud subscription, billing, and account</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/reporting-configuration-settings.html">Reporting configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/user-management-configuration-settings.html">User management configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/environment-configuration-settings.html">Environment configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/site-configuration-settings.html">Site configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/authentication-configuration-settings.html">Authentication configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/plugins-configuration-settings.html">Plugins configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/integrations-configuration-settings.html">Integrations configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/compliance-configuration-settings.html">Compliance configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/experimental-configuration-settings.html">Experimental configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/deprecated-configuration-settings.html">Deprecated configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/environment-variables.html">Environment variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/user-provisioning-workflows.html">Provisioning workflows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/multi-factor-authentication.html">Multi-factor authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/ad-ldap.html">Active Directory/LDAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-gitlab.html">GitLab SSO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-openidconnect.html">OpenID SSO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-google.html">Google SSO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-office.html">Office 365 SSO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/advanced-permissions.html">Advanced permissions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/system-admin-roles.html">System admin roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/team-channel-members.html">Manage team and channel members</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/custom-branding-tools.html">Custom branding tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/electronic-discovery.html">eDiscovery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/compliance-monitoring.html">Compliance monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/compliance-export.html">Compliance export</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/legal-hold.html">Legal hold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/data-retention-policy.html">Data retention tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/custom-terms-of-service.html">Custom terms of service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/notify-admin.html">Notify Admin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/ad-ldap-groups-synchronization.html">AD/LDAP groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/managing-team-channel-membership-using-ad-ldap-sync-groups.html">Use AD/LDAP synchronized groups to manage team or private channel membership</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/guest-accounts.html">Guest accounts</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../onboard/sso-saml.html">SAML Single Sign-On</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of SAML Single Sign-On</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-okta.html">Okta SAML Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-onelogin.html">OneLogin SAML Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-adfs.html">Microsoft ADFS SAML Configuration for Windows Server 2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-adfs-msws2016.html">Microsoft ADFS SAML Configuration for Windows Server 2016</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-keycloak.html">Keycloak SAML Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-saml-technical.html">SAML Single-Sign-On: technical documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/shared-channels.html">Shared channels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/statistics.html">Statistics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/in-product-notices.html">In-product notices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/user-satisfaction-surveys.html">User satisfaction surveys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/health-checks.html">Health check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/announcement-banner.html">Announcement banner</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/bulk-export-tool.html">Bulk export tool</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/cloud-workspace-management.html">Cloud workspace management</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><div class="visually-hidden">Toggle navigation of Cloud workspace management</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manage/cloud-billing.html">Mattermost Cloud billing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/workspace-usage.html">Workspace usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/cloud-data-export.html">Workspace migration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/cloud-data-residency.html">Cloud data residency</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/self-hosted-administration.html">Self-hosted administration</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" role="switch" type="checkbox"/><label for="toctree-checkbox-21"><div class="visually-hidden">Toggle navigation of Self-hosted administration</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manage/self-hosted-billing.html">Mattermost self-hosted billing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/configuation-in-a-database.html">Store configuration in the database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/bulk-loading-data.html">Bulk loading data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/smtp-email.html">SMTP email setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/email-templates.html">Email templates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/calls-deployment.html">Calls deployment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/configuring-cloudfront-to-host-mattermost-static-assets.html">Configure CloudFront to host static assets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/using-outbound-proxy.html">Use an outbound proxy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/migrating-to-mattermost.html">Migration guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deploy/postgres-migration.html">Migration from MySQL to PostgreSQL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/enabling-chinese-japanese-korean-search.html">Chinese, Japanese, and Korean search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/customizing-mattermost.html">Customize Mattermost</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/audit-log.html">Audit logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/embedded-json-audit-log-schema.html">JSON audit log schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/ssl-client-certificate.html">SSL client certificate setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/certificate-based-authentication.html">Certificate-based authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/telemetry.html">Manage telemetry</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/other-administration-resources.html">Other resources</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" role="switch" type="checkbox"/><label for="toctree-checkbox-22"><div class="visually-hidden">Toggle navigation of Other resources</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/convert-oauth20-service-providers-to-openidconnect.html">Convert OAuth 2.0 providers to OpenID Connect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/generating-support-packet.html">Generate a support packet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/mmctl-command-line-tool.html">mmctl command line tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/migration-announcement-email.html">Migration announcement email template</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/advanced-permissions-backend-infrastructure.html">Advanced permissions infrastructure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/command-line-tools.html">Command line tools</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../guides/use-mattermost.html">Use Mattermost</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" role="switch" type="checkbox"/><label for="toctree-checkbox-23"><div class="visually-hidden">Toggle navigation of Use Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current has-children"><a class="reference internal" href="../guides/collaborate.html">Connect and collaborate</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" role="switch" type="checkbox"/><label for="toctree-checkbox-24"><div class="visually-hidden">Toggle navigation of Connect and collaborate</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3 current has-children"><a class="reference internal" href="access-your-workspace.html">Access your Mattermost workspace</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" role="switch" type="checkbox"/><label for="toctree-checkbox-25"><div class="visually-hidden">Toggle navigation of Access your Mattermost workspace</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l4 current current-page"><a class="current reference internal" href="#">Install the desktop app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="install-ios-app.html">Install the iOS mobile app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="install-android-app.html">Install the Android mobile app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="log-out.html">Log out of Mattermost</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="organize-using-teams.html">Organize using teams</a><input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" role="switch" type="checkbox"/><label for="toctree-checkbox-26"><div class="visually-hidden">Toggle navigation of Organize using teams</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="team-settings.html">Team settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="team-keyboard-shortcuts.html">Team keyboard shortcuts</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="organize-using-custom-user-groups.html">Organize using custom user groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="invite-people.html">Invite people</a></li>
+<li class="toctree-l3"><a class="reference internal" href="learn-about-roles.html">Learn about Mattermost roles</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="collaborate-within-channels.html">Collaborate within channels</a><input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" role="switch" type="checkbox"/><label for="toctree-checkbox-27"><div class="visually-hidden">Toggle navigation of Collaborate within channels</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="channel-types.html">Channel types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="channel-naming-conventions.html">Channel naming conventions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="channel-header-purpose.html">Communicate a channel's focus and scope</a></li>
+<li class="toctree-l4"><a class="reference internal" href="create-channels.html">Create channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rename-channels.html">Rename channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="convert-public-channels.html">Convert public channels to private</a></li>
+<li class="toctree-l4"><a class="reference internal" href="join-leave-channels.html">Join and leave channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="make-calls.html">Make calls in Mattermost</a></li>
+<li class="toctree-l4"><a class="reference internal" href="manage-channel-members.html">Manage channel members</a></li>
+<li class="toctree-l4"><a class="reference internal" href="browse-channels.html">Browse channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="navigate-between-channels.html">Navigate between channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="favorite-channels.html">Mark channels as favorites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mark-channels-unread.html">Mark channels as unread</a></li>
+<li class="toctree-l4"><a class="reference internal" href="archive-unarchive-channels.html">Archive and unarchive channels</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="communicate-with-messages.html">Communicate with messages and threads</a><input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" role="switch" type="checkbox"/><label for="toctree-checkbox-28"><div class="visually-hidden">Toggle navigation of Communicate with messages and threads</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="send-messages.html">Send messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reply-to-messages.html">Reply to messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="react-with-emojis-gifs.html">React with emojis and GIFs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="organize-conversations.html">Organize conversations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mark-messages-unread.html">Mark messages as unread</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forward-messages.html">Forward messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="share-links.html">Share links to channels and messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="save-pin-messages.html">Save and pin messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="message-reminders.html">Set message reminders</a></li>
+<li class="toctree-l4"><a class="reference internal" href="search-for-messages.html">Search for messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="format-messages.html">Format messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="message-priority.html">Set message priority</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mention-people.html">Mention people</a></li>
+<li class="toctree-l4"><a class="reference internal" href="share-files-in-messages.html">Share files in messages</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="keyboard-shortcuts.html">Keyboard shortcuts</a><input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" role="switch" type="checkbox"/><label for="toctree-checkbox-29"><div class="visually-hidden">Toggle navigation of Keyboard shortcuts</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="keyboard-accessibility.html">Keyboard accessibility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="run-slash-commands.html">Run slash commands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="built-in-slash-commands.html">Built-in-slash-commands</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="extend-mattermost-with-integrations.html">Extend Mattermost with integrations</a><input class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" role="switch" type="checkbox"/><label for="toctree-checkbox-30"><div class="visually-hidden">Toggle navigation of Extend Mattermost with integrations</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="collaborate-using-mattermost-for-microsoft-teams.html">Collaborate using Mattermost for MS Teams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="use-mattermost-google-calendar-plugin.html">Use the Mattermost Google Calendar plugin</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/repeatable-processes.html">Build repeatable processes</a><input class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" role="switch" type="checkbox"/><label for="toctree-checkbox-31"><div class="visually-hidden">Toggle navigation of Build repeatable processes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/learn-about-playbooks.html">Learn about playbooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/work-with-playbooks.html">Work with playbooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/work-with-runs.html">Work with runs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/work-with-tasks.html">Work with tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/notifications-and-updates.html">Work with notifications and updates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/metrics-and-goals.html">Work with metrics and goals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/share-and-collaborate.html">Share and collaborate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/interact-with-playbooks.html">Interact with playbooks</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/preferences.html">Customize your preferences</a><input class="toctree-checkbox" id="toctree-checkbox-32" name="toctree-checkbox-32" role="switch" type="checkbox"/><label for="toctree-checkbox-32"><div class="visually-hidden">Toggle navigation of Customize your preferences</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-notifications.html">Manage your notifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/customize-your-theme.html">Customize your Mattermost theme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/customize-your-channel-sidebar.html">Customize your channel sidebar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-profile.html">Manage your profile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-security-preferences.html">Manage your security preferences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/set-your-status-availability.html">Set your status &amp; availability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-display-options.html">Manage your display options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-sidebar-options.html">Manage your sidebar options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-advanced-options.html">Manage advanced options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/customize-desktop-app-experience.html">Customize your desktop app experience</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/connect-multiple-workspaces.html">Connect to multiple workspaces</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://developers.mattermost.com/">Develop with Mattermost</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/get-help.html">Get help with Mattermost</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/community-chat.html">Join our community</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://handbook.mattermost.com/">Learn how we work</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/contribute-to-documentation.html">Contribute to this documentation</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="install-the-mattermost-desktop-app">
+<h1>Install the Mattermost desktop app<a class="headerlink" href="#install-the-mattermost-desktop-app" title="Link to this heading">#</a></h1>
+<div class="mm-badge"><p><img alt="plans-img" src="../_images/flag_icon.svg" /> Available on <a class="reference external" href="https://mattermost.com/pricing/">all plans</a></p>
+<p><img alt="deployment-img" src="../_images/deployment_icon.svg" /> <a class="reference external" href="https://customers.mattermost.com/cloud/signup/">Cloud</a> and <a class="reference external" href="https://mattermost.com/deploy/">self-hosted</a> deployments</p>
+</div><p>The Mattermost desktop app is available for Linux, Mac, and Windows operating systems. The Desktop App supports all the features of the web experience, plus the following features:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="/preferences/manage-desktop-app-server-connections.html">Connect to multiple Mattermost servers</a> from a single interface, and navigate between servers using keyboard shortcuts.</p></li>
+<li><p><a class="reference external" href="/preferences/customize-desktop-app-experience.html">Auto-start Mattermost</a> when a user logs into their machine.</p></li>
+<li><p><a class="reference external" href="/preferences/customize-desktop-app-experience.html">Add Mattermost</a> to the Windows Start menu, the Taskbar, the Dock, or the System Tray.</p></li>
+<li><p>(Windows/macOS) <a class="reference external" href="/preferences/customize-desktop-app-experience.html">Deep link to the desktop app</a> via the <code class="docutils literal notranslate"><span class="pre">mattermost://</span></code> protocol if the app is already installed.</p></li>
+<li><p>(Linux) <a class="reference external" href="/preferences/customize-desktop-app-experience.html">Set up Desktop Entry</a> for the application to more easily <a class="reference external" href="https://wiki.archlinux.org/index.php/Desktop_entries">integrate into a desktop environment</a>.</p></li>
+</ul>
+<p>See the <a class="reference external" href="/install/software-hardware-requirements.html#desktop-apps">desktop app software requirements</a> for details on supported operating systems and releases.</p>
+<section id="install-and-update-the-mattermost-desktop-app">
+<h2>Install and update the Mattermost desktop app<a class="headerlink" href="#install-and-update-the-mattermost-desktop-app" title="Link to this heading">#</a></h2>
+<p>You can <a class="reference external" href="https://mattermost.com/apps/">download the desktop app directly from our Downloads page</a>. You can also use the following installation guides for Linux, Mac, and Windows.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">Windows</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-0-0-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-2" name="0-2" role="tab" tabindex="-1">Ubuntu/Debian</button><button aria-controls="panel-0-0-3" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-3" name="0-3" role="tab" tabindex="-1">CentOS/RHEL</button><button aria-controls="panel-0-0-4" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-4" name="0-4" role="tab" tabindex="-1">Generic Linux</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><p>Windows 10+ is required. Automatic app updates are supported and enabled. When a new version of the desktop app is released, your app updates automatically.</p>
+<p><strong>Install the Mattermost Desktop App</strong></p>
+<ol class="arabic simple">
+<li><p>Download the latest version of the Mattermost desktop app: <a class="reference external" href="https://releases.mattermost.com/desktop/5.4.0/mattermost-desktop-setup-5.4.0-win.exe">32/64-bit version of Windows</a></p></li>
+<li><p>From the <strong>Downloads</strong> folder, right-click on the file <code class="docutils literal notranslate"><span class="pre">mattermost-desktop-setup-5.4.0-win.exe</span></code>, then select <strong>Open</strong> to start an installer for the app. Once finished, the Mattermost desktop app opens automatically.</p></li>
+</ol>
+<p><strong>MSI Installer and group policies (beta)</strong></p>
+<p>You can download the latest version of the Mattermost desktop app MSI installer (Beta):</p>
+<ul class="simple">
+<li><p>MSI for <a class="reference external" href="https://releases.mattermost.com/desktop/5.4.0/mattermost-desktop-5.4.0-x64.msi">64-bit version of Windows</a></p></li>
+<li><p>MSI for <a class="reference external" href="https://releases.mattermost.com/desktop/5.4.0/mattermost-desktop-5.4.0-x86.msi">32-bit version of Windows</a></p></li>
+</ul>
+<p>The following group policies are available:</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Group policy</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Mattermost release</p></th>
+<th class="head"><p>Setting</p></th>
+<th class="head"><p>State options</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Enable Server Management</p></td>
+<td><p>If disabled, management of servers in the
+app settings are disabled.</p></td>
+<td><p>v4.3 or later</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">EnableServerManagement</span></code></p></td>
+<td rowspan="3"><ul class="simple">
+<li><p>Not Configured</p></li>
+<li><p>Enabled</p></li>
+<li><p>Disabled</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Default Server List</p></td>
+<td><p>Define one or more default, permanent servers.</p></td>
+<td><p>v4.3 or later</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DefaultServerList</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Automatic Updates</p></td>
+<td><p>If disabled, automatic Desktop App updates are disabled.</p></td>
+<td><p>v5.1 or later</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">EnableAutoUpdates</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Disable automatic updates</strong></p>
+<p>Automatic desktop app updates can be disabled by configuring the supported group policy. See the <a class="reference external" href="/install/desktop-msi-installer-and-group-policy-install.html">MSI installer and group policy documentation</a> for instructions on installing the Mattermost Desktop App via an MSI installer, and configuring supported group policies. Changes to group policies require you to restart Mattermost for those changes to take effect.</p>
+</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><p>MacOS 11+ is required. You have two ways to install the desktop app, and how you install the app determines whether it updates automatically.</p>
+<p><strong>Install from the App Store</strong></p>
+<p>We recommend that you install the desktop app from the <a class="reference external" href="https://apps.apple.com/app/mattermost-desktop/id1614666244">App Store</a>. When you install through the App Store, your desktop app updates automatically when a new release is available.</p>
+<p><strong>Download the Desktop App from GitHub</strong></p>
+<p>You can <a class="reference external" href="https://github.com/mattermost/desktop/releases">download the desktop app directly from our GitHub release page</a>. However, when you install the desktop app this way, you can’t manually check for updates, and updates won’t be installed automatically.</p>
+<ol class="arabic simple">
+<li><p>Download the latest version of the Mattermost desktop app:</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://releases.mattermost.com/desktop/5.4.0/mattermost-desktop-5.4.0-mac-x64.dmg">Intel systems</a></p></li>
+<li><p><a class="reference external" href="https://releases.mattermost.com/desktop/5.4.0/mattermost-desktop-5.4.0-mac-m1.dmg">M1 systems</a> (Beta)</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>Double-click the download to open the disk image.</p></li>
+<li><p>Drag the Mattermost application to the <strong>Applications</strong> folder.</p></li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can review the current version of your desktop app by selecting <strong>Mattermost &gt; About Mattermost</strong> from the macOS menu bar.</p>
+</div>
+</div><div aria-labelledby="tab-0-0-2" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-2" name="0-2" role="tabpanel" tabindex="0"><p>Both a beta <code class="docutils literal notranslate"><span class="pre">.deb</span></code> package and an official APT repository is available for Debian 9 and for Ubuntu releases 18.04 LTS or later. Automatic app updates are supported and enabled. When a new version of the desktop app is released, your app updates automatically.</p>
+<ol class="arabic">
+<li><p>At the command line, set up the Mattermost repository on your system:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>curl -o- https://deb.packages.mattermost.com/setup-repo.sh | sudo bash
+</pre></div>
+</div>
+</li>
+<li><p>Install the Mattermost desktop app:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo apt install mattermost-desktop
+</pre></div>
+</div>
+</li>
+<li><p>Update the Mattermost desktop app:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo apt upgrade mattermost-desktop
+</pre></div>
+</div>
+</li>
+</ol>
+<p><strong>Snapcraft package</strong></p>
+<p>A snap is available for systems that have Snapcraft installed. Snapcraft is installed by default on Ubuntu 16.04 and later, but for most other Linux distributions you can install it manually. To install Snapcraft, see <a class="reference external" href="https://snapcraft.io/docs/core/install">Install snapd</a> on the Snapcraft website for details.</p>
+<ol class="arabic">
+<li><p>At the command line, execute the following command:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo snap install mattermost-desktop --beta
+</pre></div>
+</div>
+</li>
+<li><p>Run Mattermost as a desktop app.</p></li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can review the current version of your Desktop App by selecting the <strong>More</strong> <img alt="Use the More icon in the top left corner to access Mattermost desktop apps customization settings." src="../_images/dots-vertical_F01D9.svg" /> icon located in the top left corner of the desktop app, then selecting <strong>Help &gt; Version…</strong>.</p>
+</div>
+</div><div aria-labelledby="tab-0-0-3" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-3" name="0-3" role="tabpanel" tabindex="0"><p>Beta <code class="docutils literal notranslate"><span class="pre">.rpm</span></code> packages are available for CentOS and RHEL 7 and 8. Automatic app updates aren’t supported. You must update your app manually.</p>
+<p><strong>Install the Mattermost Desktop App</strong></p>
+<ol class="arabic simple">
+<li><p>Download the latest version of the Mattermost desktop app:</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>64-bit systems <a class="reference external" href="https://releases.mattermost.com/desktop/5.4.0/mattermost-desktop-5.4.0-linux-x86_64.rpm">mattermost-desktop-5.4.0-linux-x86_64.rpm</a></p></li>
+<li><p>32-bit systems <a class="reference external" href="https://releases.mattermost.com/desktop/5.4.0/mattermost-desktop-5.4.0-linux-i686.rpm">mattermost-desktop-5.4.0-linux-i686.rpm</a></p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>At the command line, execute one of the following commands based on the package you downloaded:</p></li>
+</ol>
+<blockquote>
+<div><ul>
+<li><p>64-bit systems:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo rpm -i mattermost-desktop-5.4.0-linux-x86_64.rpm
+</pre></div>
+</div>
+</li>
+<li><p>32-bit systems:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo rpm -i mattermost-desktop-5.4.0-linux-i686.rpm
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p>Run Mattermost as a desktop app.</p></li>
+</ol>
+<p><strong>Manually update the Desktop App</strong></p>
+<ul>
+<li><p>64-bit systems:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo rpm -u mattermost-desktop-5.4.0-linux-x86_64.rpm
+</pre></div>
+</div>
+</li>
+<li><p>32-bit systems:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo rpm -u mattermost-desktop-5.4.0-linux-i686.rpm
+</pre></div>
+</div>
+</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can review the current version of your desktop app by selecting the <strong>More</strong> <img alt="Use the More icon in the top left corner to access Mattermost desktop apps customization settings." src="../_images/dots-vertical_F01D9.svg" /> icon located in the top left corner of the desktop app, then selecting <strong>Help &gt; Version…</strong>.</p>
+</div>
+</div><div aria-labelledby="tab-0-0-4" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-4" name="0-4" role="tabpanel" tabindex="0"><p>A beta AppImage distribution of a compressed tarball is available. Automatic app updates are supported and enabled. When a new version of the desktop app is released, your app updates automatically.</p>
+<ol class="arabic simple">
+<li><p>Download the latest version of the Mattermost desktop app:</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>64-bit systems: <a class="reference external" href="https://releases.mattermost.com/desktop/5.4.0/mattermost-desktop-5.4.0-linux-x64.tar.gz">mattermost-desktop-5.4.0-linux-x64.tar.gz</a></p></li>
+<li><p>32-bit systems: <a class="reference external" href="https://releases.mattermost.com/desktop/5.4.0/mattermost-desktop-5.4.0-linux-ia32.tar.gz">mattermost-desktop-5.4.0-linux-ia32.tar.gz</a></p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>Extract the archive to a convenient location, then execute <code class="docutils literal notranslate"><span class="pre">mattermost-desktop</span></code> located inside the extracted directory.</p></li>
+<li><p>To create a Desktop launcher, open the file <code class="docutils literal notranslate"><span class="pre">README.md</span></code>, and follow the instructions in the <strong>Desktop launcher</strong> section.</p></li>
+</ol>
+</div></div>
+</section>
+<section id="log-in-using-the-desktop-app">
+<h2>Log in using the desktop app<a class="headerlink" href="#log-in-using-the-desktop-app" title="Link to this heading">#</a></h2>
+<p>The first time you log in to Mattermost using the desktop app, you’ll see a splash screen that introduces you to desktop app functionality.</p>
+<ol class="arabic simple">
+<li><p>Select <strong>Get Started</strong> to connect to a Mattermost server.</p></li>
+<li><p>Enter a <strong>Server URL</strong> and <strong>Server display name</strong>, then select <strong>Connect</strong>.</p></li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Can’t find your Mattermost server URL? Ask your company’s IT department or your Mattermost System Admin for your organization’s <strong>Mattermost Site URL</strong>. It’ll look something like <code class="docutils literal notranslate"><span class="pre">https://example.com/company/mattermost</span></code>, <code class="docutils literal notranslate"><span class="pre">mattermost.yourcompanydomain.com</span></code>, or <code class="docutils literal notranslate"><span class="pre">chat.yourcompanydomain.com</span></code>. These URLs could also end in <code class="docutils literal notranslate"><span class="pre">.net</span></code>.</p>
+</div>
+</section>
+<section id="additional-documentation-resources">
+<h2>Additional documentation resources<a class="headerlink" href="#additional-documentation-resources" title="Link to this heading">#</a></h2>
+<p>The following additional documentation resources are also available for the Mattermost desktop app:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="/install/desktop-app-changelog.html">Desktop App changelog</a></p></li>
+<li><p><a class="reference external" href="/preferences/customize-desktop-app-experience.html">Configure your Desktop App experience</a></p></li>
+<li><p><a class="reference external" href="https://github.com/mattermost/desktop">Source code</a></p></li>
+<li><p><a class="reference external" href="https://developers.mattermost.com/contribute/desktop">Contributor’s guide</a></p></li>
+</ul>
+</section>
+<section id="troubleshooting-your-desktop-app-installation">
+<h2>Troubleshooting your Desktop App installation<a class="headerlink" href="#troubleshooting-your-desktop-app-installation" title="Link to this heading">#</a></h2>
+<section id="where-is-configuation-stored-locally">
+<h3>Where is configuation stored locally?<a class="headerlink" href="#where-is-configuation-stored-locally" title="Link to this heading">#</a></h3>
+<p>The location of the Mattermost desktop app configuration file depends on the platform where you’re running Mattermost (and, in the case of macOS, how you’ve chosen to install the app):</p>
+<ul class="simple">
+<li><p>Windows: <code class="docutils literal notranslate"><span class="pre">Users\&lt;username&gt;\AppData\Roaming\Mattermost</span></code></p></li>
+<li><p>macOS installer: <code class="docutils literal notranslate"><span class="pre">/Users/&lt;username&gt;/Library/Application</span> <span class="pre">Support/Mattermost</span></code></p></li>
+<li><p>macOS App Store: <code class="docutils literal notranslate"><span class="pre">/Users/&lt;username&gt;/Library/Containers/Mattermost/Data/Library/Application</span> <span class="pre">Support/Mattermost</span></code></p></li>
+<li><p>Linux: <code class="docutils literal notranslate"><span class="pre">~/.config/Mattermost</span></code></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Local configuration data is not automatically removed when uninstalling the desktop app. If you wish to remove all data, you must manually remove the files from the applicable location noted above.</p></li>
+<li><p>Prior to uninstalling, you can choose to log out of any active sessions. You can terminate active sessions from another Mattermost session in <strong>Profile &gt; Security &gt; View and Logout of Active Sessions</strong>, then select <strong>Log Out</strong>. Desktop app sessions are labeled as <strong>Native Desktop App</strong>.</p></li>
+</ul>
+</div>
+</section>
+<section id="how-do-i-access-logs">
+<h3>How do I access logs?<a class="headerlink" href="#how-do-i-access-logs" title="Link to this heading">#</a></h3>
+<p>From Mattermost desktop v5.3, you can access logs via <strong>Help &gt; Show logs</strong>, which opens the file manager window showing the location of the log file.</p>
+</section>
+<section id="how-do-i-download-app-diagnostics">
+<h3>How do I download app diagnostics?<a class="headerlink" href="#how-do-i-download-app-diagnostics" title="Link to this heading">#</a></h3>
+<p>From Mattermost desktop v5.3, you can download a diagnostics text file via <strong>Help &gt; Run diagnostics</strong>, which can be attached to a Support ticket.</p>
+</section>
+<section id="installation-has-failed-dialog">
+<h3>“Installation has failed” dialog<a class="headerlink" href="#installation-has-failed-dialog" title="Link to this heading">#</a></h3>
+<p>The app data might be corrupted. Remove all the files in <code class="docutils literal notranslate"><span class="pre">%LOCALAPPDATA%\mattermost</span></code>, then try reinstalling the app.</p>
+</section>
+<section id="the-application-mattermost-can-t-be-opened-dialog">
+<h3>“The application “Mattermost” can’t be opened” dialog<a class="headerlink" href="#the-application-mattermost-can-t-be-opened-dialog" title="Link to this heading">#</a></h3>
+<p>On macOS Catalina, this dialog can be triggered if the Mac Archive Utility is the default method for decompressing files. In this case using a third-party tool such as <a class="reference external" href="https://www.keka.io">Keka</a> or <a class="reference external" href="https://macpaw.com/the-unarchiver">Unarchiver</a> may resolve the problem.</p>
+</section>
+<section id="desktop-app-window-is-black-and-doesn-t-load-the-page">
+<h3>Desktop App window is black and doesn’t load the page<a class="headerlink" href="#desktop-app-window-is-black-and-doesn-t-load-the-page" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>First, make sure you have installed the latest desktop app version.</p></li>
+<li><p>Clear your cache and reload the app from <strong>View &gt; Clear Cache and Reload</strong> or press <kbd class="kbd docutils literal notranslate">Ctrl</kbd> <kbd class="kbd docutils literal notranslate">Shift</kbd> <kbd class="kbd docutils literal notranslate">R</kbd> on Windows or Linux, or <kbd class="kbd docutils literal notranslate">⌘</kbd> <kbd class="kbd docutils literal notranslate">⇧</kbd> <kbd class="kbd docutils literal notranslate">R</kbd> on Mac.</p></li>
+<li><p>Quit the app and restart it to see if the issue clears.</p></li>
+<li><p>Disable GPU hardware acceleration from <strong>File &gt; Settings</strong> on Windows and Linux or <strong>Mattermost &gt; Settings</strong> on macOS, and unselect <strong>Use GPU hardware acceleration</strong>.</p></li>
+<li><p>If you are using a special video driver, such as Optimus, try disabling it to see if the problem is resolved.</p></li>
+</ol>
+<p>If none of the above steps resolve the issue, please open a new ticket in the <a class="reference external" href="https://forum.mattermost.com/t/how-to-use-the-troubleshooting-forum/150">Mattermost Troubleshooting Forum</a>.</p>
+</section>
+<section id="desktop-app-is-not-visible-but-the-mattermost-icon-is-in-the-task-bar">
+<h3>Desktop App is not visible, but the Mattermost icon is in the Task Bar<a class="headerlink" href="#desktop-app-is-not-visible-but-the-mattermost-icon-is-in-the-task-bar" title="Link to this heading">#</a></h3>
+<p>This issue can occur on Windows in a multiple-monitor setup. When you disconnect the monitor that Mattermost is displayed on, Mattermost continues to display at screen coordinates that no longer exist.</p>
+<p>To resolve this issue, you can reset the desktop app screen location by deleting the screen location file. When the file is not present, the desktop app displays on the primary monitor by default.</p>
+<p>To reset the desktop app screen location:</p>
+<ol class="arabic simple">
+<li><p>If the desktop app is running, right-click the Mattermost icon in the task bar, then select <strong>Close Window</strong>.</p></li>
+<li><p>Open Windows File Explorer, and go to the <code class="docutils literal notranslate"><span class="pre">%APPDATA%\\Mattermost</span></code> folder.</p></li>
+<li><p>Delete the file <code class="docutils literal notranslate"><span class="pre">bounds-info.json</span></code>.</p></li>
+</ol>
+</section>
+<section id="desktop-app-constantly-refreshes-the-page">
+<h3>Desktop App constantly refreshes the page<a class="headerlink" href="#desktop-app-constantly-refreshes-the-page" title="Link to this heading">#</a></h3>
+<p>This issue can occur when <code class="docutils literal notranslate"><span class="pre">localStorage</span></code> has an unexpected state. To resolve the issue:</p>
+<ul class="simple">
+<li><p>Windows: Open Windows File Explorer, go to the <code class="docutils literal notranslate"><span class="pre">%APPDATA%\Mattermost</span></code> folder, then delete the <code class="docutils literal notranslate"><span class="pre">Local</span> <span class="pre">Storage</span></code> folder.</p></li>
+<li><p>Mac: Open Finder, go to the <code class="docutils literal notranslate"><span class="pre">~/Library/Application</span> <span class="pre">Support/Mattermost</span></code> folder, then delete the <code class="docutils literal notranslate"><span class="pre">Local</span> <span class="pre">Storage</span></code> folder.</p></li>
+<li><p>Linux: Open the File Manager, go to the <code class="docutils literal notranslate"><span class="pre">~/.config/Mattermost</span></code> folder, then delete the <code class="docutils literal notranslate"><span class="pre">Local</span> <span class="pre">Storage</span></code> folder. Linux file managers may hide folders starting with a period by default. You can delete them from the terminal using <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-rf</span> <span class="pre">~/.config/Mattermost</span></code>.</p></li>
+</ul>
+</section>
+<section id="desktop-app-constantly-asks-to-log-in-to-mattermost-server">
+<h3>Desktop App constantly asks to log in to Mattermost server<a class="headerlink" href="#desktop-app-constantly-asks-to-log-in-to-mattermost-server" title="Link to this heading">#</a></h3>
+<p>This issue can occur after a crash or unexpected shutdown of the desktop app that causes the app data to be corrupted. To resolve the issue:</p>
+<ul class="simple">
+<li><p>Windows: Open Windows File Explorer, go to the <code class="docutils literal notranslate"><span class="pre">%APPDATA%\\Mattermost</span></code> folder, then delete the <code class="docutils literal notranslate"><span class="pre">IndexedDB</span></code> folder and the <code class="docutils literal notranslate"><span class="pre">Cookies</span></code> and <code class="docutils literal notranslate"><span class="pre">Cookies-journal</span></code> files.</p></li>
+<li><p>Mac: Open Finder, go to the <code class="docutils literal notranslate"><span class="pre">~/Library/Application</span> <span class="pre">Support/Mattermost</span></code> folder, then delete the <code class="docutils literal notranslate"><span class="pre">IndexedDB</span></code> folder and the <code class="docutils literal notranslate"><span class="pre">Cookies</span></code> and <code class="docutils literal notranslate"><span class="pre">Cookies-journal</span></code> files.</p></li>
+<li><p>Linux: Open the file manager, go to the <code class="docutils literal notranslate"><span class="pre">~/.config/Mattermost</span></code> folder, then delete the <code class="docutils literal notranslate"><span class="pre">IndexedDB</span></code> folder and the <code class="docutils literal notranslate"><span class="pre">Cookies</span></code> and <code class="docutils literal notranslate"><span class="pre">Cookies-journal</span></code> files. Linux file managers may hide folders starting with a period by default. You can delete them from the terminal using <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-rf</span> <span class="pre">~/.config/Mattermost</span></code>.</p></li>
+</ul>
+</section>
+<section id="internal-error-browserwindow-unresponsive-event-has-been-emitted">
+<h3>“Internal error: BrowserWindow ‘unresponsive’ event has been emitted”<a class="headerlink" href="#internal-error-browserwindow-unresponsive-event-has-been-emitted" title="Link to this heading">#</a></h3>
+<p>Selecting <strong>Show Details</strong> on the dialog provides logs. Ways to resolve the issue:</p>
+<ol class="arabic simple">
+<li><p>Clear the cache via <strong>View &gt; Clear Cache and Reload</strong> or press <kbd class="kbd docutils literal notranslate">Ctrl</kbd> <kbd class="kbd docutils literal notranslate">Shift</kbd> <kbd class="kbd docutils literal notranslate">R</kbd> on Windows or Linux, or <kbd class="kbd docutils literal notranslate">⌘</kbd> <kbd class="kbd docutils literal notranslate">⇧</kbd> <kbd class="kbd docutils literal notranslate">R</kbd> on Mac.</p></li>
+<li><p>Go to App Settings via <strong>File &gt; Settings</strong> (or by pressing <kbd class="kbd docutils literal notranslate">Ctrl</kbd> <kbd class="kbd docutils literal notranslate">,</kbd> on Windows or Linux, or <kbd class="kbd docutils literal notranslate">⌘</kbd> <kbd class="kbd docutils literal notranslate">,</kbd> on Mac) and unselect hardware acceleration.</p></li>
+</ol>
+</section>
+<section id="desktop-app-not-responsive-within-citrix-virtual-apps-or-desktop-environment">
+<h3>Desktop app not responsive within Citrix Virtual Apps or Desktop Environment<a class="headerlink" href="#desktop-app-not-responsive-within-citrix-virtual-apps-or-desktop-environment" title="Link to this heading">#</a></h3>
+<p>Append <code class="docutils literal notranslate"><span class="pre">Mattermost.exe;</span></code> to the Registry Key <code class="docutils literal notranslate"><span class="pre">HKLM\SYSTEM\CurrentControlSet\Services\CtxUvi\UviProcessExcludes</span></code> and reboot the system.</p>
+<p>For further assistance, review the <a class="reference external" href="https://forum.mattermost.com/c/trouble-shoot">Troubleshooting forum</a> for previously reported errors, or <a class="reference external" href="https://mattermost.com/pl/default-ask-mattermost-community/">join the Mattermost user community for troubleshooting help</a>.</p>
+</section>
+</section>
+<section id="report-desktop-app-issues">
+<h2>Report Desktop App issues<a class="headerlink" href="#report-desktop-app-issues" title="Link to this heading">#</a></h2>
+<p>When reporting issues found in the Mattermost Desktop App, it’s helpful to include the contents of the Developer Tools Console along with <a class="reference external" href="https://support.mattermost.com/hc/en-us/articles/360060662492-Opening-a-Support-Ticket-for-Self-Managed-Deployments">the information on this page</a>.</p>
+<p>To access the Developer Tools Console:</p>
+<ol class="arabic simple">
+<li><p>In the menu bar, go to <strong>View &gt; Developer Tools for Current Tab</strong>.</p></li>
+<li><p>Select the <strong>Console</strong> tab.</p></li>
+<li><p>Right-click the log entry, then select <strong>Save As</strong>.</p></li>
+<li><p>Save the file, then send it along with a description of your issue.</p></li>
+<li><p>Close the console to disable the Developer Tools.</p></li>
+</ol>
+<p>You can open an additional set of developer tools for each server you have added to the desktop app. The tools can be opened by pasting this command in the Developer Tools Console you opened with the steps described above:</p>
+<p><code class="docutils literal notranslate"><span class="pre">document.getElementsByTagName(&quot;webview&quot;)[0].openDevTools();</span></code></p>
+<p>To submit an improvement or correction to this documentation, select <strong>Edit</strong> at the top of this page.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="install-ios-app.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Install the Mattermost iOS mobile app</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="access-your-workspace.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Access your workspace</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2015-2023 Mattermost
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Install the Mattermost desktop app</a><ul>
+<li><a class="reference internal" href="#install-and-update-the-mattermost-desktop-app">Install and update the Mattermost desktop app</a></li>
+<li><a class="reference internal" href="#log-in-using-the-desktop-app">Log in using the desktop app</a></li>
+<li><a class="reference internal" href="#additional-documentation-resources">Additional documentation resources</a></li>
+<li><a class="reference internal" href="#troubleshooting-your-desktop-app-installation">Troubleshooting your Desktop App installation</a><ul>
+<li><a class="reference internal" href="#where-is-configuation-stored-locally">Where is configuation stored locally?</a></li>
+<li><a class="reference internal" href="#how-do-i-access-logs">How do I access logs?</a></li>
+<li><a class="reference internal" href="#how-do-i-download-app-diagnostics">How do I download app diagnostics?</a></li>
+<li><a class="reference internal" href="#installation-has-failed-dialog">“Installation has failed” dialog</a></li>
+<li><a class="reference internal" href="#the-application-mattermost-can-t-be-opened-dialog">“The application “Mattermost” can’t be opened” dialog</a></li>
+<li><a class="reference internal" href="#desktop-app-window-is-black-and-doesn-t-load-the-page">Desktop App window is black and doesn’t load the page</a></li>
+<li><a class="reference internal" href="#desktop-app-is-not-visible-but-the-mattermost-icon-is-in-the-task-bar">Desktop App is not visible, but the Mattermost icon is in the Task Bar</a></li>
+<li><a class="reference internal" href="#desktop-app-constantly-refreshes-the-page">Desktop App constantly refreshes the page</a></li>
+<li><a class="reference internal" href="#desktop-app-constantly-asks-to-log-in-to-mattermost-server">Desktop App constantly asks to log in to Mattermost server</a></li>
+<li><a class="reference internal" href="#internal-error-browserwindow-unresponsive-event-has-been-emitted">“Internal error: BrowserWindow ‘unresponsive’ event has been emitted”</a></li>
+<li><a class="reference internal" href="#desktop-app-not-responsive-within-citrix-virtual-apps-or-desktop-environment">Desktop app not responsive within Citrix Virtual Apps or Desktop Environment</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#report-desktop-app-issues">Report Desktop App issues</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/tabs.js?v=3030b3cb"></script>
+    </body>
+</html>

@@ -1,0 +1,1039 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Chinese, Japanese and Korean search" href="../configure/enabling-chinese-japanese-korean-search.html" /><link rel="prev" title="Migration guide" href="../onboard/migrating-to-mattermost.html" />
+        <link rel="canonical" href="https://www.ethereal.cc/redux/deploy/postgres-migration.html" />
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 7.2.6 and Furo 2023.09.10 -->
+        <title>Migration guidelines from MySQL to PostgreSQL - Mattermost documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/compass-icons.css?v=b28d7826" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  --font-stack: Noto Sans, Helvetica Neue, Arial, sans-serif;
+  --font-stack--monospace: Fira Mono, Courier New, Courier, monospace;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">Mattermost  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">Mattermost  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../overview/index.html">About Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of About Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../about/product.html">Mattermost overview</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../about/use-cases.html">Use cases</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Use cases</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../about/secure-command-and-control.html">Secure command and control</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../about/unified-collaboration.html">Unified communication</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Unified communication</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../about/mattermost-for-microsoft-teams.html">Mattermost for Microsoft Teams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../about/mattermost-google-calendar-integration.html">Mattermost Google Calendar integration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../about/devops-collaboration.html">DevOps collaboration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/incident-response-collaboration.html">Incident response collaboration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../about/security.html">Security overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/integrations.html">Integrations overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/subscription.html">Subscription overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/self-hosted-subscriptions.html">Self-hosted subscriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/cloud-subscriptions.html">Cloud subscriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/editions-and-offerings.html">Mattermost editions and plans</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/corporate-directory-integration.html">Corporate directory integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/certifications-and-compliance.html">Certifications and compliance overview</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../about/frequently-asked-questions.html">Frequently asked questions (FAQ)</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Frequently asked questions (FAQ)</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-general.html">General Mattermost questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-community.html">Community questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-notifications.html">Notifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-video-audio-screensharing.html">Video, audio, and screen sharing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-enterprise.html">Enterprise questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-license.html">License questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-integrations.html">Integrations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-use-cases.html">Use cases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-product.html">Product questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-high-trust.html">High trust questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-design-decisions.html">Design decisions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-business.html">Business questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-illicit-use.html">Illicit use</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../guides/deployment.html">Deploy Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Deploy Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../install/prepare-mattermost-database.html">Prepare your Mattermost database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-ubuntu.html">Deploy on Ubuntu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-docker.html">Deploy using Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-tar.html">Deploy with a tarball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/installing-mattermost-omnibus.html">Deploy using Omnibus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-kubernetes.html">Deploy using Kubernetes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-rhel-8.html">Deploy on Red Hat</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/prepare-for-your-mattermost-deployment.html">Prepare for your Mattermost deployment</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of Prepare for your Mattermost deployment</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install/software-hardware-requirements.html">  Software and hardware requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/mattermost-kubernetes-operator.html">  About the Mattermost Kubernetes Operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/admin-onboarding-tasks.html">  Administrator tasks</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../getting-started/architecture-overview.html">  Architecture overview</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of   Architecture overview</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/implementation-plan.html">  Plan your Mattermost implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/enterprise-roll-out-checklist.html">  Enterprise roll out checklist</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/welcome-email-to-end-users.html">  Welcome email template</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/deployment-guides.html">Deployment guides</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of Deployment guides</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../guides/server-deployment.html">Server deployment</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of Server deployment</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="deployment-overview.html"> Deployment overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/setting-up-socket-based-mattermost-database.html"> Set up a socket-based Mattermost database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="image-proxy.html"> Image proxy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="backup-disaster-recovery.html"> Backup and disaster recovery</a></li>
+<li class="toctree-l4"><a class="reference internal" href="encryption-options.html"> Encryption options</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../install/transport-encryption.html"> Configure transport encryption</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of  Configure transport encryption</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../install/proxy-to-mattermost-transport-encryption.html">Configuring proxy to Mattermost transport encryption</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../install/database-transport-encryption.html">Configuring database transport encryption</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../install/cluster-transport-encryption.html">Configuring cluster transport encryption</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="bleve-search.html"> Bleve search</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../guides/desktop-mobile-app-deployment.html">Desktop and mobile app deployment</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of Desktop and mobile app deployment</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="desktop-app.html">Desktop app deployment guide</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/desktop-msi-installer-and-group-policy-install.html">Desktop MSI installer and group policy installation guides (beta)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/desktop-custom-dictionaries.html">Desktop App custom dictionaries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/desktop-app-managed-resources.html">Desktop managed resources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="use-prebuilt-mobile-apps.html">Using Mattermost’s pre-built mobile apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mobile-testing-notifications.html">Testing push notifications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mobile-overview.html">Deploy Mattermost mobile apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mobile-hpns.html">Mobile push notifications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="build-custom-mobile-apps.html">Building and distributing your own custom Mattermost mobile apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deploy-mobile-apps-using-emm-provider.html">Deploying mobile apps using an EMM provider</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mobile-appconfig.html">AppConfig for EMM solutions with Mattermost Mobile Apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="consider-mobile-vpn-options.html">Mobile VPN options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mobile-faq.html">Mobile apps FAQ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="client-side-data.html">Client-side data storage FAQ</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/upgrade-mattermost.html">Upgrade Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle navigation of Upgrade Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/prepare-to-upgrade-mattermost.html"> Prepare to upgrade Mattermost</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/upgrading-mattermost-server.html"> Upgrade Mattermost Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/enterprise-install-upgrade.html"> Enterprise install and upgrade</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/installing-license-key.html"> Install a license key</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/release-definitions.html"> Release definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/important-upgrade-notes.html"> Important upgrade notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/release-lifecycle.html"> Release lifecycle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/extended-support-release.html"> Extended Support Release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/downgrading-mattermost-server.html"> Downgrade Mattermost Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/version-archive.html"> Version archive</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/scale-mattermost.html">Scale Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle navigation of Scale Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../scale/scaling-for-enterprise.html"> Scale for Enterprise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scale/high-availability-cluster.html"> High availability cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scale/elasticsearch.html"> Elasticsearch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scale/performance-monitoring.html"> Performance monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scale/performance-alerting.html"> Mattermost performance alerting guide</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/deployment-troubleshooting.html">Deployment troubleshooting</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle navigation of Deployment troubleshooting</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install/troubleshooting.html">  General troubleshooting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="high-scale-troubleshoot.html">  Troubleshooting your high scale deployment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mobile-troubleshoot.html">  Troubleshooting mobile applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/trouble-postgres.html">  PostgreSQL installation troubleshooting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/trouble_mysql.html">  MySQL installation troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/changelogs.html">Changelogs</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle navigation of Changelogs</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install/self-managed-changelog.html">  Mattermost self-hosted</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/legacy-self-hosted-changelog.html">  Mattermost legacy self-hosted</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/cloud-changelog.html">  Mattermost Cloud</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mobile-app-changelog.html">  Mobile apps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/desktop-app-changelog.html">  Desktop apps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/deprecated-features.html">  Deprecated features</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/additional-server-installation-guides.html">Additional server installation guides</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle navigation of Additional server installation guides</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install/deploying-team-edition-on-bitnami.html">  Deploy Mattermost on Bitnami</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/setting-up-aws-elastic-beanstalk-docker.html">  AWS Elastic Beanstalk Docker setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/installing-team-edition-helm-chart.html">  Install Mattermost Team Edition in GitLab Helm Chart</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/open-source-components.html">  Open source components</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../guides/administration.html">Manage Mattermost</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle navigation of Manage Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/get-started-with-administration.html">Get started</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle navigation of Get started</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../configure/optimize-your-workspace.html">Optimize your workspace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/configuration-settings.html">Mattermost configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/self-hosted-account-settings.html">Self-hosted edition and license</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/cloud-billing-account-settings.html">Cloud subscription, billing, and account</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/reporting-configuration-settings.html">Reporting configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/user-management-configuration-settings.html">User management configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/environment-configuration-settings.html">Environment configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/site-configuration-settings.html">Site configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/authentication-configuration-settings.html">Authentication configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/plugins-configuration-settings.html">Plugins configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/integrations-configuration-settings.html">Integrations configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/compliance-configuration-settings.html">Compliance configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/experimental-configuration-settings.html">Experimental configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/deprecated-configuration-settings.html">Deprecated configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/environment-variables.html">Environment variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/user-provisioning-workflows.html">Provisioning workflows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/multi-factor-authentication.html">Multi-factor authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/ad-ldap.html">Active Directory/LDAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-gitlab.html">GitLab SSO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-openidconnect.html">OpenID SSO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-google.html">Google SSO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-office.html">Office 365 SSO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/advanced-permissions.html">Advanced permissions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/system-admin-roles.html">System admin roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/team-channel-members.html">Manage team and channel members</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/custom-branding-tools.html">Custom branding tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/electronic-discovery.html">eDiscovery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/compliance-monitoring.html">Compliance monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/compliance-export.html">Compliance export</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/legal-hold.html">Legal hold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/data-retention-policy.html">Data retention tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/custom-terms-of-service.html">Custom terms of service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/notify-admin.html">Notify Admin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/ad-ldap-groups-synchronization.html">AD/LDAP groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/managing-team-channel-membership-using-ad-ldap-sync-groups.html">Use AD/LDAP synchronized groups to manage team or private channel membership</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/guest-accounts.html">Guest accounts</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../onboard/sso-saml.html">SAML Single Sign-On</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of SAML Single Sign-On</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-okta.html">Okta SAML Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-onelogin.html">OneLogin SAML Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-adfs.html">Microsoft ADFS SAML Configuration for Windows Server 2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-adfs-msws2016.html">Microsoft ADFS SAML Configuration for Windows Server 2016</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-keycloak.html">Keycloak SAML Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-saml-technical.html">SAML Single-Sign-On: technical documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/shared-channels.html">Shared channels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/statistics.html">Statistics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/in-product-notices.html">In-product notices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/user-satisfaction-surveys.html">User satisfaction surveys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/health-checks.html">Health check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/announcement-banner.html">Announcement banner</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/bulk-export-tool.html">Bulk export tool</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/cloud-workspace-management.html">Cloud workspace management</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><div class="visually-hidden">Toggle navigation of Cloud workspace management</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manage/cloud-billing.html">Mattermost Cloud billing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/workspace-usage.html">Workspace usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/cloud-data-export.html">Workspace migration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/cloud-data-residency.html">Cloud data residency</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="../guides/self-hosted-administration.html">Self-hosted administration</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" role="switch" type="checkbox"/><label for="toctree-checkbox-21"><div class="visually-hidden">Toggle navigation of Self-hosted administration</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../manage/self-hosted-billing.html">Mattermost self-hosted billing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/configuation-in-a-database.html">Store configuration in the database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/bulk-loading-data.html">Bulk loading data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/smtp-email.html">SMTP email setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/email-templates.html">Email templates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/calls-deployment.html">Calls deployment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/configuring-cloudfront-to-host-mattermost-static-assets.html">Configure CloudFront to host static assets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/using-outbound-proxy.html">Use an outbound proxy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/migrating-to-mattermost.html">Migration guide</a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Migration from MySQL to PostgreSQL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/enabling-chinese-japanese-korean-search.html">Chinese, Japanese, and Korean search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configure/customizing-mattermost.html">Customize Mattermost</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/audit-log.html">Audit logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/embedded-json-audit-log-schema.html">JSON audit log schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/ssl-client-certificate.html">SSL client certificate setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/certificate-based-authentication.html">Certificate-based authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/telemetry.html">Manage telemetry</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/other-administration-resources.html">Other resources</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" role="switch" type="checkbox"/><label for="toctree-checkbox-22"><div class="visually-hidden">Toggle navigation of Other resources</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/convert-oauth20-service-providers-to-openidconnect.html">Convert OAuth 2.0 providers to OpenID Connect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/generating-support-packet.html">Generate a support packet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/mmctl-command-line-tool.html">mmctl command line tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/migration-announcement-email.html">Migration announcement email template</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/advanced-permissions-backend-infrastructure.html">Advanced permissions infrastructure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/command-line-tools.html">Command line tools</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../guides/use-mattermost.html">Use Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" role="switch" type="checkbox"/><label for="toctree-checkbox-23"><div class="visually-hidden">Toggle navigation of Use Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/collaborate.html">Connect and collaborate</a><input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" role="switch" type="checkbox"/><label for="toctree-checkbox-24"><div class="visually-hidden">Toggle navigation of Connect and collaborate</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/access-your-workspace.html">Access your Mattermost workspace</a><input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" role="switch" type="checkbox"/><label for="toctree-checkbox-25"><div class="visually-hidden">Toggle navigation of Access your Mattermost workspace</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/install-desktop-app.html">Install the desktop app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/install-ios-app.html">Install the iOS mobile app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/install-android-app.html">Install the Android mobile app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/log-out.html">Log out of Mattermost</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/organize-using-teams.html">Organize using teams</a><input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" role="switch" type="checkbox"/><label for="toctree-checkbox-26"><div class="visually-hidden">Toggle navigation of Organize using teams</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/team-settings.html">Team settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/team-keyboard-shortcuts.html">Team keyboard shortcuts</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../collaborate/organize-using-custom-user-groups.html">Organize using custom user groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../collaborate/invite-people.html">Invite people</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../collaborate/learn-about-roles.html">Learn about Mattermost roles</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/collaborate-within-channels.html">Collaborate within channels</a><input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" role="switch" type="checkbox"/><label for="toctree-checkbox-27"><div class="visually-hidden">Toggle navigation of Collaborate within channels</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/channel-types.html">Channel types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/channel-naming-conventions.html">Channel naming conventions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/channel-header-purpose.html">Communicate a channel's focus and scope</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/create-channels.html">Create channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/rename-channels.html">Rename channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/convert-public-channels.html">Convert public channels to private</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/join-leave-channels.html">Join and leave channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/make-calls.html">Make calls in Mattermost</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/manage-channel-members.html">Manage channel members</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/browse-channels.html">Browse channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/navigate-between-channels.html">Navigate between channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/favorite-channels.html">Mark channels as favorites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/mark-channels-unread.html">Mark channels as unread</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/archive-unarchive-channels.html">Archive and unarchive channels</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/communicate-with-messages.html">Communicate with messages and threads</a><input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" role="switch" type="checkbox"/><label for="toctree-checkbox-28"><div class="visually-hidden">Toggle navigation of Communicate with messages and threads</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/send-messages.html">Send messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/reply-to-messages.html">Reply to messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/react-with-emojis-gifs.html">React with emojis and GIFs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/organize-conversations.html">Organize conversations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/mark-messages-unread.html">Mark messages as unread</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/forward-messages.html">Forward messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/share-links.html">Share links to channels and messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/save-pin-messages.html">Save and pin messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/message-reminders.html">Set message reminders</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/search-for-messages.html">Search for messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/format-messages.html">Format messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/message-priority.html">Set message priority</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/mention-people.html">Mention people</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/share-files-in-messages.html">Share files in messages</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/keyboard-shortcuts.html">Keyboard shortcuts</a><input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" role="switch" type="checkbox"/><label for="toctree-checkbox-29"><div class="visually-hidden">Toggle navigation of Keyboard shortcuts</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/keyboard-accessibility.html">Keyboard accessibility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/run-slash-commands.html">Run slash commands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/built-in-slash-commands.html">Built-in-slash-commands</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/extend-mattermost-with-integrations.html">Extend Mattermost with integrations</a><input class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" role="switch" type="checkbox"/><label for="toctree-checkbox-30"><div class="visually-hidden">Toggle navigation of Extend Mattermost with integrations</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/collaborate-using-mattermost-for-microsoft-teams.html">Collaborate using Mattermost for MS Teams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/use-mattermost-google-calendar-plugin.html">Use the Mattermost Google Calendar plugin</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/repeatable-processes.html">Build repeatable processes</a><input class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" role="switch" type="checkbox"/><label for="toctree-checkbox-31"><div class="visually-hidden">Toggle navigation of Build repeatable processes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/learn-about-playbooks.html">Learn about playbooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/work-with-playbooks.html">Work with playbooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/work-with-runs.html">Work with runs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/work-with-tasks.html">Work with tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/notifications-and-updates.html">Work with notifications and updates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/metrics-and-goals.html">Work with metrics and goals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/share-and-collaborate.html">Share and collaborate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/interact-with-playbooks.html">Interact with playbooks</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/preferences.html">Customize your preferences</a><input class="toctree-checkbox" id="toctree-checkbox-32" name="toctree-checkbox-32" role="switch" type="checkbox"/><label for="toctree-checkbox-32"><div class="visually-hidden">Toggle navigation of Customize your preferences</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-notifications.html">Manage your notifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/customize-your-theme.html">Customize your Mattermost theme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/customize-your-channel-sidebar.html">Customize your channel sidebar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-profile.html">Manage your profile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-security-preferences.html">Manage your security preferences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/set-your-status-availability.html">Set your status &amp; availability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-display-options.html">Manage your display options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-sidebar-options.html">Manage your sidebar options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-advanced-options.html">Manage advanced options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/customize-desktop-app-experience.html">Customize your desktop app experience</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/connect-multiple-workspaces.html">Connect to multiple workspaces</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://developers.mattermost.com/">Develop with Mattermost</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/get-help.html">Get help with Mattermost</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/community-chat.html">Join our community</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://handbook.mattermost.com/">Learn how we work</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/contribute-to-documentation.html">Contribute to this documentation</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="migration-guidelines-from-mysql-to-postgresql">
+<h1>Migration guidelines from MySQL to PostgreSQL<a class="headerlink" href="#migration-guidelines-from-mysql-to-postgresql" title="Link to this heading">#</a></h1>
+<div class="mm-badge"><p><img alt="plans-img" src="../_images/flag_icon.svg" /> Available on <a class="reference external" href="https://mattermost.com/pricing/">all plans</a></p>
+<p><img alt="deployment-img" src="../_images/deployment_icon.svg" /> <a class="reference external" href="https://mattermost.com/deploy/">self-hosted</a> deployments</p>
+</div><p>From Mattermost v8.0, PostgreSQL is our database of choice for Mattermost to enhance the platform’s performance and capabilities. Recognizing the importance of supporting the community members who are interested in migrating from a MySQL database, we have taken proactive measures to provide guidance and best practices.</p>
+<p>To streamline the migration process and alleviate any potential challenges, we have prepared a comprehensive set of guidelines to facilitate a smooth transition. Additionally, we want to offer recommendations for various tools that have proven to be highly effective in simplifying your migration efforts.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These guidelines are in development and we are working to streamline the migration process. We plan to improve this guide by updating it as new information becomes available. Please use this guide as a starting point and always backup your database before starting a migration.</p>
+</div>
+<nav class="contents local" id="on-this-page">
+<p class="topic-title">On this page</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#required-tools" id="id1">Required tools</a></p></li>
+<li><p><a class="reference internal" href="#before-the-migration" id="id2">Before the migration</a></p></li>
+<li><p><a class="reference internal" href="#prepare-target-database" id="id3">Prepare target database</a></p></li>
+<li><p><a class="reference internal" href="#schema-diffs" id="id4">Schema diffs</a></p></li>
+<li><p><a class="reference internal" href="#migrate-the-data" id="id5">Migrate the data</a></p></li>
+<li><p><a class="reference internal" href="#compare-the-data" id="id6">Compare the data</a></p></li>
+<li><p><a class="reference internal" href="#plugin-migrations" id="id7">Plugin migrations</a></p></li>
+</ul>
+</nav>
+<section id="required-tools">
+<h2><a class="toc-backref" href="#on-this-page" role="doc-backlink">Required tools</a><a class="headerlink" href="#required-tools" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Install <code class="docutils literal notranslate"><span class="pre">pgLoader</span></code>. See the official <a class="reference external" href="https://pgloader.readthedocs.io/en/latest/install.html">installation
+guide</a>.</p></li>
+<li><p>Install morph CLI by running the following command:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">go</span> <span class="pre">install</span> <span class="pre">github.com/mattermost/morph/cmd/morph&#64;v1</span></code></p></li>
+</ul>
+</li>
+<li><p>Optinally install <code class="docutils literal notranslate"><span class="pre">dbcmp</span></code> to compare the data after a migration:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">go</span> <span class="pre">install</span> <span class="pre">github.com/mattermost/dbcmp/cmd/dbcmp&#64;latest</span></code></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="before-the-migration">
+<h2><a class="toc-backref" href="#on-this-page" role="doc-backlink">Before the migration</a><a class="headerlink" href="#before-the-migration" title="Link to this heading">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This guide requires a schema of v6.4 or later. So, if you have an earlier version and planning to migrate, please update your Mattermost Server to v6.4 at a minimum.</p>
+</div>
+<ul class="simple">
+<li><p>Back up your MySQL data.</p></li>
+<li><p>Confirm your Mattermost version. See the <strong>About</strong> modal for details.</p></li>
+<li><p>Determine the migration window needed. This process requires you to stop the Mattermost Server during the migration.</p></li>
+<li><p>See the <a class="reference external" href="#schema-diffs">schema-diffs</a> section to ensure data compatibility between schemas.</p></li>
+<li><p>Prepare your PostgreSQL environment by creating a database and user. See the <a class="reference external" href="/install/prepare-mattermost-database.html">database</a> documentation for details.</p></li>
+</ul>
+</section>
+<section id="prepare-target-database">
+<h2><a class="toc-backref" href="#on-this-page" role="doc-backlink">Prepare target database</a><a class="headerlink" href="#prepare-target-database" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Clone the <code class="docutils literal notranslate"><span class="pre">mattermost</span></code> repository for your specific version:
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">-b</span> <span class="pre">&lt;your</span> <span class="pre">current</span> <span class="pre">version</span> <span class="pre">(eg.</span> <span class="pre">release-7.8)&gt;</span> <span class="pre">git&#64;github.com:mattermost/mattermost.git</span> <span class="pre">--depth=1</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span></code> into <code class="docutils literal notranslate"><span class="pre">mattermost</span></code> project*.</p></li>
+<li><p>Create a PostgreSQL database using morph CLI with the following command:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>morph<span class="w"> </span>apply<span class="w"> </span>up<span class="w"> </span>--driver<span class="w"> </span>postgres<span class="w"> </span>--dsn<span class="w"> </span><span class="s2">&quot;postgres://user:pass@localhost:5432/&lt;target_db_mame&gt;?sslmode=disable&quot;</span><span class="w"> </span>--path<span class="w"> </span>./db/migrations/postgres<span class="w"> </span>--number<span class="w"> </span>-1
+</pre></div>
+</div>
+<p>* After <code class="docutils literal notranslate"><span class="pre">v8</span></code> due to project re-organization, the migrations directory has been changed to <code class="docutils literal notranslate"><span class="pre">./server/channels/db/migrations/postgres/</span></code> relative to project root. Therefore <code class="docutils literal notranslate"><span class="pre">cd</span></code> into <code class="docutils literal notranslate"><span class="pre">mattermost/server/channels</span></code>.</p>
+</section>
+<section id="schema-diffs">
+<h2><a class="toc-backref" href="#on-this-page" role="doc-backlink">Schema diffs</a><a class="headerlink" href="#schema-diffs" title="Link to this heading">#</a></h2>
+<p>Before the migration, due to differences between two schemas, some manual steps may be required for an error-free migration.</p>
+<section id="text-to-character-varying">
+<h3>Text to character varying<a class="headerlink" href="#text-to-character-varying" title="Link to this heading">#</a></h3>
+<p>Since the Mattermost MySQL schema uses the <code class="docutils literal notranslate"><span class="pre">text</span></code> column type in the various tables instead of <code class="docutils literal notranslate"><span class="pre">varchar</span></code> representation in the PostgreSQL schema, we encourage you to check if the sizes are consistent within the PostgreSQL schema limits.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Table</p></th>
+<th class="head"><p>Column</p></th>
+<th class="head"><p>Data type casting</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Audits</p></td>
+<td><p>Action</p></td>
+<td><p>text -&gt; varchar(512)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Audits</p></td>
+<td><p>ExtraInfo</p></td>
+<td><p>text -&gt; varchar(1024)</p></td>
+</tr>
+<tr class="row-even"><td><p>ClusterDiscovery</p></td>
+<td><p>HostName</p></td>
+<td><p>text -&gt; varchar(512)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Commands</p></td>
+<td><p>IconURL</p></td>
+<td><p>text -&gt; varchar(1024)</p></td>
+</tr>
+<tr class="row-even"><td><p>Commands</p></td>
+<td><p>AutoCompleteDesc</p></td>
+<td><p>text -&gt; varchar(1024)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Commands</p></td>
+<td><p>AutoCompleteHint</p></td>
+<td><p>text -&gt; varchar(1024)</p></td>
+</tr>
+<tr class="row-even"><td><p>Compliances</p></td>
+<td><p>Keywords</p></td>
+<td><p>text -&gt; varchar(512)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Compliances</p></td>
+<td><p>Emails</p></td>
+<td><p>text -&gt; varchar(1024)</p></td>
+</tr>
+<tr class="row-even"><td><p>FileInfo</p></td>
+<td><p>Path</p></td>
+<td><p>text -&gt; varchar(512)</p></td>
+</tr>
+<tr class="row-odd"><td><p>FileInfo</p></td>
+<td><p>ThumbnailPath</p></td>
+<td><p>text -&gt; varchar(512)</p></td>
+</tr>
+<tr class="row-even"><td><p>FileInfo</p></td>
+<td><p>PreviewPath</p></td>
+<td><p>text -&gt; varchar(512)</p></td>
+</tr>
+<tr class="row-odd"><td><p>FileInfo</p></td>
+<td><p>Name</p></td>
+<td><p>text -&gt; varchar(256)</p></td>
+</tr>
+<tr class="row-even"><td><p>FileInfo</p></td>
+<td><p>MimeType</p></td>
+<td><p>text -&gt; varchar(256)</p></td>
+</tr>
+<tr class="row-odd"><td><p>LinkMetadata</p></td>
+<td><p>URL</p></td>
+<td><p>text -&gt; varchar(2048)</p></td>
+</tr>
+<tr class="row-even"><td><p>RemoteClusters</p></td>
+<td><p>SiteURL</p></td>
+<td><p>text -&gt; varchar(512)</p></td>
+</tr>
+<tr class="row-odd"><td><p>RemoteClusters</p></td>
+<td><p>Topics</p></td>
+<td><p>text -&gt; varchar(512)</p></td>
+</tr>
+<tr class="row-even"><td><p>Sessions</p></td>
+<td><p>DeviceId</p></td>
+<td><p>text -&gt; varchar(512)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Systems</p></td>
+<td><p>Value</p></td>
+<td><p>text -&gt; varchar(1024)</p></td>
+</tr>
+<tr class="row-even"><td><p>UploadSessions</p></td>
+<td><p>FileName</p></td>
+<td><p>text -&gt; varchar(256)</p></td>
+</tr>
+<tr class="row-odd"><td><p>UploadSessions</p></td>
+<td><p>Path</p></td>
+<td><p>text -&gt; varchar(512)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>As you can see, there are several occurrences where the schema can differ and data size constraints within the PostgreSQL schema can result in errors. Several reports have been received from our community that <code class="docutils literal notranslate"><span class="pre">LinkMetadata</span></code> and <code class="docutils literal notranslate"><span class="pre">FileInfo</span></code> tables had some overflows, so we recommend checking these tables in particular. Please do check if your data in the MySQL schema exceeds these limitations. You can check if there are any required deletions. For example, to do so in the <code class="docutils literal notranslate"><span class="pre">Audits</span></code> table/<code class="docutils literal notranslate"><span class="pre">Action</span></code> column; run:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">mattermost</span><span class="p">.</span><span class="n">Audits</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">LENGTH</span><span class="p">(</span><span class="n">Action</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">512</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="full-text-indexes">
+<h3>Full-text indexes<a class="headerlink" href="#full-text-indexes" title="Link to this heading">#</a></h3>
+<p>It’s possible that some words in the <code class="docutils literal notranslate"><span class="pre">Posts</span></code> and <code class="docutils literal notranslate"><span class="pre">FileInfo</span></code> tables can exceed the <a class="reference external" href="https://www.postgresql.org/docs/11/textsearch-limitations.html">limits of the maximum token length</a> for full text search indexing. In these cases, we recommend dropping the <code class="docutils literal notranslate"><span class="pre">idx_posts_message_txt</span></code> and <code class="docutils literal notranslate"><span class="pre">idx_fileinfo_content_txt</span></code> indexes from the PostgreSQL schema, and creating these indexes after the migration by running the following queries:</p>
+<p>To drop indexes, run the following commands before the migration (These are included in the script, so you may not need to run these manually):</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">DROP</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">idx_posts_message_txt</span><span class="p">;</span>
+<span class="k">DROP</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">idx_fileinfo_content_txt</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="migrate-the-data">
+<h2><a class="toc-backref" href="#on-this-page" role="doc-backlink">Migrate the data</a><a class="headerlink" href="#migrate-the-data" title="Link to this heading">#</a></h2>
+<p>Once we set the schema to a desired state, we can start migrating the <strong>data</strong> by running <code class="docutils literal notranslate"><span class="pre">pgLoader</span></code> **</p>
+<p>** Use the following configuration for the baseline of the data migration:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>LOAD DATABASE
+     FROM      mysql://{{ .mysql_user }}:{{ .mysql_password }}@mysql:3306/{{ .source_schema }}
+     INTO      pgsql://{{ .pg_user }}:{{ .pg_password }}@postgres:5432/{{ .target_schema }}
+
+WITH data only,
+     workers = 8, concurrency = 1,
+     multiple readers per thread, rows per range = 50000,
+     create no tables, create no indexes,
+     preserve index names
+
+SET PostgreSQL PARAMETERS
+     maintenance_work_mem to &#39;128MB&#39;,
+     work_mem to &#39;12MB&#39;
+
+SET MySQL PARAMETERS
+      net_read_timeout  = &#39;120&#39;,
+      net_write_timeout = &#39;120&#39;
+
+CAST column Channels.Type to &quot;channel_type&quot; drop typemod,
+     column Teams.Type to &quot;team_type&quot; drop typemod,
+     column UploadSessions.Type to &quot;upload_session_type&quot; drop typemod,
+     column Drafts.Priority to text,
+     type int when (= precision 11) to integer drop typemod,
+     type bigint when (= precision 20) to bigint drop typemod,
+     type text to varchar drop typemod,
+     type tinyint when (&lt;= precision 4) to boolean using tinyint-to-boolean,
+     type json to jsonb drop typemod
+
+EXCLUDING TABLE NAMES MATCHING ~&lt;IR_&gt;, ~&lt;focalboard&gt;
+
+BEFORE LOAD DO
+     $$ ALTER SCHEMA public RENAME TO {{ .source_schema }}; $$,
+     $$ DROP INDEX IF EXISTS idx_posts_message_txt; $$,
+     $$ DROP INDEX IF EXISTS idx_fileinfo_content_txt; $$
+
+AFTER LOAD DO
+     $$ UPDATE {{ .source_schema }}.db_migrations set name=&#39;add_createat_to_teamembers&#39; where version=92; $$,
+     $$ CREATE INDEX IF NOT EXISTS idx_posts_message_txt ON {{ .source_schema }}.posts USING gin(to_tsvector(&#39;english&#39;, message)); $$,
+     $$ CREATE INDEX IF NOT EXISTS idx_fileinfo_content_txt ON {{ .source_schema }}.fileinfo USING gin(to_tsvector(&#39;english&#39;, content)); $$,
+     $$ ALTER SCHEMA {{ .source_schema }} RENAME TO public; $$,
+     $$ SELECT pg_catalog.set_config(&#39;search_path&#39;, &#39;&quot;$user&quot;, public&#39;, false); $$,
+     $$ ALTER USER {{ .pg_user }} SET SEARCH_PATH TO &#39;public&#39;; $$;
+</pre></div>
+</div>
+<p>Once you save this configuration file, e.g. <code class="docutils literal notranslate"><span class="pre">migration.load</span></code>, you can run the <code class="docutils literal notranslate"><span class="pre">pgLoader</span></code> with the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pgLoader<span class="w"> </span>migration.load<span class="w"> </span>&gt;<span class="w"> </span>migration.log
+</pre></div>
+</div>
+<p>Feel free to contribute to and/or report your findings through your migration to us.</p>
+</section>
+<section id="compare-the-data">
+<h2><a class="toc-backref" href="#on-this-page" role="doc-backlink">Compare the data</a><a class="headerlink" href="#compare-the-data" title="Link to this heading">#</a></h2>
+<p>We internally developed a tool to simplify the process of comparing contents of two databases. The <code class="docutils literal notranslate"><span class="pre">dbcmp</span></code> tool compares every table and reports whether if there is a diversion between two schemas.</p>
+<p>The tool includes a few flags to run a comparison:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Usage:
+<span class="w">  </span>dbcmp<span class="w"> </span><span class="o">[</span>flags<span class="o">]</span>
+
+Flags:
+<span class="w">      </span>--exclude<span class="w"> </span>strings<span class="w">   </span>exclude<span class="w"> </span>tables<span class="w"> </span>from<span class="w"> </span>comparison,<span class="w"> </span>takes<span class="w"> </span>comma-separated<span class="w"> </span>values.
+<span class="w">  </span>-h,<span class="w"> </span>--help<span class="w">              </span><span class="nb">help</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>dbcmp
+<span class="w">      </span>--source<span class="w"> </span>string<span class="w">     </span><span class="nb">source</span><span class="w"> </span>database<span class="w"> </span>dsn
+<span class="w">      </span>--target<span class="w"> </span>string<span class="w">     </span>target<span class="w"> </span>database<span class="w"> </span>dsn
+<span class="w">  </span>-v,<span class="w"> </span>--version<span class="w">           </span>version<span class="w"> </span><span class="k">for</span><span class="w"> </span>dbcmp
+</pre></div>
+</div>
+<p>For our case we can simply run the following command:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>dbcmp<span class="w"> </span>--source<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">MYSQL_DSN</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>--target<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">POSTGRES_DSN</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>--exclude<span class="o">=</span><span class="s2">&quot;db_migrations,ir_,focalboard,systems&quot;</span>
+</pre></div>
+</div>
+<p>Note that this migration guide only covers the tables for Mattermost products.</p>
+<p>Another exclusion we are making is in the <code class="docutils literal notranslate"><span class="pre">db_migrations</span></code> table which has a small difference (a typo in a single migration name) creates a diff. Since we created the PostgreSQL schema with morph, and the official <code class="docutils literal notranslate"><span class="pre">mattermost</span></code> source, we can skip it safely without concerns. On the other hand, <code class="docutils literal notranslate"><span class="pre">systems</span></code> table may contain additional diffs if there were extra keys added during some of the migrations. Consider excluding the <code class="docutils literal notranslate"><span class="pre">systems</span></code> table if you run into issues, and perform a manual comparison as the data in the <code class="docutils literal notranslate"><span class="pre">systems</span></code> table is relatively smaller in size.</p>
+</section>
+<section id="plugin-migrations">
+<h2><a class="toc-backref" href="#on-this-page" role="doc-backlink">Plugin migrations</a><a class="headerlink" href="#plugin-migrations" title="Link to this heading">#</a></h2>
+<p>On the plugin side, we are going to take a different approach from what we have done above. We are not going to use <code class="docutils literal notranslate"><span class="pre">morph</span></code> tool to create tables and indexes this time. We are going to utilize <code class="docutils literal notranslate"><span class="pre">pgloader</span></code> to create the tables on behalf of us. The reason for doing so is Boards and Playbooks are leveraging application logic to facilitate SQL queries. But we don’t want to use any level of application at this point.</p>
+<section id="playbooks">
+<h3>Playbooks<a class="headerlink" href="#playbooks" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">pgloader</span></code> configuration provided for Playbooks is based on <code class="docutils literal notranslate"><span class="pre">v1.38.1</span></code> and the plugin should be at least <code class="docutils literal notranslate"><span class="pre">v1.36.0</span></code> to perform migration.</p>
+<p>Once we are ready to migrate, we can start migrating the <strong>schema</strong> and the <strong>data</strong>  by running <code class="docutils literal notranslate"><span class="pre">pgLoader</span></code> **</p>
+<p>** Use the following configuration for the baseline of the data migration:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>LOAD DATABASE
+     FROM      mysql://{{ .mysql_user }}:{{ .mysql_password }}@mysql:3306/{{ .source_schema }}
+     INTO      pgsql://{{ .pg_user }}:{{ .pg_password }}@postgres:5432/{{ .target_schema }}
+
+WITH include drop, create tables, create indexes, no foreign keys,
+    workers = 8, concurrency = 1,
+    multiple readers per thread, rows per range = 50000,
+    preserve index names
+
+SET PostgreSQL PARAMETERS
+    maintenance_work_mem to &#39;128MB&#39;,
+    work_mem to &#39;12MB&#39;
+
+SET MySQL PARAMETERS
+    net_read_timeout  = &#39;120&#39;,
+    net_write_timeout = &#39;120&#39;
+
+CAST column IR_ChannelAction.ActionType to text drop typemod,
+     column IR_ChannelAction.TriggerType to text drop typemod,
+     column IR_Incident.ChecklistsJSON to &quot;json&quot; drop typemod
+
+INCLUDING ONLY TABLE NAMES MATCHING
+    ~/IR_/
+
+BEFORE LOAD DO
+    $$ ALTER SCHEMA public RENAME TO {{ .source_schema }}; $$
+
+AFTER LOAD DO
+    $$ ALTER TABLE {{ .source_schema }}.IR_ChannelAction ALTER COLUMN ActionType TYPE varchar(65536); $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_ChannelAction ALTER COLUMN TriggerType TYPE varchar(65536); $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Incident ALTER COLUMN ReminderMessageTemplate TYPE varchar(65536); $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Incident ALTER COLUMN ReminderMessageTemplate SET DEFAULT &#39;&#39;::text;  $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Incident ALTER COLUMN ConcatenatedInvitedUserIDs TYPE varchar(65536); $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Incident ALTER COLUMN ConcatenatedInvitedUserIDs SET DEFAULT &#39;&#39;::text; $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Incident ALTER COLUMN ConcatenatedWebhookOnCreationURLs TYPE varchar(65536); $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Incident ALTER COLUMN ConcatenatedWebhookOnCreationURLs SET DEFAULT &#39;&#39;::text; $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Incident ALTER COLUMN ConcatenatedInvitedGroupIDs TYPE varchar(65536); $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Incident ALTER COLUMN ConcatenatedInvitedGroupIDs SET DEFAULT &#39;&#39;::text; $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Incident ALTER COLUMN Retrospective TYPE varchar(65536); $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Incident ALTER COLUMN Retrospective SET DEFAULT &#39;&#39;::text; $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Incident ALTER COLUMN MessageOnJoin TYPE varchar(65536); $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Incident ALTER COLUMN MessageOnJoin SET DEFAULT &#39;&#39;::text; $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Incident ALTER COLUMN ConcatenatedWebhookOnStatusUpdateURLs TYPE varchar(65536); $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Incident ALTER COLUMN ConcatenatedWebhookOnStatusUpdateURLs SET DEFAULT &#39;&#39;::text; $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Incident ALTER COLUMN CategoryName TYPE varchar(65536); $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Incident ALTER COLUMN CategoryName SET DEFAULT &#39;&#39;::text; $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Incident ALTER COLUMN ConcatenatedBroadcastChannelIds TYPE varchar(65536); $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Incident ALTER COLUMN ConcatenatedBroadcastChannelIds SET DEFAULT &#39;&#39;::text; $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Incident ALTER COLUMN ChannelIDToRootID TYPE varchar(65536); $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Incident ALTER COLUMN ChannelIDToRootID SET DEFAULT &#39;&#39;::text; $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Playbook ALTER COLUMN ReminderMessageTemplate TYPE varchar(65536); $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Playbook ALTER COLUMN ReminderMessageTemplate SET DEFAULT &#39;&#39;::text; $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Playbook ALTER COLUMN ConcatenatedInvitedUserIDs TYPE varchar(65536); $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Playbook ALTER COLUMN ConcatenatedInvitedUserIDs SET DEFAULT &#39;&#39;::text; $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Playbook ALTER COLUMN ConcatenatedWebhookOnCreationURLs TYPE varchar(65536); $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Playbook ALTER COLUMN ConcatenatedWebhookOnCreationURLs SET DEFAULT &#39;&#39;::text; $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Playbook ALTER COLUMN ConcatenatedInvitedGroupIDs TYPE varchar(65536); $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Playbook ALTER COLUMN ConcatenatedInvitedGroupIDs SET DEFAULT &#39;&#39;::text; $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Playbook ALTER COLUMN MessageOnJoin TYPE varchar(65536); $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Playbook ALTER COLUMN MessageOnJoin SET DEFAULT &#39;&#39;::text; $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Playbook ALTER COLUMN RetrospectiveTemplate TYPE varchar(65536); $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Playbook ALTER COLUMN RetrospectiveTemplate SET DEFAULT &#39;&#39;::text; $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Playbook ALTER COLUMN ConcatenatedWebhookOnStatusUpdateURLs TYPE varchar(65536); $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Playbook ALTER COLUMN ConcatenatedWebhookOnStatusUpdateURLs SET DEFAULT &#39;&#39;::text; $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Playbook ALTER COLUMN ConcatenatedSignalAnyKeywords TYPE varchar(65536); $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Playbook ALTER COLUMN ConcatenatedSignalAnyKeywords SET DEFAULT &#39;&#39;::text; $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Playbook ALTER COLUMN CategoryName TYPE varchar(65536); $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Playbook ALTER COLUMN CategoryName SET DEFAULT &#39;&#39;::text; $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Playbook ALTER COLUMN ConcatenatedBroadcastChannelIds TYPE varchar(65536); $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Playbook ALTER COLUMN ConcatenatedBroadcastChannelIds SET DEFAULT &#39;&#39;::text; $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Playbook ALTER COLUMN RunSummaryTemplate TYPE varchar(65536); $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Playbook ALTER COLUMN RunSummaryTemplate SET DEFAULT &#39;&#39;::text; $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Playbook ALTER COLUMN ChannelNameTemplate TYPE varchar(65536); $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Playbook ALTER COLUMN ChannelNameTemplate SET DEFAULT &#39;&#39;::text; $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_PlaybookMember ALTER COLUMN Roles TYPE varchar(65536); $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Category_Item ADD CONSTRAINT ir_category_item_categoryid FOREIGN KEY (CategoryId) REFERENCES {{ .source_schema }}.IR_Category(Id); $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Metric ADD CONSTRAINT ir_metric_metricconfigid FOREIGN KEY (MetricConfigId) REFERENCES {{ .source_schema }}.IR_MetricConfig(Id); $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Metric ADD CONSTRAINT ir_metric_incidentid FOREIGN KEY (IncidentId) REFERENCES {{ .source_schema }}.IR_Incident(Id); $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_MetricConfig ADD CONSTRAINT ir_metricconfig_playbookid FOREIGN KEY (PlaybookId) REFERENCES {{ .source_schema }}.IR_Playbook(Id); $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_PlaybookAutoFollow ADD CONSTRAINT ir_playbookautofollow_playbookid FOREIGN KEY (PlaybookId) REFERENCES {{ .source_schema }}.IR_Playbook(Id); $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_PlaybookMember ADD CONSTRAINT ir_playbookmember_playbookid FOREIGN KEY (PlaybookId) REFERENCES {{ .source_schema }}.IR_Playbook(Id); $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_Run_Participants ADD CONSTRAINT ir_run_participants_incidentid FOREIGN KEY (IncidentId) REFERENCES {{ .source_schema }}.IR_Incident(Id); $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_StatusPosts ADD CONSTRAINT ir_statusposts_incidentid FOREIGN KEY (IncidentId) REFERENCES {{ .source_schema }}.IR_Incident(Id); $$,
+    $$ ALTER TABLE {{ .source_schema }}.IR_TimelineEvent ADD CONSTRAINT ir_timelineevent_incidentid FOREIGN KEY (IncidentId) REFERENCES {{ .source_schema }}.IR_Incident(Id); $$,
+    $$ CREATE UNIQUE INDEX IF NOT EXISTS ir_playbookmember_playbookid_memberid_key on {{ .source_schema }}.IR_PlaybookMember(PlaybookId,MemberId); $$,
+    $$ CREATE INDEX IF NOT EXISTS ir_statusposts_incidentid_postid_key on {{ .source_schema }}.IR_StatusPosts(IncidentId,PostId); $$,
+    $$ CREATE INDEX IF NOT EXISTS ir_playbookmember_playbookid on {{ .source_schema }}.IR_PlaybookMember(PlaybookId); $$,
+    $$ ALTER SCHEMA {{ .source_schema }} RENAME TO public; $$,
+    $$ SELECT pg_catalog.set_config(&#39;search_path&#39;, &#39;&quot;$user&quot;, public&#39;, false); $$,
+    $$ ALTER USER {{ .pg_user }} SET SEARCH_PATH TO &#39;public&#39;; $$;
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pgLoader<span class="w"> </span>playbooks.load<span class="w"> </span>&gt;<span class="w"> </span>playbooks_migration.log
+</pre></div>
+</div>
+</section>
+<section id="focalboard">
+<h3>Focalboard<a class="headerlink" href="#focalboard" title="Link to this heading">#</a></h3>
+<p>As of <code class="docutils literal notranslate"><span class="pre">v9.0</span></code> Boards will transition to being fully community supported as the Focalboard plugin. Hence this guide covers only the version <code class="docutils literal notranslate"><span class="pre">v7.10.x</span></code> of the schema. <a class="reference external" href="https://docs.mattermost.com/install/deprecated-features.html#mattermost-server-v9-0-0">Official announcement</a>.</p>
+<p>Once we are ready to migrate, we can start migrating the <strong>schema</strong> and the <strong>data</strong>  by running <code class="docutils literal notranslate"><span class="pre">pgLoader</span></code> **</p>
+<p>** Use the following configuration for the baseline of the data migration:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>LOAD DATABASE
+     FROM      mysql://{{ .mysql_user }}:{{ .mysql_password }}@mysql:3306/{{ .source_schema }}
+     INTO      pgsql://{{ .pg_user }}:{{ .pg_password }}@postgres:5432/{{ .target_schema }}
+
+WITH include drop, create tables, create indexes, reset sequences,
+    workers = 8, concurrency = 1,
+    multiple readers per thread, rows per range = 50000,
+    preserve index names
+
+SET PostgreSQL PARAMETERS
+    maintenance_work_mem to &#39;128MB&#39;,
+    work_mem to &#39;12MB&#39;
+
+SET MySQL PARAMETERS
+    net_read_timeout  = &#39;120&#39;,
+    net_write_timeout = &#39;120&#39;
+
+CAST column focalboard_blocks.fields to &quot;json&quot; drop typemod,
+     column focalboard_blocks_history.fields to &quot;json&quot; drop typemod,
+     column focalboard_schema_migrations.name to &quot;varchar&quot; drop typemod,
+     column focalboard_sessions.props to &quot;json&quot; drop typemod,
+     column focalboard_teams.settings to &quot;json&quot; drop typemod,
+     column focalboard_users.props to &quot;json&quot; drop typemod,
+     type int when (= precision 11) to int4 drop typemod,
+     type json to jsonb drop typemod
+
+INCLUDING ONLY TABLE NAMES MATCHING
+    ~/focalboard/
+
+BEFORE LOAD DO
+    $$ ALTER SCHEMA public RENAME TO {{ .source_schema }}; $$
+
+AFTER LOAD DO
+    $$ UPDATE {{ .source_schema }}.focalboard_blocks SET `fields` = &quot;{}&quot; WHERE `fields` = &quot;&quot;; $$,
+    $$ UPDATE {{ .source_schema }}.focalboard_blocks_history SET `fields` = &quot;{}&quot; WHERE `fields` = &quot;&quot;; $$,
+    $$ UPDATE {{ .source_schema }}.focalboard_sessions SET `props` = &quot;{}&quot; WHERE `fields` = &quot;&quot;; $$,
+    $$ UPDATE {{ .source_schema }}.focalboard_teams SET `settings` = &quot;{}&quot; WHERE `fields` = &quot;&quot;; $$,
+    $$ UPDATE {{ .source_schema }}.focalboard_users SET `props` = &quot;{}&quot; WHERE `fields` = &quot;&quot;; $$,
+    $$ ALTER SCHEMA {{ .source_schema }} RENAME TO public; $$,
+    $$ SELECT pg_catalog.set_config(&#39;search_path&#39;, &#39;&quot;$user&quot;, public&#39;, false); $$,
+    $$ ALTER USER {{ .pg_user }} SET SEARCH_PATH TO &#39;public&#39;; $$;
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pgLoader<span class="w"> </span>focalboard.load<span class="w"> </span>&gt;<span class="w"> </span>focalboard_migration.log
+</pre></div>
+</div>
+</section>
+<section id="compare-the-plugin-data">
+<h3>Compare the plugin data<a class="headerlink" href="#compare-the-plugin-data" title="Link to this heading">#</a></h3>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>dbcmp<span class="w"> </span>--source<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">MYSQL_DSN</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>--target<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">POSTGRES_DSN</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>--exclude<span class="o">=</span><span class="s2">&quot;db_migrations,systems&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="../configure/enabling-chinese-japanese-korean-search.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Chinese, Japanese and Korean search</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../onboard/migrating-to-mattermost.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Migration guide</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2015-2023 Mattermost
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Migration guidelines from MySQL to PostgreSQL</a><ul>
+<li><a class="reference internal" href="#required-tools">Required tools</a></li>
+<li><a class="reference internal" href="#before-the-migration">Before the migration</a></li>
+<li><a class="reference internal" href="#prepare-target-database">Prepare target database</a></li>
+<li><a class="reference internal" href="#schema-diffs">Schema diffs</a><ul>
+<li><a class="reference internal" href="#text-to-character-varying">Text to character varying</a></li>
+<li><a class="reference internal" href="#full-text-indexes">Full-text indexes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#migrate-the-data">Migrate the data</a></li>
+<li><a class="reference internal" href="#compare-the-data">Compare the data</a></li>
+<li><a class="reference internal" href="#plugin-migrations">Plugin migrations</a><ul>
+<li><a class="reference internal" href="#playbooks">Playbooks</a></li>
+<li><a class="reference internal" href="#focalboard">Focalboard</a></li>
+<li><a class="reference internal" href="#compare-the-plugin-data">Compare the plugin data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    </body>
+</html>

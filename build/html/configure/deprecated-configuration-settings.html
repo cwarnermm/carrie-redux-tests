@@ -1,0 +1,1669 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Environment variables" href="environment-variables.html" /><link rel="prev" title="Experimental configuration settings" href="experimental-configuration-settings.html" />
+        <link rel="canonical" href="https://www.ethereal.cc/redux/configure/deprecated-configuration-settings.html" />
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 7.2.6 and Furo 2023.09.10 -->
+        <title>Deprecated configuration settings - Mattermost documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/compass-icons.css?v=b28d7826" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  --font-stack: Noto Sans, Helvetica Neue, Arial, sans-serif;
+  --font-stack--monospace: Fira Mono, Courier New, Courier, monospace;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">Mattermost  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">Mattermost  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../overview/index.html">About Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of About Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../about/product.html">Mattermost overview</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../about/use-cases.html">Use cases</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Use cases</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../about/secure-command-and-control.html">Secure command and control</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../about/unified-collaboration.html">Unified communication</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Unified communication</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../about/mattermost-for-microsoft-teams.html">Mattermost for Microsoft Teams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../about/mattermost-google-calendar-integration.html">Mattermost Google Calendar integration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../about/devops-collaboration.html">DevOps collaboration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/incident-response-collaboration.html">Incident response collaboration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../about/security.html">Security overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/integrations.html">Integrations overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/subscription.html">Subscription overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/self-hosted-subscriptions.html">Self-hosted subscriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/cloud-subscriptions.html">Cloud subscriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/editions-and-offerings.html">Mattermost editions and plans</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/corporate-directory-integration.html">Corporate directory integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/certifications-and-compliance.html">Certifications and compliance overview</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../about/frequently-asked-questions.html">Frequently asked questions (FAQ)</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Frequently asked questions (FAQ)</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-general.html">General Mattermost questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-community.html">Community questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-notifications.html">Notifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-video-audio-screensharing.html">Video, audio, and screen sharing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-enterprise.html">Enterprise questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-license.html">License questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-integrations.html">Integrations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-use-cases.html">Use cases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-product.html">Product questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-high-trust.html">High trust questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-design-decisions.html">Design decisions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-business.html">Business questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../about/faq-illicit-use.html">Illicit use</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../guides/deployment.html">Deploy Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Deploy Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../install/prepare-mattermost-database.html">Prepare your Mattermost database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-ubuntu.html">Deploy on Ubuntu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-docker.html">Deploy using Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-tar.html">Deploy with a tarball</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/installing-mattermost-omnibus.html">Deploy using Omnibus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-kubernetes.html">Deploy using Kubernetes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install/install-rhel-8.html">Deploy on Red Hat</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/prepare-for-your-mattermost-deployment.html">Prepare for your Mattermost deployment</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of Prepare for your Mattermost deployment</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install/software-hardware-requirements.html">  Software and hardware requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/mattermost-kubernetes-operator.html">  About the Mattermost Kubernetes Operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/admin-onboarding-tasks.html">  Administrator tasks</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../getting-started/architecture-overview.html">  Architecture overview</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of   Architecture overview</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/implementation-plan.html">  Plan your Mattermost implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/enterprise-roll-out-checklist.html">  Enterprise roll out checklist</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/welcome-email-to-end-users.html">  Welcome email template</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/deployment-guides.html">Deployment guides</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of Deployment guides</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../guides/server-deployment.html">Server deployment</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of Server deployment</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/deployment-overview.html"> Deployment overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/setting-up-socket-based-mattermost-database.html"> Set up a socket-based Mattermost database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/image-proxy.html"> Image proxy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/backup-disaster-recovery.html"> Backup and disaster recovery</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/encryption-options.html"> Encryption options</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../install/transport-encryption.html"> Configure transport encryption</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of  Configure transport encryption</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../install/proxy-to-mattermost-transport-encryption.html">Configuring proxy to Mattermost transport encryption</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../install/database-transport-encryption.html">Configuring database transport encryption</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../install/cluster-transport-encryption.html">Configuring cluster transport encryption</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/bleve-search.html"> Bleve search</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../guides/desktop-mobile-app-deployment.html">Desktop and mobile app deployment</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of Desktop and mobile app deployment</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/desktop-app.html">Desktop app deployment guide</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/desktop-msi-installer-and-group-policy-install.html">Desktop MSI installer and group policy installation guides (beta)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/desktop-custom-dictionaries.html">Desktop App custom dictionaries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../install/desktop-app-managed-resources.html">Desktop managed resources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/use-prebuilt-mobile-apps.html">Using Mattermost’s pre-built mobile apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-testing-notifications.html">Testing push notifications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-overview.html">Deploy Mattermost mobile apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-hpns.html">Mobile push notifications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/build-custom-mobile-apps.html">Building and distributing your own custom Mattermost mobile apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/deploy-mobile-apps-using-emm-provider.html">Deploying mobile apps using an EMM provider</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-appconfig.html">AppConfig for EMM solutions with Mattermost Mobile Apps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/consider-mobile-vpn-options.html">Mobile VPN options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/mobile-faq.html">Mobile apps FAQ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../deploy/client-side-data.html">Client-side data storage FAQ</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/upgrade-mattermost.html">Upgrade Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle navigation of Upgrade Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/prepare-to-upgrade-mattermost.html"> Prepare to upgrade Mattermost</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/upgrading-mattermost-server.html"> Upgrade Mattermost Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/enterprise-install-upgrade.html"> Enterprise install and upgrade</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/installing-license-key.html"> Install a license key</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/release-definitions.html"> Release definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/important-upgrade-notes.html"> Important upgrade notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/release-lifecycle.html"> Release lifecycle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/extended-support-release.html"> Extended Support Release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/downgrading-mattermost-server.html"> Downgrade Mattermost Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/version-archive.html"> Version archive</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/scale-mattermost.html">Scale Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle navigation of Scale Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../scale/scaling-for-enterprise.html"> Scale for Enterprise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scale/high-availability-cluster.html"> High availability cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scale/elasticsearch.html"> Elasticsearch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scale/performance-monitoring.html"> Performance monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scale/performance-alerting.html"> Mattermost performance alerting guide</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/deployment-troubleshooting.html">Deployment troubleshooting</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle navigation of Deployment troubleshooting</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install/troubleshooting.html">  General troubleshooting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deploy/high-scale-troubleshoot.html">  Troubleshooting your high scale deployment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deploy/mobile-troubleshoot.html">  Troubleshooting mobile applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/trouble-postgres.html">  PostgreSQL installation troubleshooting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/trouble_mysql.html">  MySQL installation troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/changelogs.html">Changelogs</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle navigation of Changelogs</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install/self-managed-changelog.html">  Mattermost self-hosted</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/legacy-self-hosted-changelog.html">  Mattermost legacy self-hosted</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/cloud-changelog.html">  Mattermost Cloud</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deploy/mobile-app-changelog.html">  Mobile apps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/desktop-app-changelog.html">  Desktop apps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/deprecated-features.html">  Deprecated features</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/additional-server-installation-guides.html">Additional server installation guides</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle navigation of Additional server installation guides</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install/deploying-team-edition-on-bitnami.html">  Deploy Mattermost on Bitnami</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/setting-up-aws-elastic-beanstalk-docker.html">  AWS Elastic Beanstalk Docker setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../install/installing-team-edition-helm-chart.html">  Install Mattermost Team Edition in GitLab Helm Chart</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/open-source-components.html">  Open source components</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../guides/administration.html">Manage Mattermost</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle navigation of Manage Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current has-children"><a class="reference internal" href="../guides/get-started-with-administration.html">Get started</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle navigation of Get started</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="optimize-your-workspace.html">Optimize your workspace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration-settings.html">Mattermost configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="self-hosted-account-settings.html">Self-hosted edition and license</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cloud-billing-account-settings.html">Cloud subscription, billing, and account</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reporting-configuration-settings.html">Reporting configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user-management-configuration-settings.html">User management configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="environment-configuration-settings.html">Environment configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="site-configuration-settings.html">Site configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="authentication-configuration-settings.html">Authentication configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plugins-configuration-settings.html">Plugins configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integrations-configuration-settings.html">Integrations configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compliance-configuration-settings.html">Compliance configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="experimental-configuration-settings.html">Experimental configuration settings</a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Deprecated configuration settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="environment-variables.html">Environment variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/user-provisioning-workflows.html">Provisioning workflows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/multi-factor-authentication.html">Multi-factor authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/ad-ldap.html">Active Directory/LDAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-gitlab.html">GitLab SSO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-openidconnect.html">OpenID SSO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-google.html">Google SSO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-office.html">Office 365 SSO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/advanced-permissions.html">Advanced permissions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/system-admin-roles.html">System admin roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/team-channel-members.html">Manage team and channel members</a></li>
+<li class="toctree-l3"><a class="reference internal" href="custom-branding-tools.html">Custom branding tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/electronic-discovery.html">eDiscovery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/compliance-monitoring.html">Compliance monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/compliance-export.html">Compliance export</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/legal-hold.html">Legal hold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/data-retention-policy.html">Data retention tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/custom-terms-of-service.html">Custom terms of service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../upgrade/notify-admin.html">Notify Admin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/ad-ldap-groups-synchronization.html">AD/LDAP groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/managing-team-channel-membership-using-ad-ldap-sync-groups.html">Use AD/LDAP synchronized groups to manage team or private channel membership</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/guest-accounts.html">Guest accounts</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../onboard/sso-saml.html">SAML Single Sign-On</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of SAML Single Sign-On</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-okta.html">Okta SAML Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-onelogin.html">OneLogin SAML Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-adfs.html">Microsoft ADFS SAML Configuration for Windows Server 2012</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-adfs-msws2016.html">Microsoft ADFS SAML Configuration for Windows Server 2016</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../onboard/sso-saml-keycloak.html">Keycloak SAML Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/sso-saml-technical.html">SAML Single-Sign-On: technical documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/shared-channels.html">Shared channels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/statistics.html">Statistics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/in-product-notices.html">In-product notices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/user-satisfaction-surveys.html">User satisfaction surveys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/health-checks.html">Health check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/announcement-banner.html">Announcement banner</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/bulk-export-tool.html">Bulk export tool</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/cloud-workspace-management.html">Cloud workspace management</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><div class="visually-hidden">Toggle navigation of Cloud workspace management</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manage/cloud-billing.html">Mattermost Cloud billing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/workspace-usage.html">Workspace usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/cloud-data-export.html">Workspace migration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/cloud-data-residency.html">Cloud data residency</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/self-hosted-administration.html">Self-hosted administration</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" role="switch" type="checkbox"/><label for="toctree-checkbox-21"><div class="visually-hidden">Toggle navigation of Self-hosted administration</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manage/self-hosted-billing.html">Mattermost self-hosted billing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuation-in-a-database.html">Store configuration in the database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/bulk-loading-data.html">Bulk loading data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="smtp-email.html">SMTP email setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="email-templates.html">Email templates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calls-deployment.html">Calls deployment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuring-cloudfront-to-host-mattermost-static-assets.html">Configure CloudFront to host static assets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="using-outbound-proxy.html">Use an outbound proxy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/migrating-to-mattermost.html">Migration guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deploy/postgres-migration.html">Migration from MySQL to PostgreSQL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="enabling-chinese-japanese-korean-search.html">Chinese, Japanese, and Korean search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="customizing-mattermost.html">Customize Mattermost</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/audit-log.html">Audit logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../comply/embedded-json-audit-log-schema.html">JSON audit log schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/ssl-client-certificate.html">SSL client certificate setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/certificate-based-authentication.html">Certificate-based authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/telemetry.html">Manage telemetry</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/other-administration-resources.html">Other resources</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" role="switch" type="checkbox"/><label for="toctree-checkbox-22"><div class="visually-hidden">Toggle navigation of Other resources</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/convert-oauth20-service-providers-to-openidconnect.html">Convert OAuth 2.0 providers to OpenID Connect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/generating-support-packet.html">Generate a support packet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/mmctl-command-line-tool.html">mmctl command line tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/migration-announcement-email.html">Migration announcement email template</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../onboard/advanced-permissions-backend-infrastructure.html">Advanced permissions infrastructure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manage/command-line-tools.html">Command line tools</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../guides/use-mattermost.html">Use Mattermost</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" role="switch" type="checkbox"/><label for="toctree-checkbox-23"><div class="visually-hidden">Toggle navigation of Use Mattermost</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/collaborate.html">Connect and collaborate</a><input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" role="switch" type="checkbox"/><label for="toctree-checkbox-24"><div class="visually-hidden">Toggle navigation of Connect and collaborate</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/access-your-workspace.html">Access your Mattermost workspace</a><input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" role="switch" type="checkbox"/><label for="toctree-checkbox-25"><div class="visually-hidden">Toggle navigation of Access your Mattermost workspace</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/install-desktop-app.html">Install the desktop app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/install-ios-app.html">Install the iOS mobile app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/install-android-app.html">Install the Android mobile app</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/log-out.html">Log out of Mattermost</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/organize-using-teams.html">Organize using teams</a><input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" role="switch" type="checkbox"/><label for="toctree-checkbox-26"><div class="visually-hidden">Toggle navigation of Organize using teams</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/team-settings.html">Team settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/team-keyboard-shortcuts.html">Team keyboard shortcuts</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../collaborate/organize-using-custom-user-groups.html">Organize using custom user groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../collaborate/invite-people.html">Invite people</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../collaborate/learn-about-roles.html">Learn about Mattermost roles</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/collaborate-within-channels.html">Collaborate within channels</a><input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" role="switch" type="checkbox"/><label for="toctree-checkbox-27"><div class="visually-hidden">Toggle navigation of Collaborate within channels</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/channel-types.html">Channel types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/channel-naming-conventions.html">Channel naming conventions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/channel-header-purpose.html">Communicate a channel's focus and scope</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/create-channels.html">Create channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/rename-channels.html">Rename channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/convert-public-channels.html">Convert public channels to private</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/join-leave-channels.html">Join and leave channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/make-calls.html">Make calls in Mattermost</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/manage-channel-members.html">Manage channel members</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/browse-channels.html">Browse channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/navigate-between-channels.html">Navigate between channels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/favorite-channels.html">Mark channels as favorites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/mark-channels-unread.html">Mark channels as unread</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/archive-unarchive-channels.html">Archive and unarchive channels</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/communicate-with-messages.html">Communicate with messages and threads</a><input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" role="switch" type="checkbox"/><label for="toctree-checkbox-28"><div class="visually-hidden">Toggle navigation of Communicate with messages and threads</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/send-messages.html">Send messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/reply-to-messages.html">Reply to messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/react-with-emojis-gifs.html">React with emojis and GIFs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/organize-conversations.html">Organize conversations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/mark-messages-unread.html">Mark messages as unread</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/forward-messages.html">Forward messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/share-links.html">Share links to channels and messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/save-pin-messages.html">Save and pin messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/message-reminders.html">Set message reminders</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/search-for-messages.html">Search for messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/format-messages.html">Format messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/message-priority.html">Set message priority</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/mention-people.html">Mention people</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/share-files-in-messages.html">Share files in messages</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/keyboard-shortcuts.html">Keyboard shortcuts</a><input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" role="switch" type="checkbox"/><label for="toctree-checkbox-29"><div class="visually-hidden">Toggle navigation of Keyboard shortcuts</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/keyboard-accessibility.html">Keyboard accessibility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/run-slash-commands.html">Run slash commands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/built-in-slash-commands.html">Built-in-slash-commands</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../collaborate/extend-mattermost-with-integrations.html">Extend Mattermost with integrations</a><input class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" role="switch" type="checkbox"/><label for="toctree-checkbox-30"><div class="visually-hidden">Toggle navigation of Extend Mattermost with integrations</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/collaborate-using-mattermost-for-microsoft-teams.html">Collaborate using Mattermost for MS Teams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../collaborate/use-mattermost-google-calendar-plugin.html">Use the Mattermost Google Calendar plugin</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/repeatable-processes.html">Build repeatable processes</a><input class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" role="switch" type="checkbox"/><label for="toctree-checkbox-31"><div class="visually-hidden">Toggle navigation of Build repeatable processes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/learn-about-playbooks.html">Learn about playbooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/work-with-playbooks.html">Work with playbooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/work-with-runs.html">Work with runs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/work-with-tasks.html">Work with tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/notifications-and-updates.html">Work with notifications and updates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/metrics-and-goals.html">Work with metrics and goals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/share-and-collaborate.html">Share and collaborate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../repeatable-processes/interact-with-playbooks.html">Interact with playbooks</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../guides/preferences.html">Customize your preferences</a><input class="toctree-checkbox" id="toctree-checkbox-32" name="toctree-checkbox-32" role="switch" type="checkbox"/><label for="toctree-checkbox-32"><div class="visually-hidden">Toggle navigation of Customize your preferences</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-notifications.html">Manage your notifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/customize-your-theme.html">Customize your Mattermost theme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/customize-your-channel-sidebar.html">Customize your channel sidebar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-profile.html">Manage your profile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-security-preferences.html">Manage your security preferences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/set-your-status-availability.html">Set your status &amp; availability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-display-options.html">Manage your display options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-your-sidebar-options.html">Manage your sidebar options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/manage-advanced-options.html">Manage advanced options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/customize-desktop-app-experience.html">Customize your desktop app experience</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../preferences/connect-multiple-workspaces.html">Connect to multiple workspaces</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://developers.mattermost.com/">Develop with Mattermost</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/get-help.html">Get help with Mattermost</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/community-chat.html">Join our community</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://handbook.mattermost.com/">Learn how we work</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/contribute-to-documentation.html">Contribute to this documentation</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="deprecated-configuration-settings">
+<h1>Deprecated configuration settings<a class="headerlink" href="#deprecated-configuration-settings" title="Link to this heading">#</a></h1>
+<p>The following Mattermost configuration settings are deprecated and are no longer supported in current Mattermost releases:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="#mattermost-boards-settings">Mattermost Boards settings</a></p></li>
+<li><p><a class="reference external" href="#bleve-settings">Bleve settings</a></p></li>
+<li><p><a class="reference external" href="#elasticsearch-settings">Elasticsearch settings</a></p></li>
+<li><p><a class="reference external" href="#service-settings">Service settings</a></p></li>
+<li><p><a class="reference external" href="#database-settings">Database settings</a></p></li>
+<li><p><a class="reference external" href="#users-and-teams-settings">Users and teams settings</a></p></li>
+<li><p><a class="reference external" href="#saml-2-0-settings">SAML 2.0 settings</a></p></li>
+<li><p><a class="reference external" href="#legacy-sidebar-settings">Legacy sidebar settings</a></p></li>
+<li><p><a class="reference external" href="#town-square-channel-settings">Town Square channel settings</a></p></li>
+<li><p><a class="reference external" href="#custom-emoji-settings">Custom emoji settings</a></p></li>
+<li><p><a class="reference external" href="#timezone-settings">Timezone settings</a></p></li>
+<li><p><a class="reference external" href="#high-availability-settings">High availablity settings</a></p></li>
+<li><p><a class="reference external" href="#rest-api-v3-settings">Rest API V3 settings</a></p></li>
+<li><p><a class="reference external" href="#integrations-settings">Integrations settings</a></p></li>
+<li><p><a class="reference external" href="#permission-policy-settings">Permission policy settings</a></p></li>
+<li><p><a class="reference external" href="#image-settings">Image settings</a></p></li>
+<li><p><a class="reference external" href="#experimental-display-settings">Experimental display settings</a></p></li>
+<li><p><a class="reference external" href="#other-deprecated-settings">Other deprecated settings</a></p></li>
+</ul>
+<hr class="docutils" />
+<section id="mattermost-boards-setting">
+<h2>Mattermost Boards setting<a class="headerlink" href="#mattermost-boards-setting" title="Link to this heading">#</a></h2>
+<p><em>Removed in the Mattermost v8.0 release</em></p>
+<section id="enable-publicly-shared-boards">
+<h3>Enable publicly-shared boards<a class="headerlink" href="#enable-publicly-shared-boards" title="Link to this heading">#</a></h3>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Enable or disable the ability to share
+links to Mattermost boards with other users.</p>
+<ul class="simple">
+<li><p><strong>true</strong>: Enables the ability to share links to
+Mattermost boards with other users.</p></li>
+<li><p><strong>false</strong>: <strong>(Default)</strong> Mattermost boards can’t
+be shared with other users.</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>System Config path: <strong>Products &gt; Boards</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting: <code class="docutils literal notranslate"><span class="pre">&quot;.ProductSettings.EnablePublicSharedBoards:</span> <span class="pre">false”,</span></code></p></li>
+<li><p>Environment variable: <code class="docutils literal notranslate"><span class="pre">MM_PRODUCTSETTINGS_ENABLEPUBLICSHAREDBOARDS</span></code></p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><p><strong>Notes</strong>:</p>
+<ul class="simple">
+<li><p>From Mattermost v7.7 through Mattermost v7.10, this configuration setting applies to Mattermost Boards available as an official
+in-product vertical.</p></li>
+<li><p>See the <a class="reference external" href="guides/focalboard-plugin.html">Focalboard</a> documentation for details on <a class="reference external" href="boards/share-and-collaborate.html#share-a-board-publicly">sharing boards links with other
+users</a>.</p></li>
+<li><p>Cloud admins can’t modify this configuration setting.</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="bleve-settings">
+<h2>Bleve settings<a class="headerlink" href="#bleve-settings" title="Link to this heading">#</a></h2>
+<section id="bulk-indexing-time-window-seconds">
+<h3>Bulk Indexing Time Window Seconds<a class="headerlink" href="#bulk-indexing-time-window-seconds" title="Link to this heading">#</a></h3>
+<p><em>Removed in May 16, 2022 release</em></p>
+<p>This setting isn’t available in the System Console and can only be set in <code class="docutils literal notranslate"><span class="pre">config.json</span></code>.</p>
+<p>Determines the maximum time window for a batch of posts being indexed by the Bulk Indexer. This setting serves as a performance optimization for installs with over ~10 million posts in the database. You can approximate this value based on the average number of seconds for 2,000 posts to be added to the database on a typical day in production. Setting this value too low will cause bulk indexing jobs to run slowly.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;BulkIndexingTimeWindowSeconds&quot;:</span> <span class="pre">3600</span></code> with numerical input.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="elasticsearch-settings">
+<h2>Elasticsearch settings<a class="headerlink" href="#elasticsearch-settings" title="Link to this heading">#</a></h2>
+<section id="bulk-indexing-time-window">
+<h3>Bulk Indexing Time Window<a class="headerlink" href="#bulk-indexing-time-window" title="Link to this heading">#</a></h3>
+<p><em>Removed in May 16, 2022 release</em></p>
+<p>This setting isn’t available in the System Console and can only be set in <code class="docutils literal notranslate"><span class="pre">config.json</span></code>.</p>
+<p>Determines the maximum time window for a batch of posts being indexed by the Bulk Indexer. This setting serves as a performance optimization for installs with over ~10 million posts in the database. You can approximate this value based on the average number of seconds for 2,000 posts to be added to the database on a typical day in production. Setting this value too low will cause bulk indexing jobs to run slowly.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;BulkIndexingTimeWindowSeconds&quot;:</span> <span class="pre">3600</span></code> with numerical input.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="service-settings">
+<h2>Service settings<a class="headerlink" href="#service-settings" title="Link to this heading">#</a></h2>
+<section id="enable-reliable-websockets">
+<h3>Enable reliable websockets<a class="headerlink" href="#enable-reliable-websockets" title="Link to this heading">#</a></h3>
+<p><em>This configuration setting has been deprecated, and the ability to buffer messages during a connection loss has been promoted to general availability from Mattermost v6.3. This setting is enabled for older clients to maintain backwards compatibility.</em></p>
+<p>This setting isn’t available in the System Console and can only be set in <code class="docutils literal notranslate"><span class="pre">config.json</span></code>.</p>
+<p>Enable this setting to make websocket messages more reliable by buffering messages during a connection loss and then re-transmitting all unsent messages when the connection is revived.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;EnableReliableWebsockets&quot;:</span> <span class="pre">true</span></code> with options <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="data-prefetch">
+<h3>Data prefetch<a class="headerlink" href="#data-prefetch" title="Link to this heading">#</a></h3>
+<p><em>Removed in February 16, 2021 release</em></p>
+<p><strong>True</strong>: Messages in all unread channels are pre-loaded from the server whenever the client reconnects to the network to eliminate loading time when users switch to unread channels.</p>
+<p><strong>False</strong>: Messages are fetched on-demand from the server when users switch channels.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;ExperimentalDataPrefetch&quot;:</span> <span class="pre">true</span></code> with options <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="segment-write-key">
+<h3>Segment write key<a class="headerlink" href="#segment-write-key" title="Link to this heading">#</a></h3>
+<p><em>Removed in March 16, 2017 release</em></p>
+<p>For deployments seeking additional tracking of system behavior using Segment.com, you can enter a Segment <code class="docutils literal notranslate"><span class="pre">WRITE_KEY</span></code> using this field. This value works like a tracking code and is used in client-side JavaScript and will send events to Segment.com attributed to the account you used to generate the <code class="docutils literal notranslate"><span class="pre">WRITE_KEY</span></code>.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;SegmentDeveloperKey&quot;:</span> <span class="pre">&quot;&quot;</span></code> with string input.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="limit-access-to-config-settings-prior-to-login">
+<h3>Limit access to config settings prior to login<a class="headerlink" href="#limit-access-to-config-settings-prior-to-login" title="Link to this heading">#</a></h3>
+<p><em>Removed in December 16, 2018 release</em></p>
+<p>Enable this setting to limit the number of config settings sent to users prior to login.</p>
+<p>Supported for Mattermost server v5.1.0 and later, and Mattermost Mobile apps v1.10.0 and later.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;ExperimentalLimitClientConfig&quot;:</span> <span class="pre">&quot;false&quot;</span></code> with options <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="disable-legacy-mfa-api-endpoint">
+<h3>Disable legacy MFA API endpoint<a class="headerlink" href="#disable-legacy-mfa-api-endpoint" title="Link to this heading">#</a></h3>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">Mattermost v6.0 onwards</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">Mattermost v5.39 and earlier</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><p>Deprecated. Not used in Mattermost v6.0 and later.</p>
+</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><p>This setting isn’t available in the System Console and can only be set in <code class="docutils literal notranslate"><span class="pre">config.json</span></code>.</p>
+<p><strong>True</strong>: Disables the legacy <code class="docutils literal notranslate"><span class="pre">checkMfa</span></code> endpoint, which is only required for Mattermost mobile apps v1.16 or earlier when using multi-factor authentication (MFA). Recommended to set to <code class="docutils literal notranslate"><span class="pre">true</span></code> for additional security hardening.</p>
+<p><strong>False</strong>: Keeps the legacy <code class="docutils literal notranslate"><span class="pre">checkMfa</span></code> endpoint enabled to support mobile versions 1.16 and earlier. Keeping the endpoint enabled creates an information disclosure about whether a user has set up MFA.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;DisableLegacyMFA&quot;:</span> <span class="pre">true,</span></code> with options <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="database-settings">
+<h2>Database settings<a class="headerlink" href="#database-settings" title="Link to this heading">#</a></h2>
+<section id="at-rest-encrypt-key">
+<h3>At rest encrypt key<a class="headerlink" href="#at-rest-encrypt-key" title="Link to this heading">#</a></h3>
+<p><em>Removed in August 23, 2018 release</em></p>
+<p>This setting isn’t available in the System Console and can only be set in <code class="docutils literal notranslate"><span class="pre">config.json</span></code>. It’s a legacy setting used to encrypt data stored at rest in the database, and no fields are encrypted using <code class="docutils literal notranslate"><span class="pre">AtRestEncryptKey</span></code>.</p>
+<p>A 32-character key for encrypting and decrypting sensitive fields in the database. When using high availability, this value must be identical in each instance of Mattermost.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;AtRestEncryptKey&quot;:</span> <span class="pre">&quot;&quot;</span></code> with string input.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="amazon-s3-bucket-endpoint">
+<h3>Amazon S3 bucket endpoint<a class="headerlink" href="#amazon-s3-bucket-endpoint" title="Link to this heading">#</a></h3>
+<p><em>Removed in November 16th, 2016 release</em></p>
+<p>Set an endpoint URL for Amazon S3 buckets.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;AmazonS3BucketEndpoint&quot;:</span> <span class="pre">&quot;&quot;</span></code> with string input.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="amazon-s3-location-constraint">
+<h3>Amazon S3 Location Constraint<a class="headerlink" href="#amazon-s3-location-constraint" title="Link to this heading">#</a></h3>
+<p><em>Removed in November 16th, 2016 release</em></p>
+<p><strong>True</strong>: S3 region is location constrained.</p>
+<p><strong>False</strong>: S3 region is not location constrained.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;AmazonS3LocationConstraint&quot;:</span> <span class="pre">false</span></code> with options <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="amazon-s3-lowercase-bucket">
+<h3>Amazon S3 lowercase bucket<a class="headerlink" href="#amazon-s3-lowercase-bucket" title="Link to this heading">#</a></h3>
+<p><em>Removed in November 16th, 2016 release</em></p>
+<p><strong>True</strong>: S3 bucket names are fully lowercase.</p>
+<p><strong>False</strong>: S3 bucket names may contain uppercase and lowercase letters.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;AmazonS3LowercaseBucket&quot;:</span> <span class="pre">false</span></code> with options <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="users-and-teams-settings">
+<h2>Users and teams settings<a class="headerlink" href="#users-and-teams-settings" title="Link to this heading">#</a></h2>
+<section id="enable-team-directory">
+<h3>Enable team directory<a class="headerlink" href="#enable-team-directory" title="Link to this heading">#</a></h3>
+<p><em>Removed in May 16th, 2016 release</em></p>
+<p><strong>True</strong>: Teams that are configured to appear in the team directory will appear on the system main page. Teams can configure this setting from <strong>Team Settings &gt; Include this team in the Team Directory</strong>.</p>
+<p><strong>False</strong>: Team directory on the system main page is disabled.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;EnableTeamListing&quot;:</span> <span class="pre">false</span></code> with options <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="allow-team-admins-to-edit-others-posts">
+<h3>Allow team admins to edit others’ posts<a class="headerlink" href="#allow-team-admins-to-edit-others-posts" title="Link to this heading">#</a></h3>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">Mattermost v6.0 onwards</button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1">Mattermost v5.39 and earlier</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><p>Deprecated. Not used in Mattermost v6.0 and later.</p>
+</div><div aria-labelledby="tab-1-1-1" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-1" name="1-1" role="tabpanel" tabindex="0"><p>This permission is stored in the database and can be modified using the System Console user interface.</p>
+<p><strong>True</strong>: Team Admins and System Admins can edit other users’ posts.</p>
+<p><strong>False</strong>: Only System Admins can edit other users’ posts.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>System Admins and Team Admins can always delete other users’ posts. This setting is only available for Team Edition servers. Enterprise Edition servers can use <a class="reference external" href="/onboard/advanced-permissions.html">Advanced Permissions</a> to configure this permission.</p>
+</div>
+</div></div>
+</section>
+<section id="enable-team-creation">
+<h3>Enable team creation<a class="headerlink" href="#enable-team-creation" title="Link to this heading">#</a></h3>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">Mattermost v6.0 onwards</button><button aria-controls="panel-2-2-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-2-2-1" name="2-1" role="tab" tabindex="-1">Mattermost v5.39 and earlier</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><p>Deprecated. Not used in Mattermost v6.0 and later.</p>
+</div><div aria-labelledby="tab-2-2-1" class="sphinx-tabs-panel" hidden="true" id="panel-2-2-1" name="2-1" role="tabpanel" tabindex="0"><p>After upgrading to v4.9 (released April 16, 2018), changing this <code class="docutils literal notranslate"><span class="pre">config.json</span></code> value no longer takes effect because this permission has been migrated to the database. This permission can be modified using the System Console user interface.</p>
+<p><strong>True</strong>: Ability to create a new team is enabled for all users.</p>
+<p><strong>False</strong>: Only System Admins can create teams from the team selection page. The <strong>Create A New Team</strong> button is hidden.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;EnableTeamCreation&quot;:</span> <span class="pre">true</span></code> with options <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="saml-2-0-settings">
+<h2>SAML 2.0 settings<a class="headerlink" href="#saml-2-0-settings" title="Link to this heading">#</a></h2>
+<section id="use-new-saml-library">
+<h3>Use new SAML library<a class="headerlink" href="#use-new-saml-library" title="Link to this heading">#</a></h3>
+<p><em>Removed in December 16, 2020 release</em></p>
+<p><strong>True</strong>: Enable an updated SAML Library, which does not require the XML Security Library (xmlsec1) to be installed.</p>
+<p><strong>False</strong>: Continue using the existing implementation which uses the XML Security Library (xmlsec1).</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;UseNewSAMLLibrary&quot;:</span> <span class="pre">false</span></code> with options <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="legacy-sidebar-settings">
+<h2>Legacy sidebar settings<a class="headerlink" href="#legacy-sidebar-settings" title="Link to this heading">#</a></h2>
+<section id="enable-legacy-sidebar">
+<h3>Enable legacy sidebar<a class="headerlink" href="#enable-legacy-sidebar" title="Link to this heading">#</a></h3>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" role="tablist"><button aria-controls="panel-3-3-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-3-3-0" name="3-0" role="tab" tabindex="0">Mattermost v6.0 onwards</button><button aria-controls="panel-3-3-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-3-3-1" name="3-1" role="tab" tabindex="-1">Mattermost v5.39 and earlier</button></div><div aria-labelledby="tab-3-3-0" class="sphinx-tabs-panel" id="panel-3-3-0" name="3-0" role="tabpanel" tabindex="0"><p>Deprecated. Not used in Mattermost v6.0 and later.</p>
+</div><div aria-labelledby="tab-3-3-1" class="sphinx-tabs-panel" hidden="true" id="panel-3-3-1" name="3-1" role="tabpanel" tabindex="0"><p><em>Not available in Mattermost Cloud</em></p>
+<p>This setting re-enables the legacy sidebar functionality for all users on this server. We strongly recommend System Admins disable this setting so users can access <a class="reference external" href="https://mattermost.com/blog/custom-collapsible-channel-categories/">enhanced sidebar features</a>, including custom, collapsible channel categories, drag and drop, unread filtering, channel sorting options, and more.</p>
+<p><strong>False</strong>: Users can access all new channel sidebar features, including custom, collapsible channel categories, drag and drop, unread filtering, channel sorting options, and more. See <a class="reference external" href="/messaging/organizing-your-sidebar.html">the documentation</a> for more information about these features.</p>
+<p><strong>True</strong>: When enabled, the legacy sidebar is enabled for all users on this server and users cannot access any new channel sidebar features. The legacy channel sidebar is scheduled to be deprecated, and is only recommended if your deployment is experiencing bugs or other issues with the new channel sidebar.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;EnableLegacySidebar&quot;:</span> <span class="pre">false</span></code> with options <code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+</section>
+<section id="experimental-sidebar-features">
+<h3>Experimental sidebar features<a class="headerlink" href="#experimental-sidebar-features" title="Link to this heading">#</a></h3>
+<p><em>Deprecated. Not used in Mattermost v5.32 and later</em></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This experimental configuration setting has been deprecated, and the ability to organize channels in the sidebar has been promoted to general availability from Mattermost v5.32. See the <a class="reference external" href="/messaging/organizing-your-sidebar.html#customizing-your-sidebar">Organizing Your Sidebar documentation</a> for details on customizing the sidebar.</p>
+</div>
+<p><strong>Disabled</strong>: Users cannot access the experimental channel sidebar feature set.</p>
+<p><strong>Enabled (Default On)</strong>: Enables the experimental sidebar features for all users on this server. Users can disable the features in <strong>Settings &gt; Sidebar &gt; Experimental Sidebar Features</strong>. Features include custom collapsible channel categories, drag and drop to reorganize channels, and unread filtering.</p>
+<p><strong>Enabled (Default Off)</strong>: Users must enable the experimental sidebar features in <strong>Settings</strong>.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;ExperimentalChannelSidebarOrganization&quot;:</span> <span class="pre">off</span></code> with options <code class="docutils literal notranslate"><span class="pre">off</span></code>, <code class="docutils literal notranslate"><span class="pre">default_on</span></code> and <code class="docutils literal notranslate"><span class="pre">default_off</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="sidebar-organization">
+<h3>Sidebar organization<a class="headerlink" href="#sidebar-organization" title="Link to this heading">#</a></h3>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" role="tablist"><button aria-controls="panel-4-4-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-4-4-0" name="4-0" role="tab" tabindex="0">Mattermost v6.0 onwards</button><button aria-controls="panel-4-4-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-4-4-1" name="4-1" role="tab" tabindex="-1">Mattermost v5.39 and earlier</button></div><div aria-labelledby="tab-4-4-0" class="sphinx-tabs-panel" id="panel-4-4-0" name="4-0" role="tabpanel" tabindex="0"><p>Deprecated. Not used in Mattermost v6.0 and later.</p>
+</div><div aria-labelledby="tab-4-4-1" class="sphinx-tabs-panel" hidden="true" id="panel-4-4-1" name="4-1" role="tabpanel" tabindex="0"><p><em>Not available in Mattermost Cloud</em></p>
+<p>This setting applies to the legacy sidebar only. You must enable the <a class="reference external" href="/configure/configuration-settings.html#enable-legacy-sidebar">Enable Legacy Sidebar</a> configuration setting to see and enable this functionality in the System Console.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This experimental setting is not recommended for production environments. The new channel sidebar matches and exceeds the feature set offered by this configuration setting.</p>
+</div>
+<p>We strongly recommend that you leave the <strong>Enable Legacy Sidebar</strong> configuration setting disabled so users can access new channel sidebar features, including custom, collapsible channel categories, drag and drop, unread filtering, channel sorting options, and more. See <a class="reference external" href="/messaging/organizing-your-sidebar.html#organizing-your-sidebar">the channel sidebar documentation</a> for more information about these features.</p>
+<p><strong>True</strong>: Enables channel sidebar organization options in <strong>Settings &gt; Sidebar &gt; Channel grouping and sorting</strong>. Includes options for grouping unread channels, sorting channels by most recent post, and combining all channel types into a single list.</p>
+<p><strong>False</strong>: Hides the channel sidebar organization options in <strong>Settings &gt; Sidebar &gt; Channel grouping and sorting</strong>.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;ExperimentalChannelOrganization&quot;:</span> <span class="pre">false</span></code> with options <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+</section>
+<section id="enable-x-to-leave-channels-from-left-hand-sidebar">
+<h3>Enable X to leave channels from left hand sidebar<a class="headerlink" href="#enable-x-to-leave-channels-from-left-hand-sidebar" title="Link to this heading">#</a></h3>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" role="tablist"><button aria-controls="panel-5-5-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-5-5-0" name="5-0" role="tab" tabindex="0">Mattermost v6.0 onwards</button><button aria-controls="panel-5-5-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-5-5-1" name="5-1" role="tab" tabindex="-1">Mattermost v5.39 and earlier</button></div><div aria-labelledby="tab-5-5-0" class="sphinx-tabs-panel" id="panel-5-5-0" name="5-0" role="tabpanel" tabindex="0"><p>Deprecated. Not used in Mattermost v6.0 and later.</p>
+</div><div aria-labelledby="tab-5-5-1" class="sphinx-tabs-panel" hidden="true" id="panel-5-5-1" name="5-1" role="tabpanel" tabindex="0"><p><em>Not available in Mattermost Cloud</em></p>
+<p>This setting applies to the legacy sidebar only. You must first enable the <a class="reference external" href="/configure/configuration-settings.html#enable-legacy-sidebar">Enable Legacy Sidebar</a> configuration setting if you want to see and enable this functionality in the System Console.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This experimental setting is not recommended for production environments. The new channel sidebar matches and exceeds the feature set offered by this configuration setting.</p>
+</div>
+<p>We strongly recommend that you leave the <strong>Enable Legacy Sidebar</strong> configuration setting disabled so users can access new channel sidebar features, including custom, collapsible channel categories, drag and drop, unread filtering, channel sorting options, and more. See <a class="reference external" href="/messaging/organizing-your-sidebar.html">the channel sidebar documentation</a> for more information about these features.</p>
+<p><strong>True</strong>: Users can leave public and private channels by clicking the “x” beside the channel name.</p>
+<p><strong>False</strong>: Users must use the <strong>Leave Channel</strong> option from the channel menu to leave channels.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;EnableXToLeaveChannelsFromLHS&quot;:</span> <span class="pre">false</span></code> with options <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+</section>
+<section id="autoclose-direct-messages-in-sidebar">
+<h3>Autoclose direct messages in sidebar<a class="headerlink" href="#autoclose-direct-messages-in-sidebar" title="Link to this heading">#</a></h3>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" role="tablist"><button aria-controls="panel-6-6-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-6-6-0" name="6-0" role="tab" tabindex="0">Mattermost v6.0 onwards</button><button aria-controls="panel-6-6-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-6-6-1" name="6-1" role="tab" tabindex="-1">Mattermost v5.39 and earlier</button></div><div aria-labelledby="tab-6-6-0" class="sphinx-tabs-panel" id="panel-6-6-0" name="6-0" role="tabpanel" tabindex="0"><p>Deprecated. Not used in Mattermost v6.0 and later.</p>
+</div><div aria-labelledby="tab-6-6-1" class="sphinx-tabs-panel" hidden="true" id="panel-6-6-1" name="6-1" role="tabpanel" tabindex="0"><p><em>Not available in Mattermost Cloud</em></p>
+<p>This setting applies to the legacy sidebar only. You must enable the <a class="reference external" href="/configure/configuration-settings.html#enable-legacy-sidebar">Enable Legacy Sidebar</a> configuration setting to see and enable this functionality in the System Console.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This experimental setting is not recommended for production environments. The new channel sidebar matches and exceeds the feature set offered by this configuration setting.</p>
+</div>
+<p>We strongly recommend that you leave the <strong>Enable Legacy Sidebar</strong> configuration setting disabled so users can access new channel sidebar features, including custom, collapsible channel categories, drag and drop, unread filtering, channel sorting options, and more. See <a class="reference external" href="/messaging/organizing-your-sidebar.html">the channel sidebar documentation</a> for more information about these features.</p>
+<p><strong>True</strong>: By default, direct message conversations with no activity for 7 days will be hidden from the sidebar. Users can disable this in <strong>Settings &gt; Sidebar</strong>.</p>
+<p><strong>False</strong>: Conversations remain in the sidebar until they are manually closed.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;CloseUnusedDirectMessages&quot;:</span> <span class="pre">false</span></code> with options <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="town-square-channel-settings">
+<h2>Town Square channel settings<a class="headerlink" href="#town-square-channel-settings" title="Link to this heading">#</a></h2>
+<section id="town-square-is-hidden-in-left-hand-sidebar">
+<h3>Town Square is hidden in left hand sidebar<a class="headerlink" href="#town-square-is-hidden-in-left-hand-sidebar" title="Link to this heading">#</a></h3>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" role="tablist"><button aria-controls="panel-7-7-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-7-7-0" name="7-0" role="tab" tabindex="0">Mattermost v6.0 onwards</button><button aria-controls="panel-7-7-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-7-7-1" name="7-1" role="tab" tabindex="-1">Mattermost v5.39 and earlier</button></div><div aria-labelledby="tab-7-7-0" class="sphinx-tabs-panel" id="panel-7-7-0" name="7-0" role="tabpanel" tabindex="0"><p>Deprecated. Not used in Mattermost v6.0 and later.</p>
+</div><div aria-labelledby="tab-7-7-1" class="sphinx-tabs-panel" hidden="true" id="panel-7-7-1" name="7-1" role="tabpanel" tabindex="0"><p>Available in legacy Enterprise Edition E10 and higher.</p>
+<p>This setting applies to the legacy sidebar only. You must enable the <a class="reference external" href="/configure/configuration-settings.html#enable-legacy-sidebar">Enable Legacy Sidebar</a> configuration setting to see and enable this functionality in the System Console.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This experimental setting is not recommended for production environments. The new channel sidebar matches and exceeds the feature set offered by this configuration setting.</p>
+</div>
+<p>We strongly recommend that you leave the <strong>Enable Legacy Sidebar</strong> configuration setting disabled so users can access new channel sidebar features, including custom, collapsible channel categories, drag and drop, unread filtering, channel sorting options, and more. See <a class="reference external" href="/messaging/organizing-your-sidebar.html">the channel sidebar documentation</a> for more information about these features.</p>
+<p><strong>True</strong>: Hides Town Square in the left-hand sidebar if there are no unread messages in the channel.</p>
+<p><strong>False</strong>: Town Square is always visible in the left-hand sidebar even if all messages have been read.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;ExperimentalHideTownSquareinLHS&quot;:</span> <span class="pre">false</span></code> with options <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+</section>
+<section id="town-square-is-read-only">
+<h3>Town Square is read-only<a class="headerlink" href="#town-square-is-read-only" title="Link to this heading">#</a></h3>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" role="tablist"><button aria-controls="panel-8-8-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-8-8-0" name="8-0" role="tab" tabindex="0">Mattermost v6.0 onwards</button><button aria-controls="panel-8-8-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-8-8-1" name="8-1" role="tab" tabindex="-1">Mattermost v5.39 and earlier</button></div><div aria-labelledby="tab-8-8-0" class="sphinx-tabs-panel" id="panel-8-8-0" name="8-0" role="tabpanel" tabindex="0"><p>In Mattermost v.6.0, this feature has been deprecated in favor of <a class="reference external" href="/manage/team-channel-members.html#channel-moderation">channel moderation</a> which allows you to set any channel as read-only, including Town Square.</p>
+</div><div aria-labelledby="tab-8-8-1" class="sphinx-tabs-panel" hidden="true" id="panel-8-8-1" name="8-1" role="tabpanel" tabindex="0"><p>Available in legacy Enterprise Edition E10 and higher.</p>
+<p><strong>True</strong>: Only System Admins can post in Town Square. Other members are not able to post, reply, upload files, react using emojis,  pin messages to Town Square, nor are they able to change the channel name, header, or purpose.</p>
+<p><strong>False</strong>: Anyone can post in Town Square.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;ExperimentalTownSquareIsReadOnly&quot;:</span> <span class="pre">false</span></code> with options <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="custom-emoji-settings">
+<h2>Custom emoji settings<a class="headerlink" href="#custom-emoji-settings" title="Link to this heading">#</a></h2>
+<section id="restrict-custom-emoji-creation">
+<h3>Restrict custom emoji creation<a class="headerlink" href="#restrict-custom-emoji-creation" title="Link to this heading">#</a></h3>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" role="tablist"><button aria-controls="panel-9-9-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-9-9-0" name="9-0" role="tab" tabindex="0">Mattermost v6.0 onwards</button><button aria-controls="panel-9-9-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-9-9-1" name="9-1" role="tab" tabindex="-1">Mattermost v5.39 and earlier</button></div><div aria-labelledby="tab-9-9-0" class="sphinx-tabs-panel" id="panel-9-9-0" name="9-0" role="tabpanel" tabindex="0"><p>Deprecated. Not used in Mattermost v6.0 and later.</p>
+</div><div aria-labelledby="tab-9-9-1" class="sphinx-tabs-panel" hidden="true" id="panel-9-9-1" name="9-1" role="tabpanel" tabindex="0"><p>After upgrading to v4.9 (released April 16th, 2018) or later, changing the <code class="docutils literal notranslate"><span class="pre">config.json</span></code> value no longer has an effect because this setting has been migrated to the database. This setting can be modified using the System Console user interface.</p>
+<p>Available in legacy Enterprise Edition E10 and E20.</p>
+<p><strong>Allow everyone to create custom emoji</strong>: Allows everyone to add custom emojis from the emoji picker.</p>
+<p><strong>Allow System and Team Admins to create custom emoji</strong>: The <strong>Custom Emoji</strong> option is hidden from the emoji picker for users who are not System or Team Admins.</p>
+<p><strong>Only allow System Admins to create custom emoji</strong>: The <strong>Custom Emoji</strong> option is hidden from the emoji picker for users who are not System Admins.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;RestrictCustomEmojiCreation&quot;:</span> <span class="pre">&quot;all&quot;</span></code> with options <code class="docutils literal notranslate"><span class="pre">&quot;all&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;admin&quot;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&quot;system_admin&quot;</span></code> for the above settings, respectively.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="timezone-settings">
+<h2>Timezone settings<a class="headerlink" href="#timezone-settings" title="Link to this heading">#</a></h2>
+<section id="timezone">
+<h3>Timezone<a class="headerlink" href="#timezone" title="Link to this heading">#</a></h3>
+<p><em>This configuration setting has been promoted to General Availability and is no longer configurable in Mattermost v6.0 and later.</em></p>
+<p>Select the timezone used for timestamps in the user interface and email notifications.</p>
+<p><strong>True</strong>: The <strong>Timezone</strong> setting is visible in the Settings and a timezone is automatically assigned in the next active session.</p>
+<p><strong>False</strong>: The <strong>Timezone</strong> setting is hidden in the Settings.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;ExperimentalTimezone&quot;:</span> <span class="pre">true</span></code> with options <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="high-availability-settings">
+<h2>High availability settings<a class="headerlink" href="#high-availability-settings" title="Link to this heading">#</a></h2>
+<section id="inter-node-listen-address">
+<h3>Inter-node listen address<a class="headerlink" href="#inter-node-listen-address" title="Link to this heading">#</a></h3>
+<p><em>Deprecated. Not used in Mattermost v4.0 and later</em></p>
+<p>The address the Mattermost Server will listen on for inter-node communication. When setting up your network you should secure the listen address so that only machines in the cluster have access to that port. This can be done in different ways, for example, using IPsec, security groups, or routing tables.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;InterNodeListenAddress&quot;:</span> <span class="pre">&quot;:8075&quot;</span></code> with string input.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="inter-node-urls">
+<h3>Inter-Node URLs<a class="headerlink" href="#inter-node-urls" title="Link to this heading">#</a></h3>
+<p><em>Deprecated. Not used in Mattermost v4.0 and later</em></p>
+<p>A list of all the machines in the cluster, such as <code class="docutils literal notranslate"><span class="pre">[&quot;http://10.10.10.2&quot;,</span> <span class="pre">&quot;http://10.10.10.4&quot;]</span></code>. It is recommended to use the internal IP addresses so all the traffic can be secured.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;InterNodeUrls&quot;:</span> <span class="pre">[]</span></code> with string array input consisting of the machines in the cluster.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="rest-api-v3-settings">
+<h2>REST API V3 settings<a class="headerlink" href="#rest-api-v3-settings" title="Link to this heading">#</a></h2>
+<section id="allow-use-of-api-v3-endpoints">
+<h3>Allow use of API v3 endpoints<a class="headerlink" href="#allow-use-of-api-v3-endpoints" title="Link to this heading">#</a></h3>
+<p><em>Removed in June 16, 2018 release</em></p>
+<p>Set to <code class="docutils literal notranslate"><span class="pre">false</span></code> to disable all version 3 endpoints of the REST API. Integrations that rely on API v3 will fail and can then be identified for migration to API v4. API v3 is deprecated and will be removed in the near future. See <a class="reference external" href="https://api.mattermost.com">https://api.mattermost.com</a> for details.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;EnableAPIv3&quot;:</span> <span class="pre">false</span></code> with options <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="integrations-settings">
+<h2>Integrations settings<a class="headerlink" href="#integrations-settings" title="Link to this heading">#</a></h2>
+<section id="restrict-managing-integrations-to-admins">
+<h3>Restrict managing integrations to Admins<a class="headerlink" href="#restrict-managing-integrations-to-admins" title="Link to this heading">#</a></h3>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" role="tablist"><button aria-controls="panel-10-10-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-10-10-0" name="10-0" role="tab" tabindex="0">Mattermost v6.0 onwards</button><button aria-controls="panel-10-10-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-10-10-1" name="10-1" role="tab" tabindex="-1">Mattermost v5.39 and earlier</button></div><div aria-labelledby="tab-10-10-0" class="sphinx-tabs-panel" id="panel-10-10-0" name="10-0" role="tabpanel" tabindex="0"><p>Deprecated. Not used in Mattermost v6.0 and later.</p>
+</div><div aria-labelledby="tab-10-10-1" class="sphinx-tabs-panel" hidden="true" id="panel-10-10-1" name="10-1" role="tabpanel" tabindex="0"><p>After upgrading to v4.9 (released April 16th, 2018) or later, changing the <code class="docutils literal notranslate"><span class="pre">config.json</span></code> value no longer has an effect because this setting has been migrated to the database. This setting can be modified using the System Console user interface.</p>
+<p>Available in legacy Enterprise Edition E10 and E20.</p>
+</div></div>
+<p><strong>True</strong>: Webhooks and slash commands can only be created, edited, and viewed by Team and System Admins, and OAuth 2.0 applications by System Admins. Integrations are available to all users after they have been created by the Admin.</p>
+<p><strong>False</strong>: Any team members can create webhooks, slash commands` and OAuth 2.0 applications from <strong>Product menu &gt; Integrations</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>OAuth 2.0 applications can be authorized by all users if they have the <strong>Client ID</strong> and <strong>Client Secret</strong> for an app setup on the server.</p>
+</div>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;EnableOnlyAdminIntegrations&quot;:</span> <span class="pre">true</span></code> with options <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="patch-react-dom-used-by-plugins">
+<h3>Patch React DOM used by plugins<a class="headerlink" href="#patch-react-dom-used-by-plugins" title="Link to this heading">#</a></h3>
+<p><em>Deprecated. Not used in Mattermost v8.0 and later</em></p>
+<p>This setting enables the patching of the React DOM library when loading web app plugins so that the plugin uses the version matching the web app. This should only be needed temporarily after upgrading to Mattermost v7.7 for plugins that have not been updated yet. Changes to this setting require a server restart before taking effect.</p>
+<p>See the <a class="reference external" href="https://docs.mattermost.com/upgrade/important-upgrade-notes.html">Important Upgrade Notes</a> for more information.</p>
+<p><strong>True</strong>: Web app plugins that package their own version of React DOM are patched to instead use the version of React DOM provided by the web app.</p>
+<p><strong>False</strong>: Web app plugins are loaded as normal.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;PatchPluginsReactDOM&quot;:</span> <span class="pre">false</span></code> with options <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="permission-policy-settings">
+<h2>Permission policy settings<a class="headerlink" href="#permission-policy-settings" title="Link to this heading">#</a></h2>
+<p><em>Removed in June 16, 2018 release</em></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Permission policy settings are available in Enterprise Edition E10 and E20. From v5.0, these settings are found in the <a class="reference external" href="/onboard/advanced-permissions.html">Advanced Permissions</a> page instead of configuration settings.</p>
+</div>
+<section id="enable-sending-team-invites-from">
+<h3>Enable sending team invites from<a class="headerlink" href="#enable-sending-team-invites-from" title="Link to this heading">#</a></h3>
+<p><em>Removed in June 16, 2018 release</em></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>From v5.0 this has been replaced by advanced permissions which offers Admins a way to restrict actions in Mattermost to authorized users only. See the <a class="reference external" href="/onboard/advanced-permissions.html">Advanced Permissions documentation</a> for more details.</p>
+</div>
+<p>Set policy on who can invite others to a team using the <strong>Send Email Invite</strong>, <strong>Get Team Invite Link</strong>, and <strong>Add Members to Team</strong> options on the product menu. If <strong>Get Team Invite Link</strong> is used to share a link, you can expire the invite code from <strong>Team Settings &gt; Invite Code</strong> after the desired users have joined the team. Options include:</p>
+<p><strong>All team members</strong>: Allows any team member to invite others using an email invitation, team invite link, or by adding members to the team directly.</p>
+<p><strong>Team and System Admins</strong>: Hides the email invitation, team invite link, and the add members to team buttons in the product menu from users who are not Team Admins or System Admins.</p>
+<p><strong>System Admins</strong>: Hides the email invitation, team invite link, and add members to team buttons in the product menu from users who are not System Admins.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;RestrictTeamInvite&quot;:</span> <span class="pre">&quot;all&quot;</span></code> with options <code class="docutils literal notranslate"><span class="pre">&quot;all&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;team_admin&quot;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&quot;system_admin&quot;</span></code> for the above settings, respectively.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="enable-public-channel-creation-for">
+<h3>Enable public channel creation for<a class="headerlink" href="#enable-public-channel-creation-for" title="Link to this heading">#</a></h3>
+<p><em>Removed in June 16, 2018 release</em></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>From v5.0 this has been replaced by advanced permissions which offers Admins a way to restrict actions in Mattermost to authorized users only. See the <a class="reference external" href="/onboard/advanced-permissions.html">Advanced Permissions documentation</a> for more details.</p>
+</div>
+<p>Restrict the permission level required to create public channels.</p>
+<p><strong>All team members</strong>: Allow all team members to create public channels.</p>
+<p><strong>Team Admins and System Admins</strong>: Restrict creating public channels to Team Admins and System Admins.</p>
+<p><strong>System Admins</strong>: Restrict creating public channels to System Admins.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;RestrictPublicChannelCreation&quot;:</span> <span class="pre">&quot;all&quot;</span></code> with options <code class="docutils literal notranslate"><span class="pre">&quot;all&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;team_admin&quot;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&quot;system_admin&quot;</span></code> for the above settings, respectively.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="enable-public-channel-renaming-for">
+<h3>Enable public channel renaming for<a class="headerlink" href="#enable-public-channel-renaming-for" title="Link to this heading">#</a></h3>
+<p><em>Removed in June 16, 2018 release</em></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>From v5.0 this has been replaced by advanced permissions which offers Admins a way to restrict actions in Mattermost to authorized users only. See the <a class="reference external" href="/onboard/advanced-permissions.html">Advanced Permissions documentation</a> for more details.</p>
+</div>
+<p>Restrict the permission level required to rename and set the header or purpose for Public channels.</p>
+<p><strong>All channel members</strong>: Allow all channel members to rename Public channels.</p>
+<p><strong>Channel Admins, Team Admins, and System Admins</strong>: Restrict renaming public channels to Channel Admins, Team Admins, and System Admins who are members of the channel.</p>
+<p><strong>Team Admins and System Admins</strong>: Restrict renaming public channels to Team Admins and System Admins who are members of the channel.</p>
+<p><strong>System Admins</strong>: Restrict renaming public channels to System Admins who are members of the channel.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;RestrictPublicChannelManagement&quot;:</span> <span class="pre">&quot;all&quot;</span></code> with options <code class="docutils literal notranslate"><span class="pre">&quot;all&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;channel_admin&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;team_admin&quot;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&quot;system_admin&quot;</span></code> for the above settings, respectively.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="enable-public-channel-deletion-for">
+<h3>Enable public channel deletion for<a class="headerlink" href="#enable-public-channel-deletion-for" title="Link to this heading">#</a></h3>
+<p><em>Removed in June 16, 2018 release</em></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>From v5.0 this has been replaced by advanced permissions which offers Admins a way to restrict actions in Mattermost to authorized users only. See the <a class="reference external" href="/onboard/advanced-permissions.html">Advanced Permissions documentation</a> for more details.</p>
+</div>
+<p>Restrict the permission level required to delete Public channels. Deleted channels can be recovered from the database using a <a class="reference external" href="/manage/command-line-tools.html">command line tool</a>.</p>
+<p><strong>All channel members</strong>: Allow all channel members to delete public channels.</p>
+<p><strong>Channel Admins, Team Admins, and System Admins</strong>: Restrict deleting public channels to Channel Admins, Team Admins, and System Admins who are members of the channel.</p>
+<p><strong>Team Admins and System Admins</strong>: Restrict deleting public channels to Team Admins and System Admins who are members of the channel.</p>
+<p><strong>System Admins</strong>: Restrict deleting public channels to System Admins who are members of the channel.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;RestrictPublicChannelDeletion&quot;:</span> <span class="pre">&quot;all&quot;</span></code> with options <code class="docutils literal notranslate"><span class="pre">&quot;all&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;channel_admin&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;team_admin&quot;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&quot;system_admin&quot;</span></code> for the above settings, respectively.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="enable-private-channel-creation-for">
+<h3>Enable private channel creation for<a class="headerlink" href="#enable-private-channel-creation-for" title="Link to this heading">#</a></h3>
+<p><em>Removed in June 16, 2018 release</em></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>From v5.0 this has been replaced by advanced permissions which offers Admins a way to restrict actions in Mattermost to authorized users only. See the <a class="reference external" href="/onboard/advanced-permissions.html">Advanced Permissions documentation</a> for more details.</p>
+</div>
+<p>Restrict the permission level required to create private channels.</p>
+<p><strong>All team members</strong>: Allow all team members to create private channels.</p>
+<p><strong>Team Admins and System Admins</strong>: Restrict creating private channels to Team Admins and System Admins.</p>
+<p><strong>System Admins</strong>: Restrict creating private channels to System Admins.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;RestrictPrivateChannelCreation&quot;:</span> <span class="pre">&quot;all&quot;</span></code> with options <code class="docutils literal notranslate"><span class="pre">&quot;all&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;team_admin&quot;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&quot;system_admin&quot;</span></code> for the above settings, respectively.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="enable-private-channel-renaming-for">
+<h3>Enable private channel renaming for<a class="headerlink" href="#enable-private-channel-renaming-for" title="Link to this heading">#</a></h3>
+<p><em>Removed in June 16, 2018 release</em></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>From v5.0 this has been replaced by advanced permissions which offers Admins a way to restrict actions in Mattermost to authorized users only. See the <a class="reference external" href="/onboard/advanced-permissions.html">Advanced Permissions documentation</a> for more details.</p>
+</div>
+<p>Restrict the permission level required to rename and set the header or purpose for Private channels.</p>
+<p><strong>All channel members</strong>: Allow all channel members to rename private channels.</p>
+<p><strong>Channel Admins, Team Admins, and System Admins</strong>: Restrict renaming private channels to Channel Admins, Team Admins, and System Admins who are members of the private channel.</p>
+<p><strong>Team Admins and System Admins</strong>: Restrict renaming private channels to Team Admins and System Admins who are members of the private channel.</p>
+<p><strong>System Admins</strong>: Restrict renaming private channels to System Admins who are members of the private channel.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;RestrictPrivateChannelManagement&quot;:</span> <span class="pre">&quot;all&quot;</span></code> with options <code class="docutils literal notranslate"><span class="pre">&quot;all&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;channel_admin&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;team_admin&quot;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&quot;system_admin&quot;</span></code> for the above settings, respectively.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="enable-managing-of-private-channel-members-for">
+<h3>Enable managing of private channel members for<a class="headerlink" href="#enable-managing-of-private-channel-members-for" title="Link to this heading">#</a></h3>
+<p><em>Removed in June 16, 2018 release</em></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>From v5.0 this has been replaced by advanced permissions which offers Admins a way to restrict actions in Mattermost to authorized users only. See the <a class="reference external" href="/onboard/advanced-permissions.html">Advanced Permissions documentation</a> for more details.</p>
+</div>
+<p>Set policy on who can add and remove members from Private channels.</p>
+<p><strong>All team members</strong>: Allow all team members to add and remove members.</p>
+<p><strong>Team Admins, Channel Admins, and System Admins</strong>: Allow only Team Admins, Channel Admins, and System Admins to add and remove members.</p>
+<p><strong>Team Admins, and System Admins</strong>: Allow only Team Admins and System Admins to add and remove members.</p>
+<p><strong>System Admins</strong>: Allow only System Admins to add and remove members.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;RestrictPrivateChannelManageMembers&quot;:</span> <span class="pre">&quot;all&quot;</span></code> with options <code class="docutils literal notranslate"><span class="pre">&quot;all&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;channel_admin&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;team_admin&quot;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&quot;system_admin&quot;</span></code> for the above settings, respectively.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="enable-private-channel-deletion-for">
+<h3>Enable private channel deletion for<a class="headerlink" href="#enable-private-channel-deletion-for" title="Link to this heading">#</a></h3>
+<p><em>Removed in June 16, 2018 release</em></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>From v5.0 this has been replaced by advanced permissions which offers Admins a way to restrict actions in Mattermost to authorized users only. See the <a class="reference external" href="/onboard/advanced-permissions.html">Advanced Permissions documentation</a> for more details.</p>
+</div>
+<p>Restrict the permission level required to delete Private channels. Deleted channels can be recovered from the database using a <a class="reference external" href="/manage/command-line-tools.html">command line tool</a>.</p>
+<p><strong>All channel members</strong>: Allow all channel members to delete private channels.</p>
+<p><strong>Channel Admins, Team Admins, and System Admins</strong>: Restrict deleting private channels to Channel Admins, Team Admins, and System Admins who are members of the Private channel.</p>
+<p><strong>Team Admins and System Admins</strong>: Restrict deleting private channels to Team Admins and System Admins who are members of the Private channel.</p>
+<p><strong>System Admins</strong>: Restrict deleting private channels to System Admins who are members of the private channel.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;RestrictPrivateChannelDeletion&quot;:</span> <span class="pre">&quot;all&quot;</span></code> with options <code class="docutils literal notranslate"><span class="pre">&quot;all&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;channel_admin&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;team_admin&quot;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&quot;system_admin&quot;</span></code> for the above settings, respectively.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="allow-which-users-to-delete-messages">
+<h3>Allow which users to delete messages<a class="headerlink" href="#allow-which-users-to-delete-messages" title="Link to this heading">#</a></h3>
+<p><em>Removed in June 16, 2018 release</em></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>From v5.0 this has been replaced by advanced permissions which offers Admins a way to restrict actions in Mattermost to authorized users only. See the <a class="reference external" href="/onboard/advanced-permissions.html">Advanced Permissions documentation</a> for more details.</p>
+</div>
+<p>Restrict the permission level required to delete messages. Team Admins, Channel Admins, and System Admins can delete messages only in channels where they are members. Messages can be deleted any time.</p>
+<p><strong>Message authors can delete their own messages, and Administrators can delete any message</strong>: Allow authors to delete their own messages, and allow Team Admins, Channel Admins, and System Admins to delete any message.</p>
+<p><strong>Team Admins and System Admins</strong>: Allow only Team Admins and System Admins to delete messages.</p>
+<p><strong>System Admins</strong>: Allow only System Admins to delete messages.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;RestrictPostDelete&quot;:</span> <span class="pre">&quot;all&quot;</span></code> with options <code class="docutils literal notranslate"><span class="pre">&quot;all&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;team_admin&quot;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&quot;system_admin&quot;</span></code> for the above settings, respectively.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="allow-users-to-edit-their-messages">
+<h3>Allow users to edit their messages<a class="headerlink" href="#allow-users-to-edit-their-messages" title="Link to this heading">#</a></h3>
+<p><em>Removed in June 16, 2018 release</em></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>From v5.0 this has been replaced by advanced permissions which offers Admins a way to restrict actions in Mattermost to authorized users only. See the <a class="reference external" href="/onboard/advanced-permissions.html">Advanced Permissions documentation</a> for more details.</p>
+</div>
+<p>Set the time limit that users have to edit their messages after posting.</p>
+<p><strong>Any time</strong>: Allow users to edit their messages at any time after posting.</p>
+<p><strong>Never</strong>: Do not allow users to edit their messages.</p>
+<p><strong>{n} seconds after posting</strong>: Users can edit their messages within the specified time limit after posting. The time limit is applied using the <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting <code class="docutils literal notranslate"><span class="pre">PostEditTimeLimit</span></code> described below.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;AllowEditPost&quot;:</span> <span class="pre">&quot;always&quot;</span></code> with options <code class="docutils literal notranslate"><span class="pre">&quot;always&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;never&quot;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&quot;time_limit&quot;</span></code> for the above settings, respectively.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="post-edit-time-limit">
+<h3>Post edit time limit<a class="headerlink" href="#post-edit-time-limit" title="Link to this heading">#</a></h3>
+<p>When post editing is permitted, setting this to <code class="docutils literal notranslate"><span class="pre">-1</span></code> allows editing any time, and setting this to a positive integer restricts editing time in seconds. If post editing is disabled, this setting does not apply.</p>
+<p><strong>Note:</strong> This setting does not affect plugins, shared channels, integration actions, or Mattermost products.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;PostEditTimeLimit&quot;:</span> <span class="pre">-1</span></code> with numerical input.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="image-settings">
+<h2>Image settings<a class="headerlink" href="#image-settings" title="Link to this heading">#</a></h2>
+<section id="attachment-thumbnail-width">
+<h3>Attachment thumbnail width<a class="headerlink" href="#attachment-thumbnail-width" title="Link to this heading">#</a></h3>
+<p><em>Removed in July 16th, 2017 release</em></p>
+<p>Width of thumbnails generated from uploaded images. Updating this value changes how thumbnail images render in future, but does not change images created in the past.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;ThumbnailWidth&quot;:</span> <span class="pre">120</span></code> with numerical input.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="attachment-thumbnail-height">
+<h3>Attachment thumbnail height<a class="headerlink" href="#attachment-thumbnail-height" title="Link to this heading">#</a></h3>
+<p><em>Removed in July 16th, 2017 release</em></p>
+<p>Height of thumbnails generated from uploaded images. Updating this value changes how thumbnail images render in future, but does not change images created in the past.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;ThumbnailHeight&quot;:</span> <span class="pre">100</span></code> with numerical input.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="image-preview-width">
+<h3>Image preview width<a class="headerlink" href="#image-preview-width" title="Link to this heading">#</a></h3>
+<p><em>Removed in July 16th, 2017 release</em></p>
+<p>Maximum width of preview image. Updating this value changes how preview images render in future, but does not change images created in the past.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;PreviewWidth&quot;:</span> <span class="pre">1024</span></code> with numerical input.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="image-preview-height">
+<h3>Image preview height<a class="headerlink" href="#image-preview-height" title="Link to this heading">#</a></h3>
+<p><em>Removed in July 16th, 2017 release</em></p>
+<p>Maximum height of preview image. Setting this value to <code class="docutils literal notranslate"><span class="pre">0</span></code> instructs Mattermost to auto-size the preview image height based on the source image aspect ratio and the preview image width. Updating this value changes how preview images render in future, but does not change images created in the past.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;PreviewHeight&quot;:</span> <span class="pre">0</span></code> with numerical input.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="profile-picture-width">
+<h3>Profile picture width<a class="headerlink" href="#profile-picture-width" title="Link to this heading">#</a></h3>
+<p><em>Removed in July 16th, 2017 release</em></p>
+<p>The width to which profile pictures are resized after being uploaded via <strong>Account Settings &gt; Profile</strong>.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;ProfileWidth&quot;:</span> <span class="pre">128</span></code> with numerical input.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="profile-picture-height">
+<h3>Profile picture height<a class="headerlink" href="#profile-picture-height" title="Link to this heading">#</a></h3>
+<p><em>Removed in July 16th, 2017 release</em></p>
+<p>The height to which profile pictures are resized after being uploaded via <strong>Account Settings &gt; Profile</strong>.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;ProfileHeight&quot;:</span> <span class="pre">128</span></code> with numerical input.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="experimental-display-settings">
+<h2>Experimental display settings<a class="headerlink" href="#experimental-display-settings" title="Link to this heading">#</a></h2>
+<section id="supported-timezones-path">
+<h3>Supported timezones path<a class="headerlink" href="#supported-timezones-path" title="Link to this heading">#</a></h3>
+<p><em>Removed in April 16, 2019 release</em></p>
+<p>Set the path of the JSON file that lists supported timezones when <code class="docutils literal notranslate"><span class="pre">ExperimentalTimezone</span></code> is set to <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+<p>The file must be in the same directory as your <code class="docutils literal notranslate"><span class="pre">config.json</span></code> file if you set a relative path. Defaults to <code class="docutils literal notranslate"><span class="pre">timezones.json</span></code>.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;SupportedTimezonesPath&quot;:</span> <span class="pre">&quot;timezones.json&quot;</span></code> with string input.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="other-deprecated-settings">
+<h2>Other deprecated settings<a class="headerlink" href="#other-deprecated-settings" title="Link to this heading">#</a></h2>
+<section id="disable-post-metadata">
+<h3>Disable Post Metadata<a class="headerlink" href="#disable-post-metadata" title="Link to this heading">#</a></h3>
+<p><em>Available in legacy Enterprise Edition E20</em></p>
+<p>This setting isn’t available in the System Console and can only be set in <code class="docutils literal notranslate"><span class="pre">config.json</span></code>.</p>
+<p><strong>True</strong>: Disabling post metadata is only recommended if you are experiencing a significant decrease in performance around channel and post load times.</p>
+<p><strong>False</strong>: Load channels with more accurate scroll positioning by loading post metadata.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;DisablePostMetadata&quot;:</span> <span class="pre">false</span></code> with options <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="enable-ad-ldap-group-sync">
+<h3>Enable AD/LDAP group sync<a class="headerlink" href="#enable-ad-ldap-group-sync" title="Link to this heading">#</a></h3>
+<p><em>Available in legacy Enterprise Edition E20</em></p>
+<p><strong>True</strong>: Enables AD/LDAP Group Sync configurable under <strong>User Management &gt; Groups</strong>.</p>
+<p><strong>False</strong>: Disables AD/LDAP Group Sync and removes <strong>User Management &gt; Groups</strong> from the System Console.</p>
+<p>For more information on AD/LDAP Group Sync, please see the <a class="reference external" href="https://docs.mattermost.com/onboard/ad-ldap-groups-synchronization.html">AD/LDAP Group Sync documentation</a>.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;ExperimentalLdapGroupSync&quot;:</span> <span class="pre">false</span></code> with options <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="disable-inactive-server-email-notifications">
+<h3>Disable inactive server email notifications<a class="headerlink" href="#disable-inactive-server-email-notifications" title="Link to this heading">#</a></h3>
+<p>This setting isn’t available in the System Console and can only be set in <code class="docutils literal notranslate"><span class="pre">config.json</span></code>.</p>
+<p>This configuration setting disables the ability to send inactivity email notifications to Mattermost System Admins.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>This feature’s <code class="docutils literal notranslate"><span class="pre">config.json</span></code> setting is <code class="docutils literal notranslate"><span class="pre">&quot;EnableInactivityEmail&quot;:</span> <span class="pre">true</span></code> with options <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="environment-variables.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Environment variables</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="experimental-configuration-settings.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Experimental configuration settings</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2015-2023 Mattermost
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Deprecated configuration settings</a><ul>
+<li><a class="reference internal" href="#mattermost-boards-setting">Mattermost Boards setting</a><ul>
+<li><a class="reference internal" href="#enable-publicly-shared-boards">Enable publicly-shared boards</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#bleve-settings">Bleve settings</a><ul>
+<li><a class="reference internal" href="#bulk-indexing-time-window-seconds">Bulk Indexing Time Window Seconds</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#elasticsearch-settings">Elasticsearch settings</a><ul>
+<li><a class="reference internal" href="#bulk-indexing-time-window">Bulk Indexing Time Window</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#service-settings">Service settings</a><ul>
+<li><a class="reference internal" href="#enable-reliable-websockets">Enable reliable websockets</a></li>
+<li><a class="reference internal" href="#data-prefetch">Data prefetch</a></li>
+<li><a class="reference internal" href="#segment-write-key">Segment write key</a></li>
+<li><a class="reference internal" href="#limit-access-to-config-settings-prior-to-login">Limit access to config settings prior to login</a></li>
+<li><a class="reference internal" href="#disable-legacy-mfa-api-endpoint">Disable legacy MFA API endpoint</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#database-settings">Database settings</a><ul>
+<li><a class="reference internal" href="#at-rest-encrypt-key">At rest encrypt key</a></li>
+<li><a class="reference internal" href="#amazon-s3-bucket-endpoint">Amazon S3 bucket endpoint</a></li>
+<li><a class="reference internal" href="#amazon-s3-location-constraint">Amazon S3 Location Constraint</a></li>
+<li><a class="reference internal" href="#amazon-s3-lowercase-bucket">Amazon S3 lowercase bucket</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#users-and-teams-settings">Users and teams settings</a><ul>
+<li><a class="reference internal" href="#enable-team-directory">Enable team directory</a></li>
+<li><a class="reference internal" href="#allow-team-admins-to-edit-others-posts">Allow team admins to edit others’ posts</a></li>
+<li><a class="reference internal" href="#enable-team-creation">Enable team creation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#saml-2-0-settings">SAML 2.0 settings</a><ul>
+<li><a class="reference internal" href="#use-new-saml-library">Use new SAML library</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#legacy-sidebar-settings">Legacy sidebar settings</a><ul>
+<li><a class="reference internal" href="#enable-legacy-sidebar">Enable legacy sidebar</a></li>
+<li><a class="reference internal" href="#experimental-sidebar-features">Experimental sidebar features</a></li>
+<li><a class="reference internal" href="#sidebar-organization">Sidebar organization</a></li>
+<li><a class="reference internal" href="#enable-x-to-leave-channels-from-left-hand-sidebar">Enable X to leave channels from left hand sidebar</a></li>
+<li><a class="reference internal" href="#autoclose-direct-messages-in-sidebar">Autoclose direct messages in sidebar</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#town-square-channel-settings">Town Square channel settings</a><ul>
+<li><a class="reference internal" href="#town-square-is-hidden-in-left-hand-sidebar">Town Square is hidden in left hand sidebar</a></li>
+<li><a class="reference internal" href="#town-square-is-read-only">Town Square is read-only</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#custom-emoji-settings">Custom emoji settings</a><ul>
+<li><a class="reference internal" href="#restrict-custom-emoji-creation">Restrict custom emoji creation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#timezone-settings">Timezone settings</a><ul>
+<li><a class="reference internal" href="#timezone">Timezone</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#high-availability-settings">High availability settings</a><ul>
+<li><a class="reference internal" href="#inter-node-listen-address">Inter-node listen address</a></li>
+<li><a class="reference internal" href="#inter-node-urls">Inter-Node URLs</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rest-api-v3-settings">REST API V3 settings</a><ul>
+<li><a class="reference internal" href="#allow-use-of-api-v3-endpoints">Allow use of API v3 endpoints</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#integrations-settings">Integrations settings</a><ul>
+<li><a class="reference internal" href="#restrict-managing-integrations-to-admins">Restrict managing integrations to Admins</a></li>
+<li><a class="reference internal" href="#patch-react-dom-used-by-plugins">Patch React DOM used by plugins</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#permission-policy-settings">Permission policy settings</a><ul>
+<li><a class="reference internal" href="#enable-sending-team-invites-from">Enable sending team invites from</a></li>
+<li><a class="reference internal" href="#enable-public-channel-creation-for">Enable public channel creation for</a></li>
+<li><a class="reference internal" href="#enable-public-channel-renaming-for">Enable public channel renaming for</a></li>
+<li><a class="reference internal" href="#enable-public-channel-deletion-for">Enable public channel deletion for</a></li>
+<li><a class="reference internal" href="#enable-private-channel-creation-for">Enable private channel creation for</a></li>
+<li><a class="reference internal" href="#enable-private-channel-renaming-for">Enable private channel renaming for</a></li>
+<li><a class="reference internal" href="#enable-managing-of-private-channel-members-for">Enable managing of private channel members for</a></li>
+<li><a class="reference internal" href="#enable-private-channel-deletion-for">Enable private channel deletion for</a></li>
+<li><a class="reference internal" href="#allow-which-users-to-delete-messages">Allow which users to delete messages</a></li>
+<li><a class="reference internal" href="#allow-users-to-edit-their-messages">Allow users to edit their messages</a></li>
+<li><a class="reference internal" href="#post-edit-time-limit">Post edit time limit</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#image-settings">Image settings</a><ul>
+<li><a class="reference internal" href="#attachment-thumbnail-width">Attachment thumbnail width</a></li>
+<li><a class="reference internal" href="#attachment-thumbnail-height">Attachment thumbnail height</a></li>
+<li><a class="reference internal" href="#image-preview-width">Image preview width</a></li>
+<li><a class="reference internal" href="#image-preview-height">Image preview height</a></li>
+<li><a class="reference internal" href="#profile-picture-width">Profile picture width</a></li>
+<li><a class="reference internal" href="#profile-picture-height">Profile picture height</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#experimental-display-settings">Experimental display settings</a><ul>
+<li><a class="reference internal" href="#supported-timezones-path">Supported timezones path</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#other-deprecated-settings">Other deprecated settings</a><ul>
+<li><a class="reference internal" href="#disable-post-metadata">Disable Post Metadata</a></li>
+<li><a class="reference internal" href="#enable-ad-ldap-group-sync">Enable AD/LDAP group sync</a></li>
+<li><a class="reference internal" href="#disable-inactive-server-email-notifications">Disable inactive server email notifications</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/tabs.js?v=3030b3cb"></script>
+    </body>
+</html>
